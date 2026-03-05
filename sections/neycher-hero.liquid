@@ -1,10 +1,11 @@
 <section class="neycher-hero">
+  <div class="neycher-hero__media">
+    <img src="{{ 'hero-bg.webp' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="900">
+  </div>
+  <div class="neycher-hero__overlay"></div>
   <div class="neycher-hero__content">
     <h1 class="neycher-hero__heading">Save up to 20%<br>with subscription</h1>
     <a href="/collections/all" class="neycher-hero__btn">Shop</a>
-  </div>
-  <div class="neycher-hero__media">
-    <img src="{{ 'hero-bg.webp' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="720">
   </div>
 </section>
 
@@ -12,10 +13,13 @@
 .neycher-hero {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  height: 100vh;
+  min-height: 500px;
+  max-height: 900px;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 .neycher-hero__media {
   position: absolute;
@@ -26,13 +30,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
+}
+.neycher-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 42%, rgba(139,158,177,0.5) 73%, rgba(139,158,177,0.7) 100%);
 }
 .neycher-hero__content {
   position: relative;
-  z-index: 1;
-  padding: 80px 60px;
-  max-width: 560px;
+  z-index: 2;
+  padding: 0 60px 80px;
+  max-width: 600px;
 }
 .neycher-hero__heading {
   font-family: "Open Sans", sans-serif;
@@ -40,7 +50,7 @@
   font-weight: 300;
   line-height: 1.15;
   color: #000;
-  margin: 0 0 32px;
+  margin: 0 0 28px;
   letter-spacing: -0.5px;
 }
 .neycher-hero__btn {
@@ -48,10 +58,10 @@
   background: #000;
   color: #fff;
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   text-decoration: none;
-  padding: 14px 80px;
+  padding: 14px 72px;
   border-radius: 0;
   text-align: center;
   letter-spacing: 0.5px;
@@ -61,16 +71,18 @@
 }
 @media screen and (max-width: 749px) {
   .neycher-hero {
-    min-height: 460px;
+    height: 80vh;
+    min-height: 400px;
+    max-height: 600px;
   }
   .neycher-hero__content {
-    padding: 40px 20px;
+    padding: 0 20px 40px;
   }
   .neycher-hero__heading {
     font-size: 32px;
   }
   .neycher-hero__btn {
-    padding: 12px 60px;
+    padding: 12px 56px;
   }
 }
 {% endstylesheet %}
