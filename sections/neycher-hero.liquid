@@ -12,30 +12,31 @@
 .neycher-hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 500px;
-  max-height: 900px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
 }
 .neycher-hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  width: 100%;
 }
 .neycher-hero__media img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  display: block;
 }
 .neycher-hero__content {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
   z-index: 1;
-  padding: 0 60px 80px;
-  max-width: 600px;
+  padding: 0 60px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 .neycher-hero__heading {
   font-family: "Open Sans", sans-serif;
@@ -63,16 +64,12 @@
   opacity: 0.9;
 }
 @media screen and (max-width: 749px) {
-  .neycher-hero {
-    height: 80vh;
-    min-height: 400px;
-    max-height: 600px;
-  }
   .neycher-hero__content {
-    padding: 0 20px 40px;
+    padding: 0 20px;
+    max-width: 100%;
   }
   .neycher-hero__heading {
-    font-size: 32px;
+    font-size: 28px;
   }
   .neycher-hero__btn {
     padding: 14px 44px;
