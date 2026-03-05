@@ -2,10 +2,9 @@
   <div class="neycher-hero__media">
     <img src="{{ 'hero-bg.webp' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="900">
   </div>
-  <div class="neycher-hero__overlay"></div>
   <div class="neycher-hero__content">
     <h1 class="neycher-hero__heading">Save up to 20%<br>with subscription</h1>
-    <a href="/collections/all" class="neycher-hero__btn">Shop</a>
+    <a href="/collections/all" class="neycher-hero__btn">Shop Now</a>
   </div>
 </section>
 
@@ -32,15 +31,9 @@
   object-fit: cover;
   object-position: center top;
 }
-.neycher-hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, transparent 42%, rgba(139,158,177,0.5) 73%, rgba(139,158,177,0.7) 100%);
-}
 .neycher-hero__content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 0 60px 80px;
   max-width: 600px;
 }
@@ -49,25 +42,25 @@
   font-size: 48px;
   font-weight: 300;
   line-height: 1.15;
-  color: #000;
-  margin: 0 0 28px;
+  color: #fff;
+  margin: 0 0 32px;
   letter-spacing: -0.5px;
 }
 .neycher-hero__btn {
   display: inline-block;
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   font-family: "Open Sans", sans-serif;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
-  padding: 14px 72px;
+  padding: 16px 56px;
   border-radius: 0;
   text-align: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 .neycher-hero__btn:hover {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 @media screen and (max-width: 749px) {
   .neycher-hero {
@@ -82,7 +75,7 @@
     font-size: 32px;
   }
   .neycher-hero__btn {
-    padding: 12px 56px;
+    padding: 14px 44px;
   }
 }
 {% endstylesheet %}
