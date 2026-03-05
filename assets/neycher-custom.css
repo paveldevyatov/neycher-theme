@@ -4,14 +4,22 @@
 */
 
 /* ============================================
+   Google Fonts — Open Sans
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+/* ============================================
    Global Overrides
    ============================================ */
 
-/* Ensure smooth font rendering for serif headings */
 h1, h2, h3, h4,
 .h1, .h2, .h3, .h4 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 /* Pill-shaped buttons globally */
@@ -20,40 +28,6 @@ h1, h2, h3, h4,
   border-radius: 100px;
 }
 
-/* ============================================
-   Homepage Hero (media-with-content)
-   ============================================ */
-
-/* Hero content area padding */
-.media-with-content .media-with-content__content > .group-block-content {
-  padding-block: clamp(2rem, 5vw, 4rem);
-}
-
-/* Hero placeholder when no image is set */
-.media-with-content .media-block .placeholder-svg {
-  background-color: #E8E0D8;
-}
-
-/* ============================================
-   Mission Statement Section
-   ============================================ */
-
-/* Italic emphasis in mission heading uses accent font */
-.section-wrapper h2 em {
-  font-family: var(--font-accent--family);
-  font-style: italic;
-}
-
-/* ============================================
-   Responsive Polish
-   ============================================ */
-
-/* Ensure no horizontal overflow on mobile */
-html, body {
-  overflow-x: hidden;
-}
-
-/* Tighter section padding on mobile */
 @media screen and (max-width: 749px) {
   .section--page-width {
     padding-inline: 16px;

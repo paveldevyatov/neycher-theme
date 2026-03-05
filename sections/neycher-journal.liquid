@@ -1,0 +1,153 @@
+<section class="neycher-journal">
+  <div class="neycher-journal__header">
+    <h2 class="neycher-journal__title">Journal</h2>
+    <a href="/blogs/journal" class="neycher-journal__readall">Read Journal <span>&rarr;</span></a>
+  </div>
+  <div class="neycher-journal__scroll">
+    <div class="neycher-journal__grid">
+      <a href="/blogs/journal/how-to-fix-dryness-from-birth-control" class="neycher-journal__card">
+        <div class="neycher-journal__img">
+          <img src="{{ 'journal-1.jpg' | asset_url }}" alt="How to Fix Dryness from Birth Control?" loading="lazy" width="400" height="260">
+        </div>
+        <span class="neycher-journal__tag">Health</span>
+        <h3 class="neycher-journal__card-title">How to Fix Dryness from Birth Control?</h3>
+      </a>
+      <a href="/blogs/journal/how-to-use-vaginal-suppositories" class="neycher-journal__card">
+        <div class="neycher-journal__img">
+          <img src="{{ 'journal-2.jpg' | asset_url }}" alt="How to Use Vaginal Suppositories" loading="lazy" width="400" height="260">
+        </div>
+        <span class="neycher-journal__tag">Wellness</span>
+        <h3 class="neycher-journal__card-title">How to Use Vaginal Suppositories</h3>
+      </a>
+      <a href="/blogs/journal/is-vaginal-dryness-a-sign-of-pregnancy" class="neycher-journal__card">
+        <div class="neycher-journal__img">
+          <img src="{{ 'journal-3.jpg' | asset_url }}" alt="Is Vaginal Dryness a Sign of Pregnancy?" loading="lazy" width="400" height="260">
+        </div>
+        <span class="neycher-journal__tag">Science</span>
+        <h3 class="neycher-journal__card-title">Is Vaginal Dryness a Sign of Pregnancy?</h3>
+      </a>
+      <a href="/blogs/journal/does-your-labia-disappear-in-menopause" class="neycher-journal__card">
+        <div class="neycher-journal__img">
+          <img src="{{ 'journal-4.jpg' | asset_url }}" alt="Does Your Labia Disappear In Menopause?" loading="lazy" width="400" height="260">
+        </div>
+        <span class="neycher-journal__tag">Wellness</span>
+        <h3 class="neycher-journal__card-title">Does Your Labia Disappear In Menopause?</h3>
+      </a>
+      <a href="/blogs/journal/bacterial-vaginosis-vs-yeast-infection" class="neycher-journal__card">
+        <div class="neycher-journal__img">
+          <img src="{{ 'journal-5.jpg' | asset_url }}" alt="Bacterial Vaginosis vs Yeast Infection" loading="lazy" width="400" height="260">
+        </div>
+        <span class="neycher-journal__tag">Menopause</span>
+        <h3 class="neycher-journal__card-title">Bacterial Vaginosis vs Yeast Infection</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-journal {
+  padding: 60px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-journal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.neycher-journal__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+}
+.neycher-journal__readall {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.neycher-journal__readall:hover {
+  text-decoration: underline;
+}
+.neycher-journal__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.neycher-journal__scroll::-webkit-scrollbar {
+  display: none;
+}
+.neycher-journal__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  min-width: 900px;
+}
+.neycher-journal__card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.neycher-journal__img {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.neycher-journal__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.neycher-journal__tag {
+  font-family: "Open Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.neycher-journal__card-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  line-height: 1.3;
+}
+.neycher-journal__card:hover .neycher-journal__card-title {
+  text-decoration: underline;
+}
+@media screen and (max-width: 749px) {
+  .neycher-journal {
+    padding: 40px 16px 24px;
+  }
+  .neycher-journal__grid {
+    grid-template-columns: repeat(5, 240px);
+    min-width: auto;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Journal",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Journal"
+    }
+  ]
+}
+{% endschema %}

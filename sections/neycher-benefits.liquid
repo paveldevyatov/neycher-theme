@@ -1,0 +1,141 @@
+<section class="neycher-benefits">
+  <div class="neycher-benefits__visual">
+    <div class="neycher-benefits__node">
+      <img src="{{ 'benefit-ellipse-1.png' | asset_url }}" alt="Green Chemistry" class="neycher-benefits__ellipse" width="120" height="120">
+      <span class="neycher-benefits__label">Green<br>Chemistry</span>
+    </div>
+    <img src="{{ 'benefit-line-1.svg' | asset_url }}" alt="" class="neycher-benefits__line" width="100" height="20">
+    <div class="neycher-benefits__node">
+      <img src="{{ 'benefit-ellipse-2.png' | asset_url }}" alt="Microbiome Safety" class="neycher-benefits__ellipse" width="120" height="120">
+      <span class="neycher-benefits__label">Microbiome<br>Safety</span>
+    </div>
+    <img src="{{ 'benefit-line-2.svg' | asset_url }}" alt="" class="neycher-benefits__line" width="100" height="20">
+    <div class="neycher-benefits__node">
+      <img src="{{ 'benefit-ellipse-3.png' | asset_url }}" alt="Extensive Research" class="neycher-benefits__ellipse" width="120" height="120">
+      <span class="neycher-benefits__label">Extensive<br>Research</span>
+    </div>
+    <img src="{{ 'benefit-line-2.svg' | asset_url }}" alt="" class="neycher-benefits__line" width="100" height="20">
+    <div class="neycher-benefits__node">
+      <img src="{{ 'benefit-ellipse-4.png' | asset_url }}" alt="Patented Technology" class="neycher-benefits__ellipse" width="120" height="120">
+      <span class="neycher-benefits__label">Patented<br>Technology</span>
+    </div>
+  </div>
+  <div class="neycher-benefits__marquee">
+    <div class="neycher-benefits__marquee-track">
+      <span>Hormone free</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Hormone free</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span>
+      <span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span>
+      <span class="neycher-benefits__dot"></span>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-benefits {
+  padding: 60px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-benefits__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 40px 0;
+}
+.neycher-benefits__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.neycher-benefits__ellipse {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.neycher-benefits__label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.neycher-benefits__line {
+  width: 80px;
+  height: auto;
+  margin-bottom: 32px;
+}
+.neycher-benefits__marquee {
+  overflow: hidden;
+  padding: 20px 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 20px;
+}
+.neycher-benefits__marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
+.neycher-benefits__dot {
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media screen and (max-width: 749px) {
+  .neycher-benefits {
+    padding: 40px 16px 24px;
+  }
+  .neycher-benefits__visual {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .neycher-benefits__ellipse {
+    width: 64px;
+    height: 64px;
+  }
+  .neycher-benefits__line {
+    width: 40px;
+    margin-bottom: 24px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Benefits",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Benefits"
+    }
+  ]
+}
+{% endschema %}

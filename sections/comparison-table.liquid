@@ -12,7 +12,7 @@
       <table class="comparison-section__table">
         <thead>
           <tr>
-            <th class="comparison-section__th comparison-section__th--feature">Feature</th>
+            <th class="comparison-section__th comparison-section__th--feature"></th>
             <th class="comparison-section__th comparison-section__th--brand">{{ section.settings.our_brand_label }}</th>
             <th class="comparison-section__th comparison-section__th--competitor">{{ section.settings.competitor_label }}</th>
           </tr>
@@ -21,19 +21,11 @@
           {%- for block in section.blocks -%}
             <tr {{ block.shopify_attributes }}>
               <td class="comparison-section__td comparison-section__td--feature">{{ block.settings.feature_name }}</td>
-              <td class="comparison-section__td comparison-section__td--value">
-                {%- if block.settings.our_brand -%}
-                  <span class="comparison-section__check" aria-label="Yes">&#10003;</span>
-                {%- else -%}
-                  <span class="comparison-section__cross" aria-label="No">&#10007;</span>
-                {%- endif -%}
+              <td class="comparison-section__td comparison-section__td--ours">
+                {{ block.settings.our_value }}
               </td>
-              <td class="comparison-section__td comparison-section__td--value">
-                {%- if block.settings.competitors -%}
-                  <span class="comparison-section__check" aria-label="Yes">&#10003;</span>
-                {%- else -%}
-                  <span class="comparison-section__cross" aria-label="No">&#10007;</span>
-                {%- endif -%}
+              <td class="comparison-section__td comparison-section__td--theirs">
+                {{ block.settings.competitor_value }}
               </td>
             </tr>
           {%- endfor -%}
@@ -61,7 +53,7 @@
 
   .comparison-section__th,
   .comparison-section__td {
-    padding: 12px 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid rgb(var(--color-border-rgb) / 15%);
   }
 
@@ -69,7 +61,7 @@
     .comparison-section__th,
     .comparison-section__td {
       padding: 10px 8px;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
     }
   }
 
@@ -78,29 +70,30 @@
     font-size: 0.875rem;
   }
 
-  .comparison-section__th--brand {
-    text-align: center;
-  }
-
+  .comparison-section__th--brand,
   .comparison-section__th--competitor {
     text-align: center;
   }
 
   .comparison-section__td--feature {
     font-size: 0.9375rem;
+    font-weight: 500;
+    width: 30%;
   }
 
-  .comparison-section__td--value {
+  .comparison-section__td--ours,
+  .comparison-section__td--theirs {
     text-align: center;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
+    width: 35%;
   }
 
-  .comparison-section__check {
+  .comparison-section__td--ours {
     color: #2D6A4F;
   }
 
-  .comparison-section__cross {
-    color: rgb(var(--color-border-rgb) / 40%);
+  .comparison-section__td--theirs {
+    color: rgb(var(--color-foreground-rgb) / 50%);
   }
 {% endstylesheet %}
 
@@ -176,19 +169,19 @@
           "type": "text",
           "id": "feature_name",
           "label": "Feature name",
-          "default": "Hyaluronic acid"
+          "default": "Ingredients"
         },
         {
-          "type": "checkbox",
-          "id": "our_brand",
-          "label": "Our brand has this",
-          "default": true
+          "type": "text",
+          "id": "our_value",
+          "label": "Our brand value",
+          "default": "All natural"
         },
         {
-          "type": "checkbox",
-          "id": "competitors",
-          "label": "Competitors have this",
-          "default": false
+          "type": "text",
+          "id": "competitor_value",
+          "label": "Competitor value",
+          "default": "Often unverified"
         }
       ]
     }
@@ -198,11 +191,12 @@
       "name": "Comparison table",
       "category": "t:categories.product",
       "blocks": [
-        { "type": "feature_row", "settings": { "feature_name": "Hyaluronic acid", "our_brand": true, "competitors": false } },
-        { "type": "feature_row", "settings": { "feature_name": "pH-balanced formula", "our_brand": true, "competitors": false } },
-        { "type": "feature_row", "settings": { "feature_name": "Gynecologist approved", "our_brand": true, "competitors": false } },
-        { "type": "feature_row", "settings": { "feature_name": "No parabens or sulfates", "our_brand": true, "competitors": false } },
-        { "type": "feature_row", "settings": { "feature_name": "Clinical studies", "our_brand": true, "competitors": true } }
+        { "type": "feature_row", "settings": { "feature_name": "Ingredients", "our_value": "All natural, instant & long-term benefits", "competitor_value": "Often unverified, fillers, long-term damage" } },
+        { "type": "feature_row", "settings": { "feature_name": "Hormones", "our_value": "Never", "competitor_value": "Sometimes" } },
+        { "type": "feature_row", "settings": { "feature_name": "Certification", "our_value": "Third-party tested for quality/purity", "competitor_value": "Not always quality-controlled" } },
+        { "type": "feature_row", "settings": { "feature_name": "Side Effects", "our_value": "No recorded side effects", "competitor_value": "May cause irritation" } },
+        { "type": "feature_row", "settings": { "feature_name": "OB/GYN Approved", "our_value": "Yes", "competitor_value": "Not always" } },
+        { "type": "feature_row", "settings": { "feature_name": "Fragrance", "our_value": "Never", "competitor_value": "Sometimes (disrupts pH)" } }
       ]
     }
   ]

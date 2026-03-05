@@ -1,0 +1,81 @@
+<section class="neycher-mission">
+  <div class="neycher-mission__inner">
+    <p class="neycher-mission__text">
+      <span class="neycher-mission__line">Deeply Attuned</span>
+      <span class="neycher-mission__line">To <img src="{{ 'ellipse-1.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> the Evolving Needs</span>
+      <span class="neycher-mission__line">Of Vagina And Vulva At <img src="{{ 'ellipse-2.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> Every</span>
+      <span class="neycher-mission__line"><img src="{{ 'ellipse-3.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> Stage Of Life</span>
+    </p>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-mission {
+  padding: 80px 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+.neycher-mission__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.neycher-mission__text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 72px;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #000;
+  margin: 0;
+  letter-spacing: -1px;
+}
+.neycher-mission__line {
+  display: block;
+}
+.neycher-mission__ellipse {
+  display: inline-block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+@media screen and (max-width: 999px) {
+  .neycher-mission {
+    padding: 60px 24px;
+  }
+  .neycher-mission__text {
+    font-size: 40px;
+  }
+  .neycher-mission__ellipse {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .neycher-mission__text {
+    font-size: 28px;
+  }
+  .neycher-mission__ellipse {
+    width: 28px;
+    height: 28px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Mission",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Mission"
+    }
+  ]
+}
+{% endschema %}

@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "heading": {
       "type": "section",
@@ -39,7 +39,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["title"],
+      "block_order": [
+        "title"
+      ],
       "settings": {
         "content_direction": "column",
         "horizontal_alignment_flex_direction_column": "center",
@@ -124,15 +126,10 @@
               "type": "review",
               "name": "Star rating",
               "settings": {
-                "type_preset": "rte",
-                "alignment": "left",
-                "rating_color": "default",
                 "stars_style": "filled",
-                "show_count": true,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "rating_color": "default",
+                "type_preset": "rte",
+                "alignment": "left"
               }
             },
             "card_title": {
@@ -251,7 +248,7 @@
           "type": "text",
           "name": "Bundle description",
           "settings": {
-            "text": "<p>Save up to 20% per month when you bundle your favorite products.</p>",
+            "text": "<p>Save up to 25% per month when you bundle your favorite products.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -274,7 +271,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["bundle_title", "bundle_desc"],
+      "block_order": [
+        "bundle_title",
+        "bundle_desc"
+      ],
       "settings": {
         "content_direction": "column",
         "horizontal_alignment_flex_direction_column": "center",
@@ -316,7 +316,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ritual_text"],
+      "block_order": [
+        "ritual_text"
+      ],
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
@@ -371,8 +373,7 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {},
-          "block_order": []
+          "blocks": {}
         },
         "static-product-card": {
           "type": "_product-card",
@@ -412,15 +413,10 @@
               "type": "review",
               "name": "Star rating",
               "settings": {
-                "type_preset": "rte",
-                "alignment": "left",
-                "rating_color": "default",
                 "stars_style": "filled",
-                "show_count": true,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "rating_color": "default",
+                "type_preset": "rte",
+                "alignment": "left"
               }
             },
             "bndl_title": {
@@ -519,7 +515,7 @@
           "type": "text",
           "name": "Brand heading",
           "settings": {
-            "text": "<h2>Vaginal health is a deeply personal</h2>",
+            "text": "<h2>Vaginal health is deeply personal</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -545,7 +541,7 @@
           "type": "text",
           "name": "Brand body",
           "settings": {
-            "text": "<p>And emotional aspect of well-being yet for too long, big pharma has dictated how we should perceive, feel, and care for the most intimate part of our bodies.</p><p>With Neycher, we're rethinking vaginal health. Our formulas are thoughtfully designed to work harmoniously with your body's natural complexity, supporting your health in a way that feels right for you.</p>",
+            "text": "<p>And emotional aspect of well-being yet for too long, big pharma has dictated how we should perceive, feel, and care for the most intimate part of our bodies.</p><p>With Neycher, we're rethinking vaginal health. Our formulas are thoughtfully designed to work strategically with your body's natural complexity, supporting your health in a way that feels right for you.</p><p>Thank you for trusting us with your delicate parts. I promise your future, happy vagina, will thank you.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -568,7 +564,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["story_heading", "story_body"],
+      "block_order": [
+        "story_heading",
+        "story_body"
+      ],
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,

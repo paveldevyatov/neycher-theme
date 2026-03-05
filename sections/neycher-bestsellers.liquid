@@ -1,0 +1,184 @@
+<section class="neycher-bestsellers">
+  <div class="neycher-bestsellers__header">
+    <h2 class="neycher-bestsellers__title">Bestsellers</h2>
+    <a href="/collections/all" class="neycher-bestsellers__shopall">Shop All <span>&rarr;</span></a>
+  </div>
+  <div class="neycher-bestsellers__scroll">
+    <div class="neycher-bestsellers__grid">
+      {%- assign bestseller_handles = "goodbye-dryness-bundle,vaginal-moisturizer,bv-away,yeast-away,vaginal-synbiotic,botanical-vulva-balm" | split: "," -%}
+      {%- assign bestseller_images = "product-goodbye-dryness-bundle.webp,product-vaginal-moisturizer.webp,product-bv-away.webp,product-yeast-away.webp,product-synbiotic.webp,product-vulva-balm.webp" | split: "," -%}
+      {%- assign bestseller_names = "Goodbye, Dryness Bundle,Vaginal Moisturizer,BV Away,Yeast Away,Vaginal Synbiotic,Botanical Vulva Balm" | split: "," -%}
+      {%- assign bestseller_prices = "$50.89,$32.91,$24.95,$19.99,$19.99,$23.45" | split: "," -%}
+      {%- assign bestseller_descs = "Complete hydration system for lasting comfort,Ultra-moisturizing suppository for daily relief,Boric acid suppository for pH balance,Natural antifungal suppository,Pre- and probiotic for healthy flora,Soothing balm for external comfort" | split: "," -%}
+
+      {%- for i in (0..5) -%}
+        <div class="neycher-bestsellers__card">
+          <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__img-link">
+            <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="300" height="300">
+          </a>
+          <div class="neycher-bestsellers__info">
+            <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__name">{{ bestseller_names[i] }}</a>
+            <div class="neycher-bestsellers__rating">
+              <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5.0 stars" width="80" height="16">
+              <span class="neycher-bestsellers__reviews">12 reviews</span>
+            </div>
+            <p class="neycher-bestsellers__desc">{{ bestseller_descs[i] }}</p>
+            <div class="neycher-bestsellers__price">{{ bestseller_prices[i] }}</div>
+            <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__btn">Buy now</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-bestsellers {
+  padding: 60px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-bestsellers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.neycher-bestsellers__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+}
+.neycher-bestsellers__shopall {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.neycher-bestsellers__shopall:hover {
+  text-decoration: underline;
+}
+.neycher-bestsellers__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.neycher-bestsellers__scroll::-webkit-scrollbar {
+  display: none;
+}
+.neycher-bestsellers__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  min-width: 1100px;
+}
+.neycher-bestsellers__card {
+  display: flex;
+  flex-direction: column;
+}
+.neycher-bestsellers__img-link {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f5f5f5;
+  margin-bottom: 12px;
+}
+.neycher-bestsellers__img-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.neycher-bestsellers__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.neycher-bestsellers__name {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  line-height: 1.3;
+}
+.neycher-bestsellers__name:hover {
+  text-decoration: underline;
+}
+.neycher-bestsellers__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.neycher-bestsellers__rating img {
+  height: 14px;
+  width: auto;
+}
+.neycher-bestsellers__reviews {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+.neycher-bestsellers__desc {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+.neycher-bestsellers__price {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 4px;
+}
+.neycher-bestsellers__btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 100px;
+  margin-top: 8px;
+  width: 100%;
+}
+.neycher-bestsellers__btn:hover {
+  opacity: 0.85;
+}
+@media screen and (max-width: 749px) {
+  .neycher-bestsellers {
+    padding: 40px 16px 24px;
+  }
+  .neycher-bestsellers__grid {
+    grid-template-columns: repeat(6, 200px);
+    min-width: auto;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Bestsellers",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Bestsellers"
+    }
+  ]
+}
+{% endschema %}

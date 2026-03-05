@@ -1,0 +1,84 @@
+<section class="neycher-instagram">
+  <h2 class="neycher-instagram__title">Follow us</h2>
+  <p class="neycher-instagram__handle">@tryneycher</p>
+  <div class="neycher-instagram__grid">
+    <a href="https://www.instagram.com/tryneycher/" target="_blank" rel="noopener" class="neycher-instagram__item">
+      <img src="{{ 'instagram-1.jpg' | asset_url }}" alt="Neycher Instagram" loading="lazy" width="300" height="300">
+    </a>
+    <a href="https://www.instagram.com/tryneycher/" target="_blank" rel="noopener" class="neycher-instagram__item">
+      <img src="{{ 'instagram-2.jpg' | asset_url }}" alt="Neycher Instagram" loading="lazy" width="300" height="300">
+    </a>
+    <a href="https://www.instagram.com/tryneycher/" target="_blank" rel="noopener" class="neycher-instagram__item">
+      <img src="{{ 'instagram-3.jpg' | asset_url }}" alt="Neycher Instagram" loading="lazy" width="300" height="300">
+    </a>
+    <a href="https://www.instagram.com/tryneycher/" target="_blank" rel="noopener" class="neycher-instagram__item">
+      <img src="{{ 'instagram-4.jpg' | asset_url }}" alt="Neycher Instagram" loading="lazy" width="300" height="300">
+    </a>
+    <a href="https://www.instagram.com/tryneycher/" target="_blank" rel="noopener" class="neycher-instagram__item">
+      <img src="{{ 'instagram-5.jpg' | asset_url }}" alt="Neycher Instagram" loading="lazy" width="300" height="300">
+    </a>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-instagram {
+  padding: 60px 60px 80px;
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+.neycher-instagram__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 4px;
+}
+.neycher-instagram__handle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: #777;
+  margin: 0 0 24px;
+}
+.neycher-instagram__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.neycher-instagram__item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  display: block;
+}
+.neycher-instagram__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media screen and (max-width: 749px) {
+  .neycher-instagram {
+    padding: 40px 16px 60px;
+  }
+  .neycher-instagram__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Instagram",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Instagram"
+    }
+  ]
+}
+{% endschema %}

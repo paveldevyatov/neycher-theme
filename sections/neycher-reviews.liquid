@@ -1,0 +1,173 @@
+<section class="neycher-reviews">
+  <h2 class="neycher-reviews__title">In your words</h2>
+  <div class="neycher-reviews__scroll">
+    <div class="neycher-reviews__grid">
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!"</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-victoria.png' | asset_url }}" alt="Victoria" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Victoria</div>
+            <div class="neycher-reviews__location">Los Angeles</div>
+          </div>
+        </div>
+      </div>
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"I feel confident and fresh thanks to these suppositories."</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-emily.png' | asset_url }}" alt="Emily" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Emily</div>
+            <div class="neycher-reviews__location">Chicago</div>
+          </div>
+        </div>
+      </div>
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"This product has really helped my overall vaginal health. I noticed a difference within the first week."</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-johanna.png' | asset_url }}" alt="Johanna" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Johanna</div>
+            <div class="neycher-reviews__location">Denver</div>
+          </div>
+        </div>
+      </div>
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"I no longer worry about dryness and discomfort. This product has been a game changer for me."</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-melissa.png' | asset_url }}" alt="Melissa" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Melissa</div>
+            <div class="neycher-reviews__location">San Francisco</div>
+          </div>
+        </div>
+      </div>
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"Finally something that actually works. I've tried so many products and this is the only one that made a real difference."</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-chloe.png' | asset_url }}" alt="Chloe" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Chloe</div>
+            <div class="neycher-reviews__location">Seattle</div>
+          </div>
+        </div>
+      </div>
+      <div class="neycher-reviews__card">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <blockquote class="neycher-reviews__quote">"For those who have issues with very sensitive and off kilter microbiome, this is a must-try product."</blockquote>
+        <div class="neycher-reviews__author">
+          <img src="{{ 'review-diana.png' | asset_url }}" alt="Diana" class="neycher-reviews__avatar" width="48" height="48">
+          <div>
+            <div class="neycher-reviews__name">Diana</div>
+            <div class="neycher-reviews__location">Baltimore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-reviews {
+  padding: 60px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-reviews__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 24px;
+}
+.neycher-reviews__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.neycher-reviews__scroll::-webkit-scrollbar {
+  display: none;
+}
+.neycher-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  min-width: 1100px;
+}
+.neycher-reviews__card {
+  background: #f7f5f2;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.neycher-reviews__stars {
+  width: 80px;
+  height: auto;
+}
+.neycher-reviews__quote {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  line-height: 1.5;
+  font-style: normal;
+  flex-grow: 1;
+}
+.neycher-reviews__author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.neycher-reviews__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.neycher-reviews__name {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+}
+.neycher-reviews__location {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #777;
+}
+@media screen and (max-width: 749px) {
+  .neycher-reviews {
+    padding: 40px 16px 24px;
+  }
+  .neycher-reviews__grid {
+    grid-template-columns: repeat(6, 260px);
+    min-width: auto;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Reviews",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Reviews"
+    }
+  ]
+}
+{% endschema %}

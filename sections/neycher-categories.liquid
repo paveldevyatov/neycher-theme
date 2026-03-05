@@ -1,0 +1,98 @@
+<section class="neycher-categories">
+  <h2 class="neycher-categories__title">Shop by category</h2>
+  <div class="neycher-categories__grid">
+    <a href="/collections/women-45" class="neycher-categories__card">
+      <img src="{{ 'category-women45.webp' | asset_url }}" alt="Women 45+" loading="lazy" width="400" height="400">
+      <span class="neycher-categories__label">Women 45+</span>
+    </a>
+    <a href="/collections/bv-and-odor" class="neycher-categories__card">
+      <img src="{{ 'category-bv.webp' | asset_url }}" alt="BV and Odor" loading="lazy" width="400" height="400">
+      <span class="neycher-categories__label">BV and Odor</span>
+    </a>
+    <a href="/collections/postpartum" class="neycher-categories__card">
+      <img src="{{ 'category-postpartum.webp' | asset_url }}" alt="Postpartum" loading="lazy" width="400" height="400">
+      <span class="neycher-categories__label">Postpartum</span>
+    </a>
+    <a href="/collections/bundle-and-save" class="neycher-categories__card">
+      <img src="{{ 'category-bundle.webp' | asset_url }}" alt="Bundle and Save" loading="lazy" width="400" height="400">
+      <span class="neycher-categories__label">Bundle and Save</span>
+    </a>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-categories {
+  padding: 60px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-categories__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 24px;
+  letter-spacing: 0;
+}
+.neycher-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.neycher-categories__card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  display: block;
+  text-decoration: none;
+}
+.neycher-categories__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.neycher-categories__label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+@media screen and (max-width: 749px) {
+  .neycher-categories {
+    padding: 40px 16px 24px;
+  }
+  .neycher-categories__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .neycher-categories__label {
+    font-size: 13px;
+    padding: 6px 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Categories",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Categories"
+    }
+  ]
+}
+{% endschema %}

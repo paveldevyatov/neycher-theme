@@ -1,0 +1,127 @@
+<section class="neycher-why">
+  <div class="neycher-why__inner">
+    <div class="neycher-why__left">
+      <h2 class="neycher-why__title">Why our<br>products work</h2>
+      <a href="/pages/about" class="neycher-why__link">Discover Our Science <span>&rarr;</span></a>
+    </div>
+    <div class="neycher-why__features">
+      <div class="neycher-why__feature">
+        <div class="neycher-why__icon">
+          <img src="{{ 'icon-natural.svg' | asset_url }}" alt="" width="48" height="48">
+        </div>
+        <h3 class="neycher-why__feature-title">All-natural bioavailable ingredients</h3>
+        <p class="neycher-why__feature-desc">Our formulas use only ingredients your body can naturally absorb and utilize, maximizing effectiveness without synthetic fillers.</p>
+      </div>
+      <div class="neycher-why__feature">
+        <div class="neycher-why__icon">
+          <img src="{{ 'icon-free.svg' | asset_url }}" alt="" width="48" height="48">
+        </div>
+        <h3 class="neycher-why__feature-title">Free from bulking agents or fillers</h3>
+        <p class="neycher-why__feature-desc">Every ingredient serves a purpose. No unnecessary additives, just pure, effective formulations that work with your body.</p>
+      </div>
+      <div class="neycher-why__feature">
+        <div class="neycher-why__icon">
+          <img src="{{ 'icon-developed.svg' | asset_url }}" alt="" width="48" height="48">
+        </div>
+        <h3 class="neycher-why__feature-title">Developed from numerous clinical trials</h3>
+        <p class="neycher-why__feature-desc">Backed by real science. Our products are formulated based on extensive clinical research and testing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-why {
+  padding: 60px 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-why__inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.neycher-why__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #000;
+  margin: 0 0 20px;
+}
+.neycher-why__link {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.neycher-why__link:hover {
+  text-decoration: underline;
+}
+.neycher-why__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.neycher-why__feature {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.neycher-why__icon img {
+  width: 44px;
+  height: 44px;
+}
+.neycher-why__feature-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  line-height: 1.3;
+}
+.neycher-why__feature-desc {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+@media screen and (max-width: 999px) {
+  .neycher-why__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .neycher-why {
+    padding: 40px 16px;
+  }
+  .neycher-why__features {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Why Works",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Why Works"
+    }
+  ]
+}
+{% endschema %}
