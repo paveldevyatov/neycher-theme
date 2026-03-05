@@ -26,8 +26,14 @@
     </div>
   </div>
   <div class="neycher-stats__cta">
-    <p class="neycher-stats__cta-text">Feeling Good is a Science<br>We've Mastered</p>
-    <a href="/collections/all" class="neycher-stats__cta-btn">Shop</a>
+    <div class="neycher-stats__cta-left">
+      <p class="neycher-stats__cta-text">Feeling Good is a Science<br>We've Mastered</p>
+      <a href="/collections/all" class="neycher-stats__cta-btn">Shop</a>
+    </div>
+    <div class="neycher-stats__cta-images">
+      <img src="{{ 'product-vaginal-moisturizer.webp' | asset_url }}" alt="Vaginal Moisturizer" width="140" height="140">
+      <img src="{{ 'product-synbiotic.webp' | asset_url }}" alt="Vaginal Synbiotic" width="140" height="140">
+    </div>
   </div>
 </section>
 
@@ -85,10 +91,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 24px;
   padding: 40px 48px;
   background: #f0eee9;
   border-radius: 12px;
+  overflow: hidden;
+}
+.neycher-stats__cta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .neycher-stats__cta-text {
   font-family: "Open Sans", sans-serif;
@@ -103,15 +115,27 @@
   background: #000;
   color: #fff;
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   text-decoration: none;
-  padding: 14px 80px;
+  padding: 14px 72px;
   border-radius: 0;
   letter-spacing: 0.5px;
+  width: fit-content;
 }
 .neycher-stats__cta-btn:hover {
   opacity: 0.85;
+}
+.neycher-stats__cta-images {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.neycher-stats__cta-images img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 @media screen and (max-width: 999px) {
   .neycher-stats__inner {
@@ -142,6 +166,13 @@
     gap: 20px;
     padding: 24px;
     text-align: center;
+  }
+  .neycher-stats__cta-left {
+    align-items: center;
+  }
+  .neycher-stats__cta-images img {
+    width: 80px;
+    height: 80px;
   }
 }
 {% endstylesheet %}
