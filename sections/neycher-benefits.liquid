@@ -20,31 +20,32 @@
       <span class="neycher-benefits__label">Patented<br>Technology</span>
     </div>
   </div>
+
   <div class="neycher-benefits__marquee">
     <div class="neycher-benefits__marquee-track">
-      <span>Hormone free</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Hormone free</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span>
-      <span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span>
-      <span class="neycher-benefits__dot"></span>
+      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
+      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
+      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
+      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
+      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
+      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
+      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
     </div>
   </div>
 </section>
 
 {% stylesheet %}
 .neycher-benefits {
-  padding: 60px 60px 40px;
+  padding: 40px 60px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -81,9 +82,11 @@
   height: auto;
   margin-bottom: 32px;
 }
+
+/* Marquee animation */
 .neycher-benefits__marquee {
   overflow: hidden;
-  padding: 20px 0;
+  padding: 16px 0;
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   margin-top: 20px;
@@ -91,12 +94,18 @@
 .neycher-benefits__marquee-track {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   white-space: nowrap;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #000;
+  animation: neycher-marquee 20s linear infinite;
+  width: max-content;
+}
+@keyframes neycher-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 .neycher-benefits__dot {
   width: 4px;
@@ -105,13 +114,15 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+
 @media screen and (max-width: 749px) {
   .neycher-benefits {
-    padding: 40px 16px 24px;
+    padding: 32px 16px 24px;
   }
   .neycher-benefits__visual {
     flex-wrap: wrap;
     gap: 16px;
+    justify-content: center;
   }
   .neycher-benefits__ellipse {
     width: 64px;

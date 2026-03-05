@@ -37,8 +37,16 @@
       "type": "neycher-stats",
       "settings": {}
     },
+    "neycher-feeling-good": {
+      "type": "neycher-feeling-good",
+      "settings": {}
+    },
     "neycher-reviews": {
       "type": "neycher-reviews",
+      "settings": {}
+    },
+    "neycher-featured-product": {
+      "type": "neycher-featured-product",
       "settings": {}
     },
     "neycher-journal": {
@@ -58,7 +66,9 @@
     "neycher-why-works",
     "neycher-benefits",
     "neycher-stats",
+    "neycher-feeling-good",
     "neycher-reviews",
+    "neycher-featured-product",
     "neycher-journal",
     "neycher-instagram"
   ]

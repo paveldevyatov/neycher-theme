@@ -1,9 +1,7 @@
 <section class="neycher-why">
   <div class="neycher-why__inner">
-    <div class="neycher-why__left">
-      <h2 class="neycher-why__title">Why our<br>products work</h2>
-      <a href="/pages/about" class="neycher-why__link">Discover Our Science <span>&rarr;</span></a>
-    </div>
+    <h2 class="neycher-why__title">Why our products work</h2>
+    <p class="neycher-why__subtitle">Unlike the majority of vaginal suppositories that damage vaginal tissue, our formulas are designed to work in harmony with your body's natural complexity.</p>
     <div class="neycher-why__features">
       <div class="neycher-why__feature">
         <div class="neycher-why__icon">
@@ -27,6 +25,7 @@
         <p class="neycher-why__feature-desc">Backed by real science. Our products are formulated based on extensive clinical research and testing.</p>
       </div>
     </div>
+    <a href="/pages/about" class="neycher-why__link">Discover Our Science <span>&rarr;</span></a>
   </div>
 </section>
 
@@ -37,41 +36,38 @@
   margin: 0 auto;
 }
 .neycher-why__inner {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 60px;
-  align-items: start;
+  max-width: 1200px;
 }
 .neycher-why__title {
   font-family: "Open Sans", sans-serif;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 300;
   line-height: 1.2;
   color: #000;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
 }
-.neycher-why__link {
+.neycher-why__subtitle {
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  color: #000;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.neycher-why__link:hover {
-  text-decoration: underline;
+  color: #666;
+  margin: 0 0 40px;
+  line-height: 1.5;
+  max-width: 600px;
 }
 .neycher-why__features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 40px;
+  margin-bottom: 32px;
 }
 .neycher-why__feature {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 32px;
+  background: #f7f5f2;
+  border-radius: 12px;
 }
 .neycher-why__icon img {
   width: 44px;
@@ -93,19 +89,31 @@
   margin: 0;
   line-height: 1.5;
 }
+.neycher-why__link {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.neycher-why__link:hover {
+  text-decoration: underline;
+}
 @media screen and (max-width: 999px) {
-  .neycher-why__inner {
+  .neycher-why__features {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
   }
 }
 @media screen and (max-width: 749px) {
   .neycher-why {
     padding: 40px 16px;
   }
-  .neycher-why__features {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .neycher-why__title {
+    font-size: 28px;
   }
 }
 {% endstylesheet %}

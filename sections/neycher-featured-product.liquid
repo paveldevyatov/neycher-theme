@@ -1,0 +1,136 @@
+<section class="neycher-fp">
+  <div class="neycher-fp__inner">
+    <div class="neycher-fp__media">
+      <img src="{{ 'product-synbiotic.webp' | asset_url }}" alt="Vaginal Synbiotic" loading="lazy" width="500" height="500">
+    </div>
+    <div class="neycher-fp__content">
+      <p class="neycher-fp__tagline">More loving maintenance. Less crisis control.</p>
+      <h2 class="neycher-fp__name">Vaginal Synbiotic</h2>
+      <div class="neycher-fp__rating">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5.0 stars" width="88" height="16">
+        <span>5.0 (12 reviews)</span>
+      </div>
+      <p class="neycher-fp__desc">Pre- and probiotic-rich suppository for healthy flora and pH</p>
+      <div class="neycher-fp__price">Starting at $19.99</div>
+      <a href="/products/vaginal-synbiotic" class="neycher-fp__btn">Buy now</a>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-fp {
+  padding: 48px 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-fp__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 48px;
+  background: #f7f5f2;
+  border-radius: 16px;
+}
+.neycher-fp__media img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+.neycher-fp__tagline {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #777;
+  margin: 0 0 12px;
+  letter-spacing: 0.3px;
+}
+.neycher-fp__name {
+  font-family: "Open Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #000;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.neycher-fp__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  color: #666;
+}
+.neycher-fp__rating img {
+  height: 14px;
+  width: auto;
+}
+.neycher-fp__desc {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #555;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+.neycher-fp__price {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 20px;
+}
+.neycher-fp__btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 56px;
+  border-radius: 100px;
+}
+.neycher-fp__btn:hover {
+  opacity: 0.85;
+}
+@media screen and (max-width: 999px) {
+  .neycher-fp__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .neycher-fp {
+    padding: 32px 16px;
+  }
+  .neycher-fp__inner {
+    padding: 24px;
+  }
+  .neycher-fp__name {
+    font-size: 24px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Featured Product",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Featured Product"
+    }
+  ]
+}
+{% endschema %}

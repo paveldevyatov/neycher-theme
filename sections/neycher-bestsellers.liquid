@@ -14,7 +14,7 @@
       {%- for i in (0..5) -%}
         <div class="neycher-bestsellers__card">
           <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__img-link">
-            <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="300" height="300">
+            <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400">
           </a>
           <div class="neycher-bestsellers__info">
             <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__name">{{ bestseller_names[i] }}</a>
@@ -34,7 +34,7 @@
 
 {% stylesheet %}
 .neycher-bestsellers {
-  padding: 60px 60px 40px;
+  padding: 60px 60px 48px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -74,21 +74,21 @@
 }
 .neycher-bestsellers__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  min-width: 1100px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 .neycher-bestsellers__card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 .neycher-bestsellers__img-link {
   display: block;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #f5f5f5;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .neycher-bestsellers__img-link img {
   width: 100%;
@@ -98,11 +98,11 @@
 .neycher-bestsellers__info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 .neycher-bestsellers__name {
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #000;
   text-decoration: none;
@@ -127,14 +127,14 @@
 }
 .neycher-bestsellers__desc {
   font-family: "Open Sans", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #666;
   margin: 0;
   line-height: 1.4;
 }
 .neycher-bestsellers__price {
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #000;
   margin-top: 4px;
@@ -144,11 +144,11 @@
   background: #000;
   color: #fff;
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   text-decoration: none;
   text-align: center;
-  padding: 10px 0;
+  padding: 12px 0;
   border-radius: 100px;
   margin-top: 8px;
   width: 100%;
@@ -156,13 +156,18 @@
 .neycher-bestsellers__btn:hover {
   opacity: 0.85;
 }
+@media screen and (max-width: 999px) {
+  .neycher-bestsellers__grid {
+    grid-template-columns: repeat(4, 280px);
+  }
+}
 @media screen and (max-width: 749px) {
   .neycher-bestsellers {
-    padding: 40px 16px 24px;
+    padding: 40px 16px 32px;
   }
   .neycher-bestsellers__grid {
-    grid-template-columns: repeat(6, 200px);
-    min-width: auto;
+    grid-template-columns: repeat(4, 240px);
+    gap: 16px;
   }
 }
 {% endstylesheet %}

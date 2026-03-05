@@ -3,7 +3,7 @@
   <div class="neycher-reviews__scroll">
     <div class="neycher-reviews__grid">
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!"</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-victoria.png' | asset_url }}" alt="Victoria" class="neycher-reviews__avatar" width="48" height="48">
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"I feel confident and fresh thanks to these suppositories."</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-emily.png' | asset_url }}" alt="Emily" class="neycher-reviews__avatar" width="48" height="48">
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have."</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-johanna.png' | asset_url }}" alt="Johanna" class="neycher-reviews__avatar" width="48" height="48">
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort!"</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-melissa.png' | asset_url }}" alt="Melissa" class="neycher-reviews__avatar" width="48" height="48">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have."</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-chloe.png' | asset_url }}" alt="Chloe" class="neycher-reviews__avatar" width="48" height="48">
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="80" height="16">
+        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
         <blockquote class="neycher-reviews__quote">"For those who have issues with very sensitive and off kilter microbiome, I can almost promise you that this probiotic will help you."</blockquote>
         <div class="neycher-reviews__author">
           <img src="{{ 'review-diana.png' | asset_url }}" alt="Diana" class="neycher-reviews__avatar" width="48" height="48">
@@ -74,7 +74,7 @@
 
 {% stylesheet %}
 .neycher-reviews {
-  padding: 60px 60px 40px;
+  padding: 60px 60px 48px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -95,48 +95,48 @@
 }
 .neycher-reviews__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  min-width: 1100px;
 }
 .neycher-reviews__card {
   background: #f7f5f2;
   border-radius: 12px;
-  padding: 24px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  min-height: 220px;
 }
 .neycher-reviews__stars {
-  width: 80px;
+  width: 88px;
   height: auto;
 }
 .neycher-reviews__quote {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: #000;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
   font-style: normal;
   flex-grow: 1;
 }
 .neycher-reviews__author {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: auto;
   padding-top: 8px;
 }
 .neycher-reviews__avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
 }
 .neycher-reviews__name {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #000;
 }
@@ -145,13 +145,18 @@
   font-size: 12px;
   color: #777;
 }
+@media screen and (max-width: 999px) {
+  .neycher-reviews__grid {
+    grid-template-columns: repeat(3, 320px);
+  }
+}
 @media screen and (max-width: 749px) {
   .neycher-reviews {
-    padding: 40px 16px 24px;
+    padding: 40px 16px 32px;
   }
   .neycher-reviews__grid {
-    grid-template-columns: repeat(6, 260px);
-    min-width: auto;
+    grid-template-columns: repeat(3, 280px);
+    gap: 12px;
   }
 }
 {% endstylesheet %}

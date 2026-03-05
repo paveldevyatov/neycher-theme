@@ -1,0 +1,108 @@
+<section class="neycher-fg">
+  <div class="neycher-fg__inner">
+    <div class="neycher-fg__left">
+      <h2 class="neycher-fg__heading">Feeling Good is a Science<br>We've Mastered</h2>
+      <a href="/collections/all" class="neycher-fg__btn">Shop</a>
+    </div>
+    <div class="neycher-fg__images">
+      <img src="{{ 'product-vaginal-moisturizer.webp' | asset_url }}" alt="Vaginal Moisturizer" class="neycher-fg__product" width="200" height="200">
+      <img src="{{ 'product-synbiotic.webp' | asset_url }}" alt="Vaginal Synbiotic" class="neycher-fg__product" width="200" height="200">
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.neycher-fg {
+  padding: 0 60px 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.neycher-fg__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 56px;
+  background: #f0eee9;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.neycher-fg__left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.neycher-fg__heading {
+  font-family: "Open Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #000;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.neycher-fg__btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 14px 72px;
+  border-radius: 0;
+  text-align: center;
+  width: fit-content;
+  letter-spacing: 0.5px;
+}
+.neycher-fg__btn:hover {
+  opacity: 0.85;
+}
+.neycher-fg__images {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.neycher-fg__product {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+@media screen and (max-width: 749px) {
+  .neycher-fg {
+    padding: 0 16px 32px;
+  }
+  .neycher-fg__inner {
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px;
+    text-align: center;
+  }
+  .neycher-fg__left {
+    align-items: center;
+  }
+  .neycher-fg__heading {
+    font-size: 22px;
+  }
+  .neycher-fg__product {
+    width: 100px;
+    height: 100px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Feeling Good",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Feeling Good"
+    }
+  ]
+}
+{% endschema %}

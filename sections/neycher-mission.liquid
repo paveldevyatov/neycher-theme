@@ -1,11 +1,31 @@
 <section class="neycher-mission">
   <div class="neycher-mission__inner">
+    <h2 class="neycher-mission__subtitle">We stand for clean, conscious,<br>high-performance care.</h2>
     <p class="neycher-mission__text">
       <span class="neycher-mission__line">Deeply Attuned</span>
-      <span class="neycher-mission__line">To <img src="{{ 'ellipse-1.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> the Evolving Needs</span>
-      <span class="neycher-mission__line">Of Vagina And Vulva At <img src="{{ 'ellipse-2.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> Every</span>
-      <span class="neycher-mission__line"><img src="{{ 'ellipse-3.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="80" height="80"> Stage Of Life</span>
+      <span class="neycher-mission__line">To <img src="{{ 'ellipse-1.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70"> the Evolving Needs</span>
+      <span class="neycher-mission__line">Of Vagina And Vulva At <img src="{{ 'ellipse-2.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70"> Every</span>
+      <span class="neycher-mission__line"><img src="{{ 'ellipse-3.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70"> Stage Of Life</span>
     </p>
+    <p class="neycher-mission__belief">We believe that intimate care should be as powerful as any other form of self-care.</p>
+  </div>
+
+  <div class="neycher-mission__pillars">
+    <div class="neycher-mission__pillar">
+      <img src="{{ 'icon-doctor.png' | asset_url }}" alt="Science" class="neycher-mission__pillar-icon" width="80" height="80">
+      <h3 class="neycher-mission__pillar-title">Blending science</h3>
+      <p class="neycher-mission__pillar-desc">Our products undergo rigorous testing for safety and effectiveness</p>
+    </div>
+    <div class="neycher-mission__pillar">
+      <img src="{{ 'about-text-2.png' | asset_url }}" alt="Plants" class="neycher-mission__pillar-icon" width="80" height="80">
+      <h3 class="neycher-mission__pillar-title">And Plants</h3>
+      <p class="neycher-mission__pillar-desc">To Support, Physical, Mental, and Sexual</p>
+    </div>
+    <div class="neycher-mission__pillar">
+      <img src="{{ 'about-text-3.png' | asset_url }}" alt="Wellness" class="neycher-mission__pillar-icon" width="80" height="80">
+      <h3 class="neycher-mission__pillar-title">Wellness</h3>
+      <p class="neycher-mission__pillar-desc">We provide eco-friendly solutions for both the environment and your intimate health</p>
+    </div>
   </div>
 </section>
 
@@ -20,13 +40,22 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+.neycher-mission__subtitle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777;
+  margin: 0 0 40px;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
 .neycher-mission__text {
   font-family: "Open Sans", sans-serif;
   font-size: 80px;
   font-weight: 300;
   line-height: 85px;
   color: #000;
-  margin: 0;
+  margin: 0 0 40px;
   letter-spacing: -1px;
 }
 .neycher-mission__line {
@@ -44,6 +73,49 @@
   object-fit: cover;
   flex-shrink: 0;
 }
+.neycher-mission__belief {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 3-column pillars: Science / Plants / Wellness */
+.neycher-mission__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 80px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.neycher-mission__pillar-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+.neycher-mission__pillar-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: #000;
+  margin: 0 0 8px;
+}
+.neycher-mission__pillar-desc {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
 @media screen and (max-width: 999px) {
   .neycher-mission {
     padding: 60px 24px;
@@ -56,6 +128,10 @@
     width: 44px;
     height: 44px;
   }
+  .neycher-mission__pillars {
+    gap: 24px;
+    margin-top: 48px;
+  }
 }
 @media screen and (max-width: 749px) {
   .neycher-mission__text {
@@ -65,6 +141,10 @@
   .neycher-mission__ellipse {
     width: 30px;
     height: 30px;
+  }
+  .neycher-mission__pillars {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 {% endstylesheet %}
