@@ -1,0 +1,210 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} comparison-section spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {%- if section.settings.heading != blank -%}
+    <h2 class="comparison-section__heading h3">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="comparison-section__table-wrapper">
+      <table class="comparison-section__table">
+        <thead>
+          <tr>
+            <th class="comparison-section__th comparison-section__th--feature">Feature</th>
+            <th class="comparison-section__th comparison-section__th--brand">{{ section.settings.our_brand_label }}</th>
+            <th class="comparison-section__th comparison-section__th--competitor">{{ section.settings.competitor_label }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}>
+              <td class="comparison-section__td comparison-section__td--feature">{{ block.settings.feature_name }}</td>
+              <td class="comparison-section__td comparison-section__td--value">
+                {%- if block.settings.our_brand -%}
+                  <span class="comparison-section__check" aria-label="Yes">&#10003;</span>
+                {%- else -%}
+                  <span class="comparison-section__cross" aria-label="No">&#10007;</span>
+                {%- endif -%}
+              </td>
+              <td class="comparison-section__td comparison-section__td--value">
+                {%- if block.settings.competitors -%}
+                  <span class="comparison-section__check" aria-label="Yes">&#10003;</span>
+                {%- else -%}
+                  <span class="comparison-section__cross" aria-label="No">&#10007;</span>
+                {%- endif -%}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .comparison-section__heading {
+    margin: 0 0 32px;
+  }
+
+  .comparison-section__table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .comparison-section__table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .comparison-section__th,
+  .comparison-section__td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgb(var(--color-border-rgb) / 15%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .comparison-section__th,
+    .comparison-section__td {
+      padding: 10px 8px;
+      font-size: 0.875rem;
+    }
+  }
+
+  .comparison-section__th {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .comparison-section__th--brand {
+    text-align: center;
+  }
+
+  .comparison-section__th--competitor {
+    text-align: center;
+  }
+
+  .comparison-section__td--feature {
+    font-size: 0.9375rem;
+  }
+
+  .comparison-section__td--value {
+    text-align: center;
+    font-size: 1.125rem;
+  }
+
+  .comparison-section__check {
+    color: #2D6A4F;
+  }
+
+  .comparison-section__cross {
+    color: rgb(var(--color-border-rgb) / 40%);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We're not like other vaginal moisturizers"
+    },
+    {
+      "type": "text",
+      "id": "our_brand_label",
+      "label": "Our brand column label",
+      "default": "Neycher"
+    },
+    {
+      "type": "text",
+      "id": "competitor_label",
+      "label": "Competitor column label",
+      "default": "Other brands"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_row",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Feature name",
+          "default": "Hyaluronic acid"
+        },
+        {
+          "type": "checkbox",
+          "id": "our_brand",
+          "label": "Our brand has this",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "competitors",
+          "label": "Competitors have this",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison table",
+      "category": "t:categories.product",
+      "blocks": [
+        { "type": "feature_row", "settings": { "feature_name": "Hyaluronic acid", "our_brand": true, "competitors": false } },
+        { "type": "feature_row", "settings": { "feature_name": "pH-balanced formula", "our_brand": true, "competitors": false } },
+        { "type": "feature_row", "settings": { "feature_name": "Gynecologist approved", "our_brand": true, "competitors": false } },
+        { "type": "feature_row", "settings": { "feature_name": "No parabens or sulfates", "our_brand": true, "competitors": false } },
+        { "type": "feature_row", "settings": { "feature_name": "Clinical studies", "our_brand": true, "competitors": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}
