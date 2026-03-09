@@ -1,27 +1,19 @@
 <section class="neycher-categories">
   <div class="neycher-categories__grid">
     <a href="/collections/women-45" class="neycher-categories__card">
-      <div class="neycher-categories__img">
-        <img src="{{ 'category-women45.webp' | asset_url }}" alt="Woman 45+" loading="lazy" width="400" height="300">
-      </div>
+      <img src="{{ 'category-women45.webp' | asset_url }}" alt="Woman 45+" loading="lazy" width="400" height="560">
       <span class="neycher-categories__label">Woman 45+</span>
     </a>
     <a href="/collections/bv-and-yeast" class="neycher-categories__card">
-      <div class="neycher-categories__img">
-        <img src="{{ 'category-bv.webp' | asset_url }}" alt="BV And Yeast" loading="lazy" width="400" height="300">
-      </div>
+      <img src="{{ 'category-bv.webp' | asset_url }}" alt="BV And Yeast" loading="lazy" width="400" height="560">
       <span class="neycher-categories__label">BV And Yeast</span>
     </a>
     <a href="/collections/postpartum" class="neycher-categories__card">
-      <div class="neycher-categories__img">
-        <img src="{{ 'category-postpartum.webp' | asset_url }}" alt="Postpartum" loading="lazy" width="400" height="300">
-      </div>
+      <img src="{{ 'category-postpartum.webp' | asset_url }}" alt="Postpartum" loading="lazy" width="400" height="560">
       <span class="neycher-categories__label">Postpartum</span>
     </a>
     <a href="/collections/bundle-and-save" class="neycher-categories__card">
-      <div class="neycher-categories__img">
-        <img src="{{ 'category-bundle.webp' | asset_url }}" alt="Bundle and Save" loading="lazy" width="400" height="300">
-      </div>
+      <img src="{{ 'category-bundle.webp' | asset_url }}" alt="Bundle and Save" loading="lazy" width="400" height="560">
       <span class="neycher-categories__label">Bundle and Save</span>
     </a>
   </div>
@@ -39,30 +31,35 @@
   gap: 20px;
 }
 .neycher-categories__card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  display: block;
   text-decoration: none;
-  gap: 16px;
-}
-.neycher-categories__img {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
   border-radius: 16px;
-  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
 }
-.neycher-categories__img img {
+.neycher-categories__card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 .neycher-categories__label {
-  font-family: "Open Sans", sans-serif;
-  font-size: 20px;
-  font-weight: 300;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  font-family: var(--n-font);
+  font-size: 22px;
+  font-weight: 400;
   font-style: italic;
-  color: #000;
+  color: #fff;
   text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 0 0 16px 16px;
 }
 @media screen and (max-width: 749px) {
   .neycher-categories {
@@ -73,7 +70,8 @@
     gap: 12px;
   }
   .neycher-categories__label {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 12px;
   }
 }
 {% endstylesheet %}

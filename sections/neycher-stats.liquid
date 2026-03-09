@@ -1,112 +1,135 @@
 <section class="neycher-stats">
-  <div class="neycher-stats__card">
+  <div class="neycher-stats__inner">
     <div class="neycher-stats__left">
-      <h2 class="neycher-stats__heading">Your tender parts deserve lab-verified results.</h2>
+      <h2 class="n-title-display neycher-stats__heading">Your tender parts deserve <em>lab-verified results.</em></h2>
+      <p class="neycher-stats__text">Our formulations have been clinically proven to soothe discomfort associated with common vulvovaginal conditions and balance vaginal flora over time*.</p>
     </div>
     <div class="neycher-stats__right">
       <div class="neycher-stats__grid">
         <div class="neycher-stats__item">
-          <div class="neycher-stats__number">94<span class="neycher-stats__percent">%</span></div>
-          <p class="neycher-stats__desc">Experienced noticeable improvement in vaginal dryness</p>
+          <div class="neycher-stats__number-row">
+            <span class="neycher-stats__number">94%</span>
+            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="88.5 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+            </svg>
+          </div>
+          <p class="neycher-stats__desc">Experienced a noticeable improvement in vaginal dryness</p>
         </div>
         <div class="neycher-stats__item">
-          <div class="neycher-stats__number">96<span class="neycher-stats__percent">%</span></div>
-          <p class="neycher-stats__desc">Reported positive impacts on emotional well-being</p>
+          <div class="neycher-stats__number-row">
+            <span class="neycher-stats__number">96%</span>
+            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="90.5 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+            </svg>
+          </div>
+          <p class="neycher-stats__desc">Reported positive impacts on other aspects of their life, such as emotional well-being</p>
         </div>
         <div class="neycher-stats__item">
-          <div class="neycher-stats__number">0<span class="neycher-stats__percent">%</span></div>
+          <div class="neycher-stats__number-row">
+            <span class="neycher-stats__number">84%</span>
+            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="79.2 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+            </svg>
+          </div>
           <p class="neycher-stats__desc">Stopped feeling pain during sex</p>
         </div>
         <div class="neycher-stats__item">
-          <div class="neycher-stats__number">0<span class="neycher-stats__percent">%</span></div>
-          <p class="neycher-stats__desc">Noticed improvements in sexual relationships</p>
+          <div class="neycher-stats__number-row">
+            <span class="neycher-stats__number">88%</span>
+            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="82.9 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+            </svg>
+          </div>
+          <p class="neycher-stats__desc">Noticed improvements in their sexual relationships</p>
         </div>
       </div>
-      <p class="neycher-stats__footnote">*Based on a 4-week study of women aged 29-64 experiencing common vulvovaginal symptoms and general discomfort.</p>
+      <p class="neycher-stats__footnote">*Based on a 4-week study of woman ages 29-74 experiencing common vulvovaginal symptoms and general discomfort.</p>
     </div>
   </div>
 </section>
 
 {% stylesheet %}
 .neycher-stats {
-  padding: 48px 60px;
+  padding: 80px 60px;
   max-width: 1440px;
   margin: 0 auto;
 }
-.neycher-stats__card {
+.neycher-stats__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
   align-items: start;
-  padding: 56px;
-  background: #f7f5f2;
-  border-radius: 16px;
 }
 .neycher-stats__heading {
-  font-family: "Open Sans", sans-serif;
-  font-size: 40px;
-  font-weight: 300;
-  line-height: 1.15;
-  color: #000;
+  margin-bottom: 28px;
+}
+.neycher-stats__heading em {
+  font-style: italic;
+}
+.neycher-stats__text {
+  font-family: var(--n-font);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  line-height: 1.6;
   margin: 0;
-  letter-spacing: -0.5px;
+  max-width: 480px;
 }
 .neycher-stats__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 36px;
+  gap: 48px 60px;
+}
+.neycher-stats__number-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .neycher-stats__number {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 56px;
-  font-weight: 300;
-  color: #000;
+  font-weight: 400;
+  color: var(--n-color-heading);
   line-height: 1;
-  margin-bottom: 8px;
 }
-.neycher-stats__percent {
-  font-size: 36px;
+.neycher-stats__ring {
+  flex-shrink: 0;
 }
 .neycher-stats__desc {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 14px;
   font-weight: 400;
-  color: #555;
+  color: var(--n-color-body);
   margin: 0;
   line-height: 1.5;
 }
 .neycher-stats__footnote {
-  font-family: "Open Sans", sans-serif;
-  font-size: 11px;
-  color: #999;
-  margin: 28px 0 0;
+  font-family: var(--n-font);
+  font-size: 12px;
+  color: var(--n-color-muted);
+  margin: 48px 0 0;
   line-height: 1.4;
 }
 @media screen and (max-width: 999px) {
-  .neycher-stats__card {
+  .neycher-stats__inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 36px;
-  }
-  .neycher-stats__heading {
-    font-size: 32px;
+    gap: 40px;
   }
 }
 @media screen and (max-width: 749px) {
   .neycher-stats {
-    padding: 32px 16px;
-  }
-  .neycher-stats__card {
-    padding: 28px;
+    padding: 48px 16px;
   }
   .neycher-stats__grid {
-    gap: 24px;
+    gap: 32px 24px;
   }
   .neycher-stats__number {
     font-size: 40px;
-  }
-  .neycher-stats__percent {
-    font-size: 24px;
   }
 }
 {% endstylesheet %}

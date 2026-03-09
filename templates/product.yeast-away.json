@@ -1,0 +1,254 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_hero": {
+      "type": "neycher-product",
+      "settings": {
+        "bundle_product": "bv-be-gone-bundle"
+      }
+    },
+    "ingredients": {
+      "type": "neycher-pdp-ingredients",
+      "settings": {
+        "heading": "Science-backed ingredients"
+      },
+      "blocks": {
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Hyaluronic Acid",
+            "description": "Ultra-hydrating compound that combats dryness and encourages healing of vaginal tissue."
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Tea Tree Oil",
+            "description": "Natural antifungal that reduces inflammation and rejuvenates moisture."
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Spirulina Extract",
+            "description": "Natural antifungal that attracts and flushes out harmful microbes."
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Sage Extract",
+            "description": "Antioxidant, anti-inflammatory and antimicrobial properties inhibit yeast growth."
+          }
+        }
+      },
+      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4"]
+    },
+    "stats": {
+      "type": "neycher-pdp-stats",
+      "settings": {
+        "heading": "Real customers, real results",
+        "description": "Based on a 4-week consumer study of women aged 21-45 experiencing common vulvovaginal symptoms and general discomfort."
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "96%",
+            "description": "Experienced reduced odor, itching, and discharge associated with yeast infections."
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "88%",
+            "description": "Reported a reduction in yeast dryness."
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "84%",
+            "description": "Reported maintaining good pH after use."
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "96%",
+            "description": "Reported experiencing no side effects during clinical trials."
+          }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"]
+    },
+    "banner": {
+      "type": "neycher-pdp-banner",
+      "settings": {
+        "heading": "Holistic vaginal health starts here.",
+        "bundle_handle": "bv-killer-bundle"
+      }
+    },
+    "comparison": {
+      "type": "neycher-pdp-comparison",
+      "settings": {
+        "heading": "We're not like other yeast infection brands",
+        "our_label": "Our Vaginal Suppositories",
+        "other_label": "Other Brands"
+      },
+      "blocks": {
+        "cmp_1": {
+          "type": "row",
+          "settings": {
+            "label": "Ingredients",
+            "our_value": "Bioavailable ingredients that provide yeast relief without damaging pH",
+            "other_value": "Often contain fillers, and some lack clinical data to support their vaginal-dryness solutions."
+          }
+        },
+        "cmp_2": {
+          "type": "row",
+          "settings": {
+            "label": "Hyaluronic Acid",
+            "our_value": "15 mg",
+            "other_value": "none"
+          }
+        },
+        "cmp_3": {
+          "type": "row",
+          "settings": {
+            "label": "Certification",
+            "our_value": "FDA-registered",
+            "other_value": "Not always quality controlled"
+          }
+        },
+        "cmp_4": {
+          "type": "row",
+          "settings": {
+            "label": "Side Effects",
+            "our_value": "No reported side effects during clinical trials",
+            "other_value": "Lack of adequate molecule and harsh ingredients may cause irritation or long-term imbalances."
+          }
+        },
+        "cmp_5": {
+          "type": "row",
+          "settings": {
+            "label": "OB/GYN Approved",
+            "our_value": "yes",
+            "other_value": "Not always"
+          }
+        },
+        "cmp_6": {
+          "type": "row",
+          "settings": {
+            "label": "Hormones",
+            "our_value": "none",
+            "other_value": "Synthetic"
+          }
+        }
+      },
+      "block_order": ["cmp_1", "cmp_2", "cmp_3", "cmp_4", "cmp_5", "cmp_6"]
+    },
+    "research": {
+      "type": "neycher-pdp-research",
+      "settings": {
+        "heading": "Years of researching natural ingredients",
+        "description": "For five seasons, we have dedicated years to thoroughly researching, sourcing, and testing the most natural ingredients to develop safe and effective solutions.",
+        "button_text": "Read our story",
+        "button_url": "/pages/about"
+      }
+    },
+    "faq": {
+      "type": "neycher-pdp-faq",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "subtitle": "about the product"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "What is a vaginal yeast infection?",
+            "answer": "<p>Candida albicans is the most common type of yeast infection-related fungus, and naturally occurs as a healthy part of our bodies. For the most part, it's harmless. But when our vaginal biome becomes unbalanced, Candida takes over and causes what we refer to as a yeast infection. Common symptoms of a yeast infection include vulvar/vaginal itching, burning, painful urination, inflammation, pain during sex, and a thick, white discharge.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "What causes vaginal yeast infections?",
+            "answer": "<p>Yeast infections can be caused by antibiotics, hormonal changes, a weakened immune system, high sugar diets, tight clothing, and other factors that disrupt the natural vaginal flora balance.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "What types of issues does Yeast Away help with?",
+            "answer": "<p>Yeast Away helps with common yeast infection symptoms including itching, burning, discharge, and general discomfort. It works by restoring the natural vaginal pH and microbiome balance.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "How does Yeast Away work?",
+            "answer": "<p>Yeast Away uses a combination of boric acid, hyaluronic acid, and natural plant extracts to restore vaginal pH balance, eliminate harmful yeast overgrowth, and support the healing of irritated tissue.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
+    },
+    "reviews": {
+      "type": "neycher-pdp-reviews",
+      "settings": {
+        "heading": "In your words",
+        "rating_text": "4.98 based on 61 reviews"
+      },
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!",
+            "name": "Halara",
+            "location": "Los Angeles"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I feel comfort and fresh thanks to these suppositories.",
+            "name": "Emily",
+            "location": "Chicago"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort.",
+            "name": "Melissa",
+            "location": "San Francisco"
+          }
+        }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
+    }
+  },
+  "order": [
+    "product_hero",
+    "ingredients",
+    "stats",
+    "banner",
+    "comparison",
+    "research",
+    "faq",
+    "reviews"
+  ]
+}

@@ -1,0 +1,639 @@
+{%- comment -%}
+  Neycher Collection Page — hardcoded layout matching design.
+{%- endcomment -%}
+
+{%- liquid
+  assign current_handle = collection.handle | default: 'all-products'
+  assign tab_collections = "all-products,bv-and-yeast,prenatal,vaginal-dryness,menopause" | split: ","
+  assign tab_labels = "All Products,BV and Yeast,Prenatal,Vaginal Dryness,Menopause" | split: ","
+-%}
+
+<section class="nc-collection">
+  {%- comment -%} HEADING {%- endcomment -%}
+  <div class="nc-collection__heading">
+    <h1 class="nc-collection__title">Our Products</h1>
+  </div>
+
+  {%- comment -%} FILTER TABS {%- endcomment -%}
+  <nav class="nc-collection__tabs" aria-label="Product categories">
+    {%- for i in (0..4) -%}
+      {%- assign tab_handle = tab_collections[i] -%}
+      {%- assign tab_label = tab_labels[i] -%}
+      {%- assign is_active = false -%}
+      {%- if current_handle == tab_handle -%}{%- assign is_active = true -%}{%- endif -%}
+      <a
+        href="{{ routes.collections_url }}/{{ tab_handle }}"
+        class="nc-collection__tab{% if is_active %} nc-collection__tab--active{% endif %}"
+        {% if is_active %}aria-current="page"{% endif %}
+      >{{ tab_label }}</a>
+    {%- endfor -%}
+  </nav>
+
+  {%- comment -%} PRODUCT GRID — only non-bundle products, promo after 3rd {%- endcomment -%}
+  <div class="nc-collection__grid-wrap">
+    {%- assign product_index = 0 -%}
+    {%- paginate collection.products by 24 -%}
+      {%- for product in collection.products -%}
+        {%- unless product.tags contains 'bundle' -%}
+          {%- assign product_index = product_index | plus: 1 -%}
+          <div class="nc-product-card">
+            <a href="{{ product.url }}" class="nc-product-card__img-link">
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                  loading="lazy" width="600" height="600"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'nc-product-card__placeholder' }}
+              {%- endif -%}
+            </a>
+            <div class="nc-product-card__info">
+              <a href="{{ product.url }}" class="nc-product-card__name">{{ product.title }}</a>
+              <div class="nc-product-card__rating">
+                <img src="{{ 'rating-stars.svg' | asset_url }}" alt="stars" width="80" height="16" loading="lazy">
+                <span>{{ product.metafields.custom.rating | default: '5.0' }} ({{ product.metafields.custom.reviews_count | default: '0' }})</span>
+              </div>
+              <p class="nc-product-card__desc">{{ product.description | strip_html | truncate: 80 }}</p>
+              <div class="nc-product-card__price">Starting at {{ product.price | money }}</div>
+              <form method="post" action="{{ routes.cart_add_url }}">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="nc-product-card__btn">Add to cart</button>
+              </form>
+            </div>
+          </div>
+          {%- if product_index == 3 -%}
+            <div class="nc-collection__promo">
+              <img src="{{ 'collection-promo.jpg' | asset_url }}" alt="Neycher" loading="lazy" width="600" height="900">
+            </div>
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  </div>
+
+  {%- comment -%} BUNDLE AND SAVE {%- endcomment -%}
+  <div class="nc-bundles">
+    <div class="nc-bundles__header">
+      <h2 class="nc-bundles__title">Bundle and Save</h2>
+      <p class="nc-bundles__subtitle">Save up to 25% per month when you bundle of your favorite products.</p>
+
+    </div>
+
+    {%- comment -%} CTA BANNER {%- endcomment -%}
+    <div class="nc-bundles__cta">
+      <div class="nc-bundles__cta-inner">
+        <div class="nc-bundles__cta-text">
+          <h3>Transform your <em>Vaginal Health Ritual</em> with Solutions <em>Backed by Science</em></h3>
+        </div>
+        <div class="nc-bundles__cta-image">
+          <img src="{{ 'collection-cta.jpg' | asset_url }}" alt="Neycher products" loading="lazy" width="600" height="400">
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} BUNDLE GRID {%- endcomment -%}
+    <div class="nc-bundles__grid">
+      {%- comment -%} Show only products tagged "bundle" from current collection, fallback to bundles collection {%- endcomment -%}
+      {%- assign bundle_source = collections['bundles'] | default: collection -%}
+      {%- for product in bundle_source.products limit: 4 -%}
+        {%- if product.tags contains 'bundle' -%}
+          <div class="nc-product-card">
+            <a href="{{ product.url }}" class="nc-product-card__img-link">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | escape | default: product.title }}" loading="lazy" width="600" height="600">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'nc-product-card__placeholder' }}
+              {%- endif -%}
+            </a>
+            <div class="nc-product-card__info">
+              <a href="{{ product.url }}" class="nc-product-card__name">{{ product.title }}</a>
+              <div class="nc-product-card__rating">
+                <img src="{{ 'rating-stars.svg' | asset_url }}" alt="stars" width="80" height="16" loading="lazy">
+                <span>{{ product.metafields.custom.rating | default: '5.0' }} ({{ product.metafields.custom.reviews_count | default: '0' }})</span>
+              </div>
+              <p class="nc-product-card__desc">{{ product.description | strip_html | truncate: 60 }}</p>
+              <div class="nc-product-card__price">Starting at {{ product.price | money }}</div>
+              <form method="post" action="{{ routes.cart_add_url }}">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="nc-product-card__btn">Add to cart</button>
+              </form>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} BRAND STORY {%- endcomment -%}
+  <div class="nc-brand-story">
+    <div class="nc-brand-story__left" style="background-image: url('{{ 'brand-story-flower.jpeg' | asset_url }}');">
+      <h2 class="nc-brand-story__heading">Vaginal health is<br>a deeply personal</h2>
+      <div class="nc-brand-story__flower"></div>
+    </div>
+    <div class="nc-brand-story__right">
+      <div class="nc-brand-story__text">
+        <p>And emotional aspect of well-being yet for too long, big pharma has dictated how we should perceive, feel, and care for the most intimate part of our bodies.</p>
+        <p>With Neycher, we're rethinking vaginal health. Our formulas are thoughtfully designed to work strategically with your body's natural complexity, supporting your health in a way that feels right for you.</p>
+        <p>Thank you for trusting us with your delicate parts. I promise your future, happy vagina, will thank you.</p>
+      </div>
+      <div class="nc-brand-story__signature">
+        <img src="{{ 'founder-avatar.jpg' | asset_url }}" alt="Veronica Razura" class="nc-brand-story__avatar" width="48" height="48" loading="lazy">
+        <div class="nc-brand-story__signer">
+          <span class="nc-brand-story__sincerely">Sincerely,</span>
+          <span class="nc-brand-story__signer-name">Veronica Razura</span>
+          <span class="nc-brand-story__signer-title">Co-Founder & CEO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+/* ===========================
+   NEYCHER COLLECTION PAGE
+   =========================== */
+.nc-collection {
+  max-width: 1440px;
+  margin: 0 auto;
+  color: var(--n-color-heading);
+}
+
+/* --- HEADING --- */
+.nc-collection__heading {
+  text-align: center;
+  padding: 48px 60px 20px;
+}
+.nc-collection__title {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0;
+}
+
+/* --- FILTER TABS --- */
+.nc-collection__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 0 60px 0;
+  margin: 0 60px 40px;
+}
+.nc-collection__tab {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  text-decoration: none;
+  padding-bottom: 12px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.nc-collection__tab:hover {
+  color: var(--n-color-heading);
+}
+.nc-collection__tab--active {
+  color: var(--n-color-heading);
+  font-weight: 500;
+  border-bottom-color: var(--n-color-heading);
+}
+
+/* --- PRODUCT GRID + PROMO --- */
+.nc-collection__grid-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 280px;
+  gap: 40px 24px;
+  padding: 0 60px 60px;
+}
+.nc-collection__promo {
+  grid-row: 1 / 3;
+  grid-column: 4;
+  border-radius: 12px;
+  overflow: hidden;
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+.nc-collection__promo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- PRODUCT CARD --- */
+.nc-product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.nc-product-card__img-link {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f5f5f5;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+.nc-product-card__img-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nc-product-card__placeholder {
+  width: 100%;
+  height: 100%;
+}
+.nc-product-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding-top: 8px;
+}
+.nc-product-card__name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  text-decoration: none;
+  line-height: 1.2;
+}
+.nc-product-card__name:hover {
+  text-decoration: underline;
+}
+.nc-product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nc-product-card__rating img {
+  height: 16px;
+  width: auto;
+}
+.nc-product-card__rating span {
+  font-size: 14px;
+  color: var(--n-color-heading);
+}
+.nc-product-card__desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--n-color-muted);
+  line-height: 1.4;
+  margin: 2px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.nc-product-card__price {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin-top: 4px;
+}
+.nc-product-card__info form {
+  margin-top: auto;
+}
+.nc-product-card__btn {
+  display: block;
+  width: 100%;
+  background: transparent;
+  color: var(--n-color-heading);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  padding: 14px 0;
+  border: 1px solid var(--n-color-heading);
+  border-radius: 0;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.nc-product-card__btn:hover {
+  background: var(--n-color-heading);
+  color: #fff;
+}
+
+/* --- PRODUCT CARD — Bundle variant (4-col, smaller) --- */
+.nc-product-card--bundle .nc-product-card__img-link {
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.nc-product-card--bundle .nc-product-card__name {
+  font-size: 14px;
+}
+.nc-product-card--bundle .nc-product-card__rating img {
+  height: 12px;
+}
+.nc-product-card--bundle .nc-product-card__rating span {
+  font-size: 12px;
+}
+.nc-product-card--bundle .nc-product-card__desc {
+  font-size: 12px;
+  line-height: 1.35;
+}
+.nc-product-card--bundle .nc-product-card__price {
+  font-size: 13px;
+}
+.nc-product-card--bundle .nc-product-card__btn {
+  font-size: 13px;
+  padding: 8px 0;
+  margin-top: 8px;
+}
+
+/* --- BUNDLE AND SAVE --- */
+.nc-bundles {
+  padding: 20px 60px 60px;
+}
+.nc-bundles__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.nc-bundles__title {
+  font-size: 42px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--n-color-heading);
+  margin: 0 0 12px;
+}
+.nc-bundles__subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  margin: 0 0 20px;
+}
+
+/* --- CTA BANNER --- */
+.nc-bundles__cta {
+  margin-bottom: 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #9AA7B6;
+}
+.nc-bundles__cta-inner {
+  display: flex;
+  align-items: stretch;
+  min-height: 280px;
+}
+.nc-bundles__cta-text {
+  flex: 1;
+  padding: 48px 56px;
+  display: flex;
+  align-items: center;
+}
+.nc-bundles__cta-text h3 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  line-height: 1.3;
+}
+.nc-bundles__cta-text em {
+  font-style: italic;
+}
+.nc-bundles__cta-image {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+.nc-bundles__cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- BUNDLE GRID --- */
+.nc-bundles__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* --- BRAND STORY --- */
+.nc-brand-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: #E2E2E2;
+  min-height: 480px;
+}
+.nc-brand-story__left {
+  padding: 60px 60px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: auto 60%;
+}
+.nc-brand-story__heading {
+  font-size: 36px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--n-color-heading);
+  margin: 0;
+  line-height: 1.2;
+}
+.nc-brand-story__flower {
+  flex: 1;
+}
+.nc-brand-story__right {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.nc-brand-story__text {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.nc-brand-story__text p {
+  margin: 0 0 14px;
+}
+.nc-brand-story__text p:last-child {
+  margin-bottom: 0;
+}
+.nc-brand-story__signature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nc-brand-story__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nc-brand-story__signer {
+  display: flex;
+  flex-direction: column;
+}
+.nc-brand-story__sincerely {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--n-color-body);
+}
+.nc-brand-story__signer-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  font-style: italic;
+}
+.nc-brand-story__signer-title {
+  font-size: 12px;
+  color: var(--n-color-muted);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media screen and (max-width: 999px) {
+  .nc-collection__heading {
+    padding: 36px 24px 16px;
+  }
+  .nc-collection__title {
+    font-size: 32px;
+  }
+  .nc-collection__tabs {
+    gap: 20px;
+    padding: 0 24px 0;
+    margin: 0 24px 32px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .nc-collection__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .nc-collection__tab {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .nc-collection__grid-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    padding: 0 24px 40px;
+  }
+  .nc-collection__promo {
+    grid-row: auto;
+    grid-column: auto;
+    border-radius: 12px;
+  }
+  .nc-collection__promo img {
+    aspect-ratio: 1 / 1;
+  }
+  .nc-bundles {
+    padding: 20px 24px 40px;
+  }
+  .nc-bundles__title {
+    font-size: 32px;
+  }
+  .nc-bundles__cta-inner {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .nc-bundles__cta-image {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    height: 220px;
+  }
+  .nc-bundles__cta-text {
+    padding: 32px;
+  }
+  .nc-bundles__cta-text h3 {
+    font-size: 24px;
+  }
+  .nc-bundles__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .nc-brand-story {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .nc-brand-story__left {
+    padding: 40px 24px 0;
+    background-size: auto 50%;
+    min-height: 320px;
+    order: 2;
+  }
+  .nc-brand-story__heading {
+    font-size: 28px;
+  }
+  .nc-brand-story__right {
+    padding: 32px 24px 40px;
+    order: 1;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .nc-collection__heading {
+    padding: 28px 16px 12px;
+  }
+  .nc-collection__title {
+    font-size: 28px;
+  }
+  .nc-collection__tabs {
+    gap: 16px;
+    padding: 0 16px 0;
+    margin: 0 16px 24px;
+  }
+  .nc-collection__grid-wrap {
+    padding: 0 16px 36px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px;
+  }
+  .nc-bundles {
+    padding: 16px 16px 32px;
+  }
+  .nc-bundles__title {
+    font-size: 26px;
+  }
+  .nc-bundles__subtitle {
+    font-size: 14px;
+  }
+  .nc-bundles__cta-text {
+    padding: 24px 16px;
+  }
+  .nc-bundles__cta-text h3 {
+    font-size: 20px;
+  }
+  .nc-bundles__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .nc-brand-story__left {
+    padding: 32px 16px 0;
+  }
+  .nc-brand-story__heading {
+    font-size: 24px;
+  }
+  .nc-brand-story__right {
+    padding: 24px 16px 32px;
+  }
+  .nc-brand-story__text {
+    font-size: 14px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Collection",
+  "class": "neycher-collection-section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Neycher Collection"
+    }
+  ]
+}
+{% endschema %}

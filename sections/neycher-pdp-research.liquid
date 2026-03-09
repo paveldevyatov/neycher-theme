@@ -1,0 +1,120 @@
+{%- comment -%} Years of researching natural ingredients {%- endcomment -%}
+<section class="npdp-research">
+  <div class="npdp-research__inner">
+    <div class="npdp-research__text">
+      <h2 class="npdp-research__heading">{{ section.settings.heading }}</h2>
+      <p class="npdp-research__desc">{{ section.settings.description }}</p>
+      {%- if section.settings.button_text != blank -%}
+        <a href="{{ section.settings.button_url }}" class="npdp-research__btn">{{ section.settings.button_text }}</a>
+      {%- endif -%}
+    </div>
+    <div class="npdp-research__media">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.heading | escape }}" width="600" height="400" loading="lazy">
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.npdp-research {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.npdp-research__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  background: #f5f5f0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.npdp-research__text {
+  padding: 60px;
+}
+.npdp-research__heading {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 20px;
+  line-height: 1.1;
+}
+.npdp-research__desc {
+  font-size: 15px;
+  color: var(--n-color-body);
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+.npdp-research__btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border: 1px solid var(--n-color-heading);
+  color: var(--n-color-heading);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+}
+.npdp-research__btn:hover {
+  background: var(--n-color-heading);
+  color: #fff;
+}
+.npdp-research__media {
+  height: 100%;
+}
+.npdp-research__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media screen and (max-width: 999px) {
+  .npdp-research {
+    padding: 60px 24px;
+  }
+  .npdp-research__inner {
+    grid-template-columns: 1fr;
+  }
+  .npdp-research__text {
+    padding: 40px 32px 0;
+  }
+  .npdp-research__heading {
+    font-size: 32px;
+  }
+  .npdp-research__media {
+    height: 280px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .npdp-research {
+    padding: 48px 16px;
+  }
+  .npdp-research__text {
+    padding: 28px 24px 0;
+  }
+  .npdp-research__heading {
+    font-size: 26px;
+  }
+  .npdp-research__media {
+    height: 220px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Research",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Years of researching natural ingredients" },
+    { "type": "textarea", "id": "description", "label": "Description" },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Read our story" },
+    { "type": "url", "id": "button_url", "label": "Button link" },
+    { "type": "image_picker", "id": "image", "label": "Image" }
+  ],
+  "presets": [{ "name": "PDP Research" }]
+}
+{% endschema %}

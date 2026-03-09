@@ -1,30 +1,37 @@
-<section class="neycher-bestsellers">
-  <div class="neycher-bestsellers__header">
-    <h2 class="neycher-bestsellers__title">Bestsellers</h2>
-    <a href="/collections/all" class="neycher-bestsellers__shopall">Shop All <span>&rarr;</span></a>
+<section class="neycher-bestsellers n-section">
+  <div class="n-section-header">
+    <h2 class="n-title-section">Bestsellers</h2>
+    <a href="/collections/all" class="n-btn-outline">Shop All <span>&rarr;</span></a>
   </div>
   <div class="neycher-bestsellers__scroll">
     <div class="neycher-bestsellers__grid">
-      {%- assign bestseller_handles = "goodbye-dryness-bundle,vaginal-moisturizer,bv-away,yeast-away,vaginal-synbiotic,botanical-vulva-balm" | split: "," -%}
-      {%- assign bestseller_images = "product-goodbye-dryness-bundle.webp,product-vaginal-moisturizer.webp,product-bv-away.webp,product-yeast-away.webp,product-synbiotic.webp,product-vulva-balm.webp" | split: "," -%}
-      {%- assign bestseller_names = "Goodbye, Dryness Bundle,Vaginal Moisturizer,BV Away,Yeast Away,Vaginal Synbiotic,Botanical Vulva Balm" | split: "," -%}
-      {%- assign bestseller_prices = "$50.89,$32.91,$24.95,$19.99,$19.99,$23.45" | split: "," -%}
-      {%- assign bestseller_descs = "Complete hydration system for lasting comfort,Ultra-moisturizing suppository for daily relief,Boric acid suppository for pH balance,Natural antifungal suppository,Pre- and probiotic for healthy flora,Soothing balm for external comfort" | split: "," -%}
+      {%- assign bestseller_handles = "goodbye-dryness-bundle,yeast-away,bv-away,vaginal-moisturizer" | split: "," -%}
+      {%- assign bestseller_images = "product-goodbye-dryness-bundle.webp,product-yeast-away.webp,product-bv-away.webp,product-vaginal-moisturizer.webp" | split: "," -%}
+      {%- assign bestseller_names = '"BV Away + Vaginal Synbiotic" Bundle,Yeast Away,BV Away,Vaginal Moisturizer' | split: "," -%}
+      {%- assign bestseller_prices = "$22.99,$22.99,$22.99,$22.99" | split: "," -%}
+      {%- assign bestseller_descs = "Three-step system targeting BV symptoms and prevention,Anti-fungal herbal formulation soothes yeast-related irritation,Instantly banish odor and bacterial vaginosis-related symptoms,Ultra-hydrating formula restores comfort and natural vaginal moisture" | split: "," -%}
 
-      {%- for i in (0..5) -%}
+      {%- for i in (0..3) -%}
+        {%- assign bs_product = all_products[bestseller_handles[i]] -%}
         <div class="neycher-bestsellers__card">
-          <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__img-link">
-            <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400">
-          </a>
+          <div class="neycher-bestsellers__img-wrap">
+            <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__img-link">
+              <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400">
+            </a>
+            <a href="/products/{{ bestseller_handles[i] }}" class="n-cart-btn neycher-bestsellers__cart-btn" aria-label="Add to cart">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </a>
+          </div>
           <div class="neycher-bestsellers__info">
-            <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__name">{{ bestseller_names[i] }}</a>
-            <div class="neycher-bestsellers__rating">
+            <a href="/products/{{ bestseller_handles[i] }}" class="n-product-name">{{ bestseller_names[i] }}</a>
+            <div class="n-rating">
               <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5.0 stars" width="80" height="16">
-              <span class="neycher-bestsellers__reviews">12 reviews</span>
+              <span>{{ bs_product.metafields.custom.rating | default: '5.0' }} ({{ bs_product.metafields.custom.reviews_count | default: '0' }})</span>
             </div>
-            <p class="neycher-bestsellers__desc">{{ bestseller_descs[i] }}</p>
-            <div class="neycher-bestsellers__price">{{ bestseller_prices[i] }}</div>
-            <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__btn">Buy now</a>
+            <p class="n-product-desc">{{ bestseller_descs[i] }}</p>
+            <div class="n-product-price">Starting at {{ bestseller_prices[i] }}</div>
           </div>
         </div>
       {%- endfor -%}
@@ -33,37 +40,6 @@
 </section>
 
 {% stylesheet %}
-.neycher-bestsellers {
-  padding: 60px 60px 48px;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.neycher-bestsellers__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-.neycher-bestsellers__title {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000;
-  margin: 0;
-}
-.neycher-bestsellers__shopall {
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #000;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.neycher-bestsellers__shopall:hover {
-  text-decoration: underline;
-}
 .neycher-bestsellers__scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -82,79 +58,34 @@
   flex-direction: column;
   min-width: 0;
 }
+.neycher-bestsellers__img-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
 .neycher-bestsellers__img-link {
   display: block;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 12px;
-  background: #f5f5f5;
-  margin-bottom: 14px;
+  border-radius: var(--n-radius-md);
+  background: var(--n-color-bg-alt);
 }
 .neycher-bestsellers__img-link img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.neycher-bestsellers__cart-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
 .neycher-bestsellers__info {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.neycher-bestsellers__name {
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-  line-height: 1.3;
-}
-.neycher-bestsellers__name:hover {
-  text-decoration: underline;
-}
-.neycher-bestsellers__rating {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.neycher-bestsellers__rating img {
-  height: 14px;
-  width: auto;
-}
-.neycher-bestsellers__reviews {
-  font-family: "Open Sans", sans-serif;
-  font-size: 12px;
-  color: #666;
-}
-.neycher-bestsellers__desc {
-  font-family: "Open Sans", sans-serif;
-  font-size: 13px;
-  color: #666;
-  margin: 0;
-  line-height: 1.4;
-}
-.neycher-bestsellers__price {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #000;
+.neycher-bestsellers .n-product-price {
   margin-top: 4px;
-}
-.neycher-bestsellers__btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: none;
-  text-align: center;
-  padding: 12px 0;
-  border-radius: 100px;
-  margin-top: 8px;
-  width: 100%;
-}
-.neycher-bestsellers__btn:hover {
-  opacity: 0.85;
 }
 @media screen and (max-width: 999px) {
   .neycher-bestsellers__grid {
@@ -162,9 +93,6 @@
   }
 }
 @media screen and (max-width: 749px) {
-  .neycher-bestsellers {
-    padding: 40px 16px 32px;
-  }
   .neycher-bestsellers__grid {
     grid-template-columns: repeat(4, 240px);
     gap: 16px;

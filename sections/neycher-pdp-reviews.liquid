@@ -1,0 +1,171 @@
+{%- comment -%} In your words — customer reviews {%- endcomment -%}
+<section class="npdp-rev">
+  <div class="npdp-rev__inner">
+    <div class="npdp-rev__header">
+      <h2 class="npdp-rev__heading">{{ section.settings.heading }}</h2>
+      <div class="npdp-rev__overall">
+        <div class="npdp-rev__stars">
+          {%- for i in (1..5) -%}
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="#1D2836"/></svg>
+          {%- endfor -%}
+        </div>
+        <span class="npdp-rev__count">{{ section.settings.rating_text }}</span>
+      </div>
+    </div>
+    <div class="npdp-rev__grid">
+      {%- for block in section.blocks -%}
+        <div class="npdp-rev__card" {{ block.shopify_attributes }}>
+          <div class="npdp-rev__card-stars">
+            {%- assign star_count = block.settings.stars | default: 5 -%}
+            {%- for i in (1..5) -%}
+              {%- if i <= star_count -%}
+                <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="#1D2836"/></svg>
+              {%- else -%}
+                <svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="none" stroke="#1D2836" stroke-width="1"/></svg>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          <p class="npdp-rev__text">"{{ block.settings.text }}"</p>
+          <div class="npdp-rev__author">
+            {%- if block.settings.avatar != blank -%}
+              <img src="{{ block.settings.avatar | image_url: width: 80 }}" alt="{{ block.settings.name | escape }}" class="npdp-rev__avatar" width="40" height="40" loading="lazy">
+            {%- endif -%}
+            <div class="npdp-rev__author-info">
+              <span class="npdp-rev__name">{{ block.settings.name }}</span>
+              <span class="npdp-rev__location">{{ block.settings.location }}</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.npdp-rev {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.npdp-rev__header {
+  margin-bottom: 40px;
+}
+.npdp-rev__heading {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 12px;
+  line-height: 1.1;
+}
+.npdp-rev__overall {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.npdp-rev__stars {
+  display: flex;
+  gap: 2px;
+}
+.npdp-rev__count {
+  font-size: 14px;
+  color: var(--n-color-muted);
+}
+.npdp-rev__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.npdp-rev__card {
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.npdp-rev__card-stars {
+  display: flex;
+  gap: 2px;
+}
+.npdp-rev__text {
+  font-size: 15px;
+  color: var(--n-color-heading);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.npdp-rev__author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+.npdp-rev__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.npdp-rev__author-info {
+  display: flex;
+  flex-direction: column;
+}
+.npdp-rev__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.npdp-rev__location {
+  font-size: 12px;
+  color: var(--n-color-muted);
+}
+@media screen and (max-width: 999px) {
+  .npdp-rev {
+    padding: 60px 24px;
+  }
+  .npdp-rev__heading {
+    font-size: 32px;
+  }
+  .npdp-rev__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .npdp-rev {
+    padding: 48px 16px;
+  }
+  .npdp-rev__heading {
+    font-size: 26px;
+  }
+  .npdp-rev__card {
+    padding: 20px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Reviews",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "In your words" },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "5.0 based on 61 reviews" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review text" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "image_picker", "id": "avatar", "label": "Avatar" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "PDP Reviews" }]
+}
+{% endschema %}

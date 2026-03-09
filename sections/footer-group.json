@@ -25,7 +25,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
+            "gap": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -79,17 +79,27 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "email_signup_nested": {
+              "type": "email-signup",
+              "name": "Email Signup",
+              "settings": {
+                "width": "fill"
+              }
             }
           },
           "block_order": [
-            "text_heading"
+            "text_heading",
+            "email_signup_nested"
           ]
         },
-        "email_signup": {
-          "type": "email-signup",
-          "name": "Email Signup",
+        "menu_info": {
+          "type": "menu",
+          "name": "Info",
           "settings": {
-            "width": "fill"
+            "menu": "footer-info",
+            "heading": "Info",
+            "heading_preset": "h6"
           }
         },
         "menu_shop": {
@@ -101,40 +111,75 @@
             "heading_preset": "h6"
           }
         },
-        "menu_info": {
-          "type": "menu",
-          "name": "Info",
+        "group_social": {
+          "type": "group",
+          "name": "Social & Payment",
           "settings": {
-            "menu": "footer-info",
-            "heading": "Info",
-            "heading_preset": "h6"
-          }
-        },
-        "social_links": {
-          "type": "social-links",
-          "name": "Social",
-          "settings": {}
-        },
-        "payment_icons": {
-          "type": "payment-icons",
-          "name": "Payment methods",
-          "settings": {}
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "social_links_nested": {
+              "type": "social-links",
+              "name": "Social",
+              "settings": {}
+            },
+            "payment_icons_nested": {
+              "type": "payment-icons",
+              "name": "Payment methods",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "social_links_nested",
+            "payment_icons_nested"
+          ]
         }
       },
       "block_order": [
         "group_email",
-        "email_signup",
         "menu_info",
         "menu_shop",
-        "social_links",
-        "payment_icons"
+        "group_social"
       ],
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
-        "gap": 24,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
+        "gap": 40,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 60,
         "padding-block-end": 36
       }
     },
@@ -165,8 +210,8 @@
         "section_width": "page-width",
         "gap": 24,
         "divider_thickness": 1,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 12,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 16,
         "padding-block-end": 24
       }
     }

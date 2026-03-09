@@ -25,12 +25,19 @@
       "type": "neycher-bestsellers",
       "settings": {}
     },
-    "neycher-why-works": {
-      "type": "neycher-why-works",
-      "settings": {}
-    },
     "neycher-benefits": {
       "type": "neycher-benefits",
+      "settings": {}
+    },
+    "neycher-featured-product": {
+      "type": "neycher-featured-product",
+      "settings": {
+        "badge": "Clinically studied",
+        "description": "Deep hydration for lasting vaginal moisture."
+      }
+    },
+    "neycher-why-works": {
+      "type": "neycher-why-works",
       "settings": {}
     },
     "neycher-stats": {
@@ -43,10 +50,6 @@
     },
     "neycher-reviews": {
       "type": "neycher-reviews",
-      "settings": {}
-    },
-    "neycher-featured-product": {
-      "type": "neycher-featured-product",
       "settings": {}
     },
     "neycher-journal": {
@@ -65,10 +68,10 @@
     "neycher-bestsellers",
     "neycher-why-works",
     "neycher-benefits",
+    "neycher-featured-product",
     "neycher-stats",
     "neycher-feeling-good",
     "neycher-reviews",
-    "neycher-featured-product",
     "neycher-journal",
     "neycher-instagram"
   ]

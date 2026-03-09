@@ -1,0 +1,206 @@
+{%- comment -%} Comparison table — our product vs other brands {%- endcomment -%}
+<section class="npdp-cmp">
+  <div class="npdp-cmp__inner">
+    <h2 class="npdp-cmp__heading">{{ section.settings.heading }}</h2>
+
+    <div class="npdp-cmp__table">
+      {%- comment -%} Header row with product images {%- endcomment -%}
+      <div class="npdp-cmp__row npdp-cmp__row--header">
+        <div class="npdp-cmp__cell npdp-cmp__cell--label"></div>
+        <div class="npdp-cmp__cell npdp-cmp__cell--ours">
+          {%- if section.settings.our_image != blank -%}
+            <img src="{{ section.settings.our_image | image_url: width: 300 }}" alt="{{ section.settings.our_label | escape }}" width="150" height="150" loading="lazy">
+          {%- endif -%}
+          <span>{{ section.settings.our_label }}</span>
+        </div>
+        <div class="npdp-cmp__cell npdp-cmp__cell--theirs">
+          {%- if section.settings.other_image != blank -%}
+            <img src="{{ section.settings.other_image | image_url: width: 300 }}" alt="{{ section.settings.other_label | escape }}" width="150" height="150" loading="lazy">
+          {%- endif -%}
+          <span>{{ section.settings.other_label }}</span>
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div class="npdp-cmp__row" {{ block.shopify_attributes }}>
+          <div class="npdp-cmp__cell npdp-cmp__cell--label">{{ block.settings.label }}</div>
+          <div class="npdp-cmp__cell npdp-cmp__cell--ours">
+            {%- if block.settings.our_value == 'yes' -%}
+              <span class="npdp-cmp__check">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D2836"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>Yes</span>
+            {%- elsif block.settings.our_value == 'no' -%}
+              <span class="npdp-cmp__x">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#E0E0E0"/><path d="M7 7l6 6M13 7l-6 6" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <span>No</span>
+            {%- elsif block.settings.our_value == 'none' -%}
+              <span class="npdp-cmp__check">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D2836"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>None</span>
+            {%- else -%}
+              <span class="npdp-cmp__check">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D2836"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>{{ block.settings.our_value }}</span>
+            {%- endif -%}
+          </div>
+          <div class="npdp-cmp__cell npdp-cmp__cell--theirs">
+            {%- if block.settings.other_value == 'yes' -%}
+              <span class="npdp-cmp__check">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D2836"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>Yes</span>
+            {%- elsif block.settings.other_value == 'no' -%}
+              <span class="npdp-cmp__x">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#E0E0E0"/><path d="M7 7l6 6M13 7l-6 6" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <span>No</span>
+            {%- elsif block.settings.other_value == 'none' -%}
+              <span class="npdp-cmp__x">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#E0E0E0"/><path d="M7 7l6 6M13 7l-6 6" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <span>None</span>
+            {%- else -%}
+              <span class="npdp-cmp__x">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#E0E0E0"/><path d="M7 7l6 6M13 7l-6 6" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <span>{{ block.settings.other_value }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.npdp-cmp {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.npdp-cmp__heading {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 48px;
+  line-height: 1.1;
+  max-width: 480px;
+}
+.npdp-cmp__table {
+  max-width: 800px;
+}
+.npdp-cmp__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+.npdp-cmp__row--header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 24px;
+}
+.npdp-cmp__cell--label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.npdp-cmp__cell--ours,
+.npdp-cmp__cell--theirs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--n-color-body);
+}
+.npdp-cmp__row--header .npdp-cmp__cell--ours,
+.npdp-cmp__row--header .npdp-cmp__cell--theirs {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.npdp-cmp__row--header img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+.npdp-cmp__row--header span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.npdp-cmp__cell--theirs {
+  color: var(--n-color-muted);
+}
+.npdp-cmp__check svg,
+.npdp-cmp__x svg {
+  flex-shrink: 0;
+}
+@media screen and (max-width: 999px) {
+  .npdp-cmp {
+    padding: 60px 24px;
+  }
+  .npdp-cmp__heading {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .npdp-cmp {
+    padding: 48px 16px;
+  }
+  .npdp-cmp__heading {
+    font-size: 26px;
+  }
+  .npdp-cmp__row {
+    grid-template-columns: 0.8fr 1fr 1fr;
+    gap: 8px;
+    padding: 16px 0;
+  }
+  .npdp-cmp__cell--label {
+    font-size: 13px;
+  }
+  .npdp-cmp__cell--ours span,
+  .npdp-cmp__cell--theirs span {
+    font-size: 12px;
+  }
+  .npdp-cmp__row--header img {
+    width: 80px;
+    height: 80px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Comparison",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We're not like other brands" },
+    { "type": "image_picker", "id": "our_image", "label": "Our product image" },
+    { "type": "text", "id": "our_label", "label": "Our label", "default": "Our Vaginal Suppositories" },
+    { "type": "image_picker", "id": "other_image", "label": "Other brand image" },
+    { "type": "text", "id": "other_label", "label": "Other label", "default": "Other Brands" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Row label", "default": "Ingredients" },
+        { "type": "text", "id": "our_value", "label": "Our value", "info": "Use 'yes', 'no', 'none', or custom text" },
+        { "type": "text", "id": "other_value", "label": "Their value", "info": "Use 'yes', 'no', 'none', or custom text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "PDP Comparison" }]
+}
+{% endschema %}

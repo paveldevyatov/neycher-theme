@@ -11,7 +11,9 @@
   "sections": {
     "main": {
       "type": "neycher-product",
-      "settings": {}
+      "settings": {
+        "bundle_product": "moisture-magic-trio-bundle"
+      }
     }
   },
   "order": [

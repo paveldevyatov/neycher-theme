@@ -1,0 +1,133 @@
+{%- comment -%} Frequently asked questions {%- endcomment -%}
+<section class="npdp-faq">
+  <div class="npdp-faq__inner">
+    <div class="npdp-faq__header">
+      <h2 class="npdp-faq__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="npdp-faq__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+    <div class="npdp-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="npdp-faq__item" {{ block.shopify_attributes }}>
+          <summary class="npdp-faq__question">
+            <span>{{ block.settings.question }}</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path class="npdp-faq__icon" d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="npdp-faq__answer">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.npdp-faq {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.npdp-faq__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  align-items: start;
+}
+.npdp-faq__heading {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 8px;
+  line-height: 1.1;
+}
+.npdp-faq__subtitle {
+  font-size: 14px;
+  color: var(--n-color-muted);
+  margin: 0;
+}
+.npdp-faq__list {
+  border-top: 1px solid #e5e5e5;
+}
+.npdp-faq__item {
+  border-bottom: 1px solid #e5e5e5;
+}
+.npdp-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.npdp-faq__question::-webkit-details-marker {
+  display: none;
+}
+.npdp-faq__question svg {
+  flex-shrink: 0;
+  color: var(--n-color-heading);
+}
+.npdp-faq__item[open] .npdp-faq__icon path:last-child {
+  display: none;
+}
+.npdp-faq__answer {
+  padding: 0 0 20px;
+  font-size: 14px;
+  color: var(--n-color-body);
+  line-height: 1.65;
+}
+.npdp-faq__answer p {
+  margin: 0 0 12px;
+}
+.npdp-faq__answer p:last-child {
+  margin: 0;
+}
+@media screen and (max-width: 999px) {
+  .npdp-faq {
+    padding: 60px 24px;
+  }
+  .npdp-faq__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .npdp-faq__heading {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .npdp-faq {
+    padding: 48px 16px;
+  }
+  .npdp-faq__heading {
+    font-size: 26px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP FAQ",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "about the product" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "PDP FAQ" }]
+}
+{% endschema %}

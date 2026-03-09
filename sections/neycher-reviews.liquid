@@ -1,5 +1,5 @@
 <section class="neycher-reviews">
-  <h2 class="neycher-reviews__title">In your words</h2>
+  <h2 class="n-title-section neycher-reviews__title"><span class="neycher-reviews__star">&#10038;</span> In your words</h2>
   <div class="neycher-reviews__scroll">
     <div class="neycher-reviews__grid">
       <div class="neycher-reviews__card">
@@ -79,11 +79,14 @@
   margin: 0 auto;
 }
 .neycher-reviews__title {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000;
-  margin: 0 0 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.neycher-reviews__star {
+  font-size: 14px;
+  color: var(--n-color-heading);
 }
 .neycher-reviews__scroll {
   overflow-x: auto;
@@ -99,7 +102,7 @@
   gap: 16px;
 }
 .neycher-reviews__card {
-  background: #f7f5f2;
+  background: var(--n-color-bg-warm);
   border-radius: 12px;
   padding: 28px;
   display: flex;
@@ -112,10 +115,10 @@
   height: auto;
 }
 .neycher-reviews__quote {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 14px;
   font-weight: 400;
-  color: #000;
+  color: var(--n-color-heading);
   margin: 0;
   line-height: 1.6;
   font-style: normal;
@@ -135,15 +138,15 @@
   object-fit: cover;
 }
 .neycher-reviews__name {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 14px;
-  font-weight: 600;
-  color: #000;
+  font-weight: 500;
+  color: var(--n-color-heading);
 }
 .neycher-reviews__location {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 12px;
-  color: #777;
+  color: var(--n-color-muted);
 }
 @media screen and (max-width: 999px) {
   .neycher-reviews__grid {

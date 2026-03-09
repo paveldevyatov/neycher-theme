@@ -1,0 +1,128 @@
+{%- comment -%} Real customers, real results — stats grid {%- endcomment -%}
+<section class="npdp-stats">
+  <div class="npdp-stats__inner">
+    <div class="npdp-stats__header">
+      <h2 class="npdp-stats__heading">{{ section.settings.heading }}</h2>
+      <p class="npdp-stats__desc">{{ section.settings.description }}</p>
+    </div>
+    <div class="npdp-stats__grid">
+      {%- for block in section.blocks -%}
+        <div class="npdp-stats__item" {{ block.shopify_attributes }}>
+          <div class="npdp-stats__value-row">
+            <span class="npdp-stats__value">{{ block.settings.value }}</span>
+            {%- if block.settings.icon != blank -%}
+              <img src="{{ block.settings.icon | image_url: width: 80 }}" alt="" class="npdp-stats__icon" width="40" height="40" loading="lazy">
+            {%- endif -%}
+          </div>
+          <p class="npdp-stats__label">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.npdp-stats {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.npdp-stats__header {
+  margin-bottom: 48px;
+}
+.npdp-stats__heading {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 16px;
+  line-height: 1.1;
+  max-width: 480px;
+}
+.npdp-stats__desc {
+  font-size: 14px;
+  color: var(--n-color-muted);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 560px;
+}
+.npdp-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 60px;
+}
+.npdp-stats__value-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.npdp-stats__value {
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  line-height: 1;
+}
+.npdp-stats__icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.npdp-stats__label {
+  font-size: 14px;
+  color: var(--n-color-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+@media screen and (max-width: 999px) {
+  .npdp-stats {
+    padding: 60px 24px;
+  }
+  .npdp-stats__heading {
+    font-size: 32px;
+  }
+  .npdp-stats__grid {
+    gap: 36px 40px;
+  }
+  .npdp-stats__value {
+    font-size: 44px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .npdp-stats {
+    padding: 48px 16px;
+  }
+  .npdp-stats__heading {
+    font-size: 28px;
+  }
+  .npdp-stats__grid {
+    gap: 32px 24px;
+  }
+  .npdp-stats__value {
+    font-size: 36px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Stats",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Real customers, real results" },
+    { "type": "textarea", "id": "description", "label": "Description" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "96%" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "image_picker", "id": "icon", "label": "Icon (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "PDP Stats" }]
+}
+{% endschema %}

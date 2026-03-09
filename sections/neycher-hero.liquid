@@ -1,7 +1,8 @@
 <section class="neycher-hero">
   <div class="neycher-hero__media">
-    <img src="{{ 'hero-bg.webp' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="900">
+    <img src="{{ 'hero-bg-3.jpeg' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="900">
   </div>
+  <div class="neycher-hero__overlay"></div>
   <div class="neycher-hero__content">
     <h1 class="neycher-hero__heading">Save up to 20%<br>with subscription</h1>
     <a href="/collections/all" class="neycher-hero__btn">Shop Now</a>
@@ -13,24 +14,39 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  background: #9AA7B6;
 }
 .neycher-hero__media {
   width: 100%;
 }
 .neycher-hero__media img {
-  width: 100%;
-  height: auto;
+  width: 120%;
+  height: 85vh;
   display: block;
+  object-fit: cover;
+  object-position: center center;
+  margin-left: auto;
+  transform: translateX(16%);
+}
+.neycher-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(154, 167, 182, 1) 0%,
+    rgba(154, 167, 182, 0.85) 15%,
+    rgba(154, 167, 182, 0.3) 35%,
+    transparent 50%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 .neycher-hero__content {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   padding: 0 60px;
   max-width: 500px;
   display: flex;
@@ -39,9 +55,9 @@
   align-items: flex-start;
 }
 .neycher-hero__heading {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 48px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.15;
   color: #fff;
   margin: 0 0 32px;
@@ -50,29 +66,85 @@
 .neycher-hero__btn {
   display: inline-block;
   background: #fff;
-  color: #000;
-  font-family: "Open Sans", sans-serif;
+  color: var(--n-color-heading);
+  font-family: var(--n-font);
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   padding: 16px 56px;
-  border-radius: 0;
+  border-radius: 4px;
   text-align: center;
   letter-spacing: 0.3px;
 }
 .neycher-hero__btn:hover {
   opacity: 0.9;
 }
-@media screen and (max-width: 749px) {
-  .neycher-hero__content {
-    padding: 0 20px;
-    max-width: 100%;
+
+/* Tablet */
+@media screen and (max-width: 999px) {
+  .neycher-hero__media img {
+    height: 480px;
   }
   .neycher-hero__heading {
-    font-size: 28px;
+    font-size: 36px;
+  }
+  .neycher-hero__content {
+    padding: 0 40px;
+    max-width: 400px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .neycher-hero {
+    display: flex;
+    flex-direction: column;
+  }
+  .neycher-hero__media {
+    position: relative;
+  }
+  .neycher-hero__media img {
+    width: 100%;
+    height: auto;
+    object-position: center top;
+    transform: none;
+    margin-left: 0;
+  }
+  .neycher-hero__media::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 25%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(154, 167, 182, 0.6) 50%,
+      #9AA7B6 100%
+    );
+    pointer-events: none;
+  }
+  .neycher-hero__overlay {
+    display: none;
+  }
+  .neycher-hero__content {
+    position: static;
+    max-width: 100%;
+    padding: 24px 24px 40px;
+    background: transparent;
+    align-items: center;
+    text-align: center;
+  }
+  .neycher-hero__heading {
+    font-size: 32px;
+    margin-bottom: 24px;
   }
   .neycher-hero__btn {
-    padding: 14px 44px;
+    padding: 16px 0;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 4px;
   }
 }
 {% endstylesheet %}

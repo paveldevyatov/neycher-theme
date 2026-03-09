@@ -1,120 +1,206 @@
+{%- assign product = section.settings.product -%}
+{%- if product == blank -%}
+  {%- assign product = all_products['vaginal-moisturizer'] -%}
+{%- endif -%}
+{%- if product != blank -%}
 <section class="neycher-fp">
   <div class="neycher-fp__inner">
-    <div class="neycher-fp__media">
-      <img src="{{ 'product-synbiotic.webp' | asset_url }}" alt="Vaginal Synbiotic" loading="lazy" width="500" height="500">
-    </div>
-    <div class="neycher-fp__content">
-      <p class="neycher-fp__tagline">More loving maintenance. Less crisis control.</p>
-      <h2 class="neycher-fp__name">Vaginal Synbiotic</h2>
-      <div class="neycher-fp__rating">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5.0 stars" width="88" height="16">
-        <span>5.0 (12 reviews)</span>
+    <div class="neycher-fp__card">
+      {%- if section.settings.badge != blank -%}
+        <span class="neycher-fp__badge n-badge">{{ section.settings.badge }}</span>
+      {%- endif -%}
+      <div class="neycher-fp__white-card">
+        <div class="neycher-fp__img-wrap">
+          {%- if product.featured_image -%}
+            <img
+              src="{{ product.featured_image | image_url: width: 600 }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              loading="lazy"
+              width="600"
+              height="600"
+            >
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'neycher-fp__placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="neycher-fp__card-info">
+          <div class="neycher-fp__card-top">
+            <a href="{{ product.url }}" class="neycher-fp__name n-product-name">{{ product.title }}</a>
+            <a href="{{ product.url }}" class="neycher-fp__cart-btn n-cart-btn n-cart-btn--muted" aria-label="View product">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </a>
+          </div>
+          <div class="neycher-fp__rating n-rating">
+            <img src="{{ 'rating-stars.svg' | asset_url }}" alt="stars" width="80" height="16">
+            <span>{{ product.metafields.custom.rating | default: '5.0' }} ({{ product.metafields.custom.reviews_count | default: '0' }})</span>
+          </div>
+          <p class="neycher-fp__desc n-product-desc">{{ section.settings.description | default: product.description | strip_html | truncate: 120 }}</p>
+          <div class="neycher-fp__price n-product-price">Starting at {{ product.price | money }}</div>
+        </div>
       </div>
-      <p class="neycher-fp__desc">Pre- and probiotic-rich suppository for healthy flora and pH</p>
-      <div class="neycher-fp__price">Starting at $19.99</div>
-      <a href="/products/vaginal-synbiotic" class="neycher-fp__btn">Buy now</a>
+    </div>
+    <div class="neycher-fp__hero">
+      {%- if section.settings.hero_image != blank -%}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.hero_image.alt | default: product.title }}"
+          loading="lazy"
+          width="1200"
+          height="800"
+        >
+      {%- endif -%}
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% stylesheet %}
 .neycher-fp {
-  padding: 48px 60px;
-  max-width: 1440px;
-  margin: 0 auto;
+  padding: 0;
+  margin: 0;
 }
 .neycher-fp__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  padding: 48px;
-  background: #f7f5f2;
-  border-radius: 16px;
+  min-height: 560px;
+  background: var(--n-color-bg-card);
 }
-.neycher-fp__media img {
+.neycher-fp__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 40px 48px 60px;
+  position: relative;
+}
+.neycher-fp__badge {
+  display: inline-block;
+  font-family: var(--n-font);
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--n-color-accent);
+  border-radius: 100px;
+  padding: 6px 16px;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.neycher-fp__white-card {
+  background: #fff;
+  border-radius: 16px;
   width: 100%;
   max-width: 420px;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-  margin: 0 auto;
+  overflow: hidden;
 }
-.neycher-fp__tagline {
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #777;
-  margin: 0 0 12px;
-  letter-spacing: 0.3px;
+.neycher-fp__img-wrap {
+  padding: 32px 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.neycher-fp__img-wrap img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.neycher-fp__card-info {
+  padding: 0 28px 28px;
+}
+.neycher-fp__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 .neycher-fp__name {
-  font-family: "Open Sans", sans-serif;
-  font-size: 32px;
-  font-weight: 300;
-  color: #000;
-  margin: 0 0 12px;
-  line-height: 1.2;
+  font-family: var(--n-font);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  text-decoration: none;
+  line-height: 1.3;
+}
+.neycher-fp__name:hover {
+  text-decoration: underline;
+}
+.neycher-fp__cart-btn {
+  width: 40px;
+  height: 40px;
+  background: #e8e8e8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--n-color-body);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.neycher-fp__cart-btn:hover {
+  background: #ddd;
 }
 .neycher-fp__rating {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  font-family: "Open Sans", sans-serif;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-family: var(--n-font);
   font-size: 13px;
-  color: #666;
+  color: var(--n-color-body);
 }
 .neycher-fp__rating img {
   height: 14px;
   width: auto;
 }
 .neycher-fp__desc {
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
+  font-family: var(--n-font);
+  font-size: 14px;
   font-weight: 400;
-  color: #555;
-  margin: 0 0 16px;
+  color: var(--n-color-body);
+  margin: 0 0 8px;
   line-height: 1.5;
 }
 .neycher-fp__price {
-  font-family: "Open Sans", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: #000;
-  margin-bottom: 20px;
+  font-family: var(--n-font);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--n-color-heading);
 }
-.neycher-fp__btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: none;
-  text-align: center;
-  padding: 14px 56px;
-  border-radius: 100px;
+.neycher-fp__hero {
+  overflow: hidden;
 }
-.neycher-fp__btn:hover {
-  opacity: 0.85;
+.neycher-fp__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 @media screen and (max-width: 999px) {
   .neycher-fp__inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 32px;
+    min-height: auto;
+  }
+  .neycher-fp__card {
+    padding: 40px 32px;
+    align-items: center;
+  }
+  .neycher-fp__hero {
+    min-height: 400px;
   }
 }
 @media screen and (max-width: 749px) {
-  .neycher-fp {
+  .neycher-fp__card {
     padding: 32px 16px;
   }
-  .neycher-fp__inner {
-    padding: 24px;
+  .neycher-fp__img-wrap {
+    padding: 20px 20px 16px;
   }
-  .neycher-fp__name {
-    font-size: 24px;
+  .neycher-fp__card-info {
+    padding: 0 20px 20px;
+  }
+  .neycher-fp__hero {
+    min-height: 300px;
   }
 }
 {% endstylesheet %}
@@ -126,7 +212,31 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Lifestyle photo displayed on the right side"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "Clinically studied"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Short description",
+      "default": "Deep hydration for lasting vaginal moisture."
+    }
+  ],
   "presets": [
     {
       "name": "Neycher Featured Product"

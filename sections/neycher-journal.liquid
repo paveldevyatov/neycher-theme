@@ -1,7 +1,7 @@
 <section class="neycher-journal">
   <div class="neycher-journal__header">
-    <h2 class="neycher-journal__title">Journal</h2>
-    <a href="/blogs/journal" class="neycher-journal__readall">Read Journal <span>&rarr;</span></a>
+    <h2 class="n-title-section">Journal</h2>
+    <a href="/blogs/journal" class="n-btn-outline">Read Journal <span>&rarr;</span></a>
   </div>
   <div class="neycher-journal__scroll">
     <div class="neycher-journal__grid">
@@ -54,27 +54,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-}
-.neycher-journal__title {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000;
-  margin: 0;
-}
-.neycher-journal__readall {
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #000;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.neycher-journal__readall:hover {
-  text-decoration: underline;
+  margin-bottom: 32px;
 }
 .neycher-journal__scroll {
   overflow-x: auto;
@@ -107,18 +87,18 @@
   object-fit: cover;
 }
 .neycher-journal__tag {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 11px;
-  font-weight: 600;
-  color: #666;
+  font-weight: 500;
+  color: var(--n-color-body);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 .neycher-journal__card-title {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--n-font);
   font-size: 15px;
-  font-weight: 600;
-  color: #000;
+  font-weight: 500;
+  color: var(--n-color-heading);
   margin: 0;
   line-height: 1.3;
 }

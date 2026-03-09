@@ -4,32 +4,354 @@
 */
 
 /* ============================================
-   Google Fonts — Open Sans
+   Design Tokens (CSS Custom Properties)
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
+:root {
+  /* Font */
+  --n-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --n-ls: -0.02em;
+  --n-lh: 1.2;
+
+  /* Colors — Text */
+  --n-color-heading: #1D2836;
+  --n-color-body: #555;
+  --n-color-muted: #999;
+
+  /* Colors — Accent */
+  --n-color-accent: #8b8fc7;
+  --n-color-accent-blue: #8EB3E7;
+
+  /* Colors — Background */
+  --n-color-bg: #fff;
+  --n-color-bg-alt: #f5f5f5;
+  --n-color-bg-warm: #f7f5f2;
+  --n-color-bg-card: #d5d5de;
+
+  /* Colors — Border */
+  --n-color-border: #e5e5e5;
+
+  /* Spacing */
+  --n-section-px: 60px;
+  --n-section-py: 60px;
+  --n-max-width: 1440px;
+
+  /* Border radius */
+  --n-radius-sm: 8px;
+  --n-radius-md: 12px;
+  --n-radius-lg: 16px;
+  --n-radius-pill: 100px;
+}
+
+@media screen and (max-width: 749px) {
+  :root {
+    --n-section-px: 16px;
+    --n-section-py: 40px;
+  }
+}
 
 /* ============================================
    Global Overrides
    ============================================ */
 
-h1, h2, h3, h4,
-.h1, .h2, .h3, .h4 {
+html, body {
+  font-family: var(--n-font);
+  letter-spacing: var(--n-ls);
+  line-height: var(--n-lh);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-html, body {
-  overflow-x: hidden;
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4 {
+  font-family: var(--n-font);
+  letter-spacing: var(--n-ls);
+  line-height: var(--n-lh);
 }
 
 /* Pill-shaped buttons globally */
 .product-card .button,
 .product-card .button-secondary {
-  border-radius: 100px;
+  border-radius: var(--n-radius-pill);
 }
 
 @media screen and (max-width: 749px) {
   .section--page-width {
-    padding-inline: 16px;
+    padding-inline: var(--n-section-px);
   }
+}
+
+/* ============================================
+   Component: Section Layout
+   ============================================ */
+.n-section {
+  padding: var(--n-section-py) var(--n-section-px);
+  max-width: var(--n-max-width);
+  margin: 0 auto;
+}
+
+/* ============================================
+   Component: Section Titles
+   ============================================ */
+
+/* Large display title — Hero, Why Works, Stats, Mission */
+.n-title-display {
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0;
+}
+
+/* Section heading — Bestsellers, Journal, etc. */
+.n-title-section {
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0;
+}
+
+/* Small section label — Instagram, Reviews (uppercase style) */
+.n-title-small {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0;
+}
+
+@media screen and (max-width: 999px) {
+  .n-title-display { font-size: 36px; }
+  .n-title-section { font-size: 32px; }
+}
+
+@media screen and (max-width: 749px) {
+  .n-title-display { font-size: 28px; }
+  .n-title-section { font-size: 28px; }
+  .n-title-small { font-size: 16px; }
+}
+
+/* ============================================
+   Component: Body Text
+   ============================================ */
+.n-text {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.n-text-sm {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.n-text-xs {
+  font-size: 12px;
+  color: var(--n-color-muted);
+  margin: 0;
+}
+
+/* ============================================
+   Component: Product Card Elements
+   ============================================ */
+
+/* Product name / link */
+.n-product-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  text-decoration: none;
+}
+.n-product-name:hover {
+  text-decoration: underline;
+}
+
+/* Star rating row */
+.n-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--n-color-body);
+}
+.n-rating img {
+  height: 14px;
+  width: auto;
+}
+
+/* Product description */
+.n-product-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--n-color-body);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Product price */
+.n-product-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+
+/* ============================================
+   Component: Buttons
+   ============================================ */
+
+/* Primary button — filled black */
+.n-btn {
+  display: inline-block;
+  background: var(--n-color-heading);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 40px;
+  border-radius: var(--n-radius-pill);
+  border: none;
+  cursor: pointer;
+}
+.n-btn:hover {
+  opacity: 0.85;
+}
+
+/* Outline button */
+.n-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  text-decoration: none;
+  border: 1px solid var(--n-color-border);
+  border-radius: var(--n-radius-pill);
+  padding: 10px 20px;
+  background: transparent;
+  cursor: pointer;
+}
+.n-btn-outline:hover {
+  border-color: var(--n-color-heading);
+}
+
+/* Square outline button */
+.n-btn-square {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  text-decoration: none;
+  border: 1px solid var(--n-color-heading);
+  padding: 14px 36px;
+  background: transparent;
+}
+.n-btn-square:hover {
+  background: var(--n-color-heading);
+  color: #fff;
+}
+
+/* ============================================
+   Component: Cart Icon Button (on cards)
+   ============================================ */
+.n-cart-btn {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+.n-cart-btn:hover {
+  background: #f0f0f0;
+}
+
+.n-cart-btn--muted {
+  background: var(--n-color-bg-alt);
+  box-shadow: none;
+  color: var(--n-color-body);
+}
+.n-cart-btn--muted:hover {
+  background: #ddd;
+}
+
+/* ============================================
+   Component: Badge / Pill
+   ============================================ */
+.n-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--n-color-accent);
+  border-radius: var(--n-radius-pill);
+  padding: 6px 16px;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Component: Section Header (title + link)
+   ============================================ */
+.n-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer .footer-content {
+  gap: 40px;
+}
+
+@media screen and (min-width: 990px) {
+  footer .footer-content {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr !important;
+    align-items: start;
+  }
+}
+
+footer .footer-content .menu-block h2,
+footer .footer-content .menu-block h3,
+footer .footer-content .menu-block h4,
+footer .footer-content .menu-block h5,
+footer .footer-content .menu-block h6 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+footer .footer-content .menu-block a {
+  font-size: 14px;
+  line-height: 2;
+}
+
+footer .footer-content input[type="email"] {
+  border-radius: 0;
+  font-size: 14px;
+}
+
+footer .footer-content form button,
+footer .footer-content form .button {
+  border-radius: 0;
+}
+
+footer .footer-utilities {
+}
+
+footer .utilities {
+  opacity: 0.7;
+  font-size: 12px;
 }

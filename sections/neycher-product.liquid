@@ -1,0 +1,796 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="neycher-pdp">
+  <div class="neycher-pdp__inner">
+    <!-- Gallery -->
+    <div class="neycher-pdp__gallery">
+      <div class="neycher-pdp__thumbs">
+        {%- for media in product.media -%}
+          <button class="neycher-pdp__thumb{% if forloop.first %} neycher-pdp__thumb--active{% endif %}" data-index="{{ forloop.index0 }}">
+            <img src="{{ media | image_url: width: 100 }}" alt="{{ media.alt | escape }}" width="80" height="80" loading="lazy">
+          </button>
+        {%- endfor -%}
+      </div>
+      <div class="neycher-pdp__main-image">
+        {%- for media in product.media -%}
+          <div class="neycher-pdp__slide{% if forloop.first %} neycher-pdp__slide--active{% endif %}" data-index="{{ forloop.index0 }}">
+            <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" width="800" height="800" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+          </div>
+        {%- endfor -%}
+        <div class="neycher-pdp__nav">
+          <button class="neycher-pdp__nav-btn neycher-pdp__nav-btn--prev" aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="neycher-pdp__nav-btn neycher-pdp__nav-btn--next" aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="neycher-pdp__counter">
+          <span class="neycher-pdp__counter-current">1</span>/<span class="neycher-pdp__counter-total">{{ product.media.size }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="neycher-pdp__info">
+      <!-- Rating -->
+      <div class="neycher-pdp__rating">
+        <div class="neycher-pdp__stars">
+          {%- assign pdp_rating = product.metafields.custom.rating | default: 5.0 | round: 0 -%}
+          {%- for i in (1..5) -%}
+            {%- if i <= pdp_rating -%}
+              <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="#1D2836"/></svg>
+            {%- else -%}
+              <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="none" stroke="#1D2836" stroke-width="1"/></svg>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <span class="neycher-pdp__rating-text">{{ product.metafields.custom.rating | default: '5.0' }} ({{ product.metafields.custom.reviews_count | default: '0' }})</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="neycher-pdp__title">{{ product.title }}</h1>
+      <p class="neycher-pdp__subtitle">{{ product.metafields.custom.subtitle | default: "10 Vaginal Suppositories" }}</p>
+
+      <!-- Description -->
+      <div class="neycher-pdp__description">{{ product.description }}</div>
+
+      <!-- Purchase Options -->
+      <div class="neycher-pdp__options">
+        <label class="neycher-pdp__option">
+          <input type="radio" name="purchase_type" value="onetime" checked>
+          <div class="neycher-pdp__option-card">
+            <div class="neycher-pdp__option-radio"></div>
+            <div class="neycher-pdp__option-info">
+              <span class="neycher-pdp__option-name">Single Box</span>
+              <span class="neycher-pdp__option-detail">One time purchase</span>
+            </div>
+            <span class="neycher-pdp__option-price">{{ current_variant.price | money }}</span>
+          </div>
+        </label>
+
+        <label class="neycher-pdp__option">
+          <input type="radio" name="purchase_type" value="subscription">
+          <div class="neycher-pdp__option-card">
+            <div class="neycher-pdp__option-radio"></div>
+            <div class="neycher-pdp__option-info">
+              <span class="neycher-pdp__option-name">Subscription</span>
+              <span class="neycher-pdp__option-detail">Auto-pay every month</span>
+            </div>
+            <div class="neycher-pdp__option-pricing">
+              <span class="neycher-pdp__save-badge">Save 24%</span>
+              <div class="neycher-pdp__option-price-row">
+                <span class="neycher-pdp__option-price">$36</span>
+                <span class="neycher-pdp__option-compare">$48</span>
+              </div>
+            </div>
+          </div>
+        </label>
+        <div class="neycher-pdp__sub-details" data-sub-details>
+          <select class="neycher-pdp__frequency">
+            <option>Delivery every 2 months</option>
+            <option>Delivery every month</option>
+            <option>Delivery every 3 months</option>
+          </select>
+          <ul class="neycher-pdp__sub-perks">
+            <li>10% savings on subscribed products.</li>
+            <li>The option to switch between products.</li>
+            <li>Free standard delivery on all auto-replenish orders.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <button type="submit" class="neycher-pdp__atc"{% unless current_variant.available %} disabled{% endunless %}>
+          {%- if current_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+        </button>
+      {%- endform -%}
+
+      <!-- Bundle and Save -->
+      {%- assign bp = section.settings.bundle_product -%}
+      {%- if bp != blank -%}
+        {%- assign bp_variant = bp.selected_or_first_available_variant -%}
+        {%- assign bp_rating = bp.metafields.custom.rating | default: 5.0 -%}
+        {%- assign bp_rating_rounded = bp_rating | round: 0 -%}
+        {%- assign bp_reviews = bp.metafields.custom.reviews_count | default: 0 -%}
+        <div class="neycher-pdp__bundle">
+          <h3 class="neycher-pdp__bundle-heading">Bundle and Save</h3>
+          <div class="neycher-pdp__bundle-card">
+            <a href="{{ bp.url }}" class="neycher-pdp__bundle-img">
+              {%- if bp.featured_image -%}
+                <img src="{{ bp.featured_image | image_url: width: 240 }}" alt="{{ bp.title | escape }}" width="120" height="120" loading="lazy">
+              {%- endif -%}
+            </a>
+            <div class="neycher-pdp__bundle-info">
+              <h4 class="neycher-pdp__bundle-name"><a href="{{ bp.url }}">{{ bp.title }}</a></h4>
+              <div class="neycher-pdp__bundle-rating">
+                {%- for i in (1..5) -%}
+                  {%- if i <= bp_rating_rounded -%}
+                    <svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="#1D2836"/></svg>
+                  {%- else -%}
+                    <svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 1.3l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.5 4.4 12.3l.7-4L2.2 5.5l4-.6L8 1.3z" fill="none" stroke="#1D2836" stroke-width="1"/></svg>
+                  {%- endif -%}
+                {%- endfor -%}
+                <span>{{ bp_rating }} ({{ bp_reviews }})</span>
+              </div>
+              <p class="neycher-pdp__bundle-desc">{{ bp.description | strip_html | truncate: 80 }}</p>
+              <div class="neycher-pdp__bundle-prices">
+                <span class="neycher-pdp__bundle-sale">{{ bp.price | money }}</span>
+                {%- if bp.compare_at_price > bp.price -%}
+                  <span class="neycher-pdp__bundle-compare">{{ bp.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="neycher-pdp__bundle-actions">
+              {%- if bp.compare_at_price > bp.price -%}
+                {%- assign save_pct = bp.compare_at_price | minus: bp.price | times: 100 | divided_by: bp.compare_at_price -%}
+                <span class="neycher-pdp__save-badge">Save {{ save_pct }}%</span>
+              {%- endif -%}
+              <form method="post" action="{{ routes.cart_add_url }}">
+                <input type="hidden" name="id" value="{{ bp_variant.id }}">
+                <button type="submit" class="neycher-pdp__bundle-btn">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <!-- Accordions -->
+      <div class="neycher-pdp__accordions">
+        <details class="neycher-pdp__accordion" open>
+          <summary class="neycher-pdp__accordion-header">
+            <span>Ingredients</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path class="neycher-pdp__accordion-icon" d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="neycher-pdp__accordion-body">
+            <p>Boric Acid, Hyaluronic Acid Sodium Salt, Polycarbophyl, Lactic Acid, Tocopheryl Acetate, Vitamin A, 18-beta-glycyrrhetinic Acid, Tea Tree Oil, Semisynthetic Triglycerides, Phosphatidylcholine.</p>
+          </div>
+        </details>
+        <details class="neycher-pdp__accordion">
+          <summary class="neycher-pdp__accordion-header">
+            <span>Application</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path class="neycher-pdp__accordion-icon" d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="neycher-pdp__accordion-body">
+            <p>Insert one suppository vaginally before bedtime. Use for 7-14 consecutive days or as directed by your healthcare provider. For best results, use with a panty liner.</p>
+          </div>
+        </details>
+        <details class="neycher-pdp__accordion">
+          <summary class="neycher-pdp__accordion-header">
+            <span>Delivery & Returns</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path class="neycher-pdp__accordion-icon" d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="neycher-pdp__accordion-body">
+            <p>Free standard shipping on orders over $27. Orders are processed within 1-2 business days. 30-day money-back guarantee on all products.</p>
+          </div>
+        </details>
+      </div>
+
+      <p class="neycher-pdp__faq-link">Have Questions? <a href="/pages/faq">FAQ</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.neycher-pdp');
+    if (!section) return;
+
+    const thumbs = section.querySelectorAll('.neycher-pdp__thumb');
+    const slides = section.querySelectorAll('.neycher-pdp__slide');
+    const prevBtn = section.querySelector('.neycher-pdp__nav-btn--prev');
+    const nextBtn = section.querySelector('.neycher-pdp__nav-btn--next');
+    const counterCurrent = section.querySelector('.neycher-pdp__counter-current');
+    let current = 0;
+    const total = slides.length;
+
+    function goTo(index) {
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      slides.forEach(s => s.classList.remove('neycher-pdp__slide--active'));
+      thumbs.forEach(t => t.classList.remove('neycher-pdp__thumb--active'));
+      slides[index].classList.add('neycher-pdp__slide--active');
+      if (thumbs[index]) thumbs[index].classList.add('neycher-pdp__thumb--active');
+      counterCurrent.textContent = index + 1;
+      current = index;
+    }
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => goTo(parseInt(thumb.dataset.index)));
+    });
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    // Subscription toggle
+    const subDetails = section.querySelector('[data-sub-details]');
+    const options = section.querySelectorAll('.neycher-pdp__option');
+    options.forEach(opt => {
+      const radio = opt.querySelector('input[type="radio"]');
+      radio.addEventListener('change', () => {
+        options.forEach(o => {
+          o.querySelector('.neycher-pdp__option-card').classList.remove('neycher-pdp__option-card--selected', 'neycher-pdp__option-card--sub-active');
+        });
+        opt.querySelector('.neycher-pdp__option-card').classList.add('neycher-pdp__option-card--selected');
+        if (radio.value === 'subscription') {
+          opt.querySelector('.neycher-pdp__option-card').classList.add('neycher-pdp__option-card--sub-active');
+          subDetails.classList.add('neycher-pdp__sub-details--open');
+        } else {
+          subDetails.classList.remove('neycher-pdp__sub-details--open');
+        }
+      });
+    });
+  });
+</script>
+
+{% stylesheet %}
+.neycher-pdp {
+  padding: 40px 60px 80px;
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: var(--n-font);
+}
+.neycher-pdp__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Gallery */
+.neycher-pdp__gallery {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px;
+  position: sticky;
+  top: 20px;
+}
+.neycher-pdp__thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.neycher-pdp__thumb {
+  width: 80px;
+  height: 80px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: #f2f2f2;
+}
+.neycher-pdp__thumb--active {
+  border-color: var(--n-color-heading);
+}
+.neycher-pdp__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.neycher-pdp__main-image {
+  position: relative;
+  background: #f2f2f2;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.neycher-pdp__slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.neycher-pdp__slide--active {
+  display: block;
+}
+.neycher-pdp__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.neycher-pdp__nav {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+}
+.neycher-pdp__nav-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__nav-btn:hover {
+  border-color: var(--n-color-heading);
+}
+.neycher-pdp__counter {
+  position: absolute;
+  bottom: 22px;
+  left: 16px;
+  font-family: var(--n-font);
+  font-size: 13px;
+  color: #777;
+  letter-spacing: 0.5px;
+}
+
+/* Product Info */
+.neycher-pdp__info {
+  padding-top: 8px;
+}
+.neycher-pdp__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.neycher-pdp__stars {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.neycher-pdp__rating-text {
+  font-family: var(--n-font);
+  font-size: 14px;
+  color: #555;
+}
+.neycher-pdp__title {
+  font-family: var(--n-font);
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--n-color-heading);
+  margin: 0 0 6px;
+  line-height: 1.12;
+  letter-spacing: -0.3px;
+}
+.neycher-pdp__subtitle {
+  font-family: var(--n-font);
+  font-size: 14px;
+  color: #999;
+  margin: 0 0 20px;
+  font-weight: 400;
+}
+.neycher-pdp__description {
+  font-family: var(--n-font);
+  font-size: 15px;
+  color: #444;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.neycher-pdp__description p {
+  margin: 0;
+}
+.neycher-pdp__description strong,
+.neycher-pdp__description b {
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+
+/* Purchase Options */
+.neycher-pdp__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.neycher-pdp__option {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+.neycher-pdp__option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.neycher-pdp__option-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+}
+.neycher-pdp__option input[type="radio"]:checked ~ .neycher-pdp__option-card {
+  border-color: #8EB3E7;
+  box-shadow: 0 0 0 1px #8EB3E7;
+}
+.neycher-pdp__option-radio {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #d0d0d0;
+  flex-shrink: 0;
+  position: relative;
+  background: #fff;
+}
+.neycher-pdp__option input[type="radio"]:checked ~ .neycher-pdp__option-card .neycher-pdp__option-radio {
+  border-color: #8EB3E7;
+  background: #8EB3E7;
+}
+.neycher-pdp__option input[type="radio"]:checked ~ .neycher-pdp__option-card .neycher-pdp__option-radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translate(-50%, -60%) rotate(-45deg);
+}
+.neycher-pdp__option-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.neycher-pdp__option-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__option-detail {
+  font-size: 13px;
+  color: #999;
+}
+.neycher-pdp__option-price {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__option-pricing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.neycher-pdp__option-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.neycher-pdp__option-compare {
+  font-size: 15px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+.neycher-pdp__save-badge {
+  display: inline-block;
+  background: #e0e0e0;
+  color: var(--n-color-heading);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Subscription details */
+.neycher-pdp__sub-details {
+  display: none;
+  padding: 20px 20px 24px;
+  border: 1.5px solid #8EB3E7;
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  margin-top: -2px;
+  box-shadow: 0 0 0 1px #8EB3E7;
+  clip-path: inset(-3px -3px -3px -3px);
+}
+.neycher-pdp__sub-details--open {
+  display: block;
+}
+.neycher-pdp__option .neycher-pdp__option-card.neycher-pdp__option-card--sub-active {
+  border-radius: 10px 10px 0 0;
+  border-bottom: 0;
+  box-shadow: 0 0 0 1px #8EB3E7;
+  clip-path: inset(-3px -3px 0 -3px);
+}
+.neycher-pdp__frequency {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: var(--n-font);
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  margin-bottom: 16px;
+  appearance: auto;
+  cursor: pointer;
+}
+.neycher-pdp__sub-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.neycher-pdp__sub-perks li {
+  font-family: var(--n-font);
+  font-size: 13px;
+  color: #555;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.neycher-pdp__sub-perks li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+
+/* Add to Cart */
+.neycher-pdp__atc {
+  width: 100%;
+  padding: 18px;
+  background: var(--n-color-heading);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-family: var(--n-font);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+.neycher-pdp__atc:hover {
+  background: #2a2a3e;
+}
+.neycher-pdp__atc:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Bundle */
+.neycher-pdp__bundle {
+  margin-bottom: 40px;
+}
+.neycher-pdp__bundle-heading {
+  font-family: var(--n-font);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  margin: 0 0 14px;
+}
+.neycher-pdp__bundle-card {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border: 1.5px solid #eee;
+  border-radius: 12px;
+  background: #fafafa;
+}
+.neycher-pdp__bundle-img img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.neycher-pdp__bundle-name {
+  font-family: var(--n-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+.neycher-pdp__bundle-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+.neycher-pdp__bundle-rating span {
+  font-family: var(--n-font);
+  font-size: 12px;
+  color: #999;
+  margin-left: 4px;
+}
+.neycher-pdp__bundle-desc {
+  font-family: var(--n-font);
+  font-size: 13px;
+  color: #999;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+.neycher-pdp__bundle-prices {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.neycher-pdp__bundle-sale {
+  font-family: var(--n-font);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__bundle-compare {
+  font-family: var(--n-font);
+  font-size: 13px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.neycher-pdp__bundle-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.neycher-pdp__bundle-btn {
+  padding: 10px 20px;
+  border: 1.5px solid var(--n-color-heading);
+  background: #fff;
+  color: var(--n-color-heading);
+  font-family: var(--n-font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.neycher-pdp__bundle-btn:hover {
+  background: var(--n-color-heading);
+  color: #fff;
+}
+
+/* Accordions */
+.neycher-pdp__accordions {
+  border-top: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+.neycher-pdp__accordion {
+  border-bottom: 1px solid #e5e5e5;
+}
+.neycher-pdp__accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--n-font);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__accordion-header::-webkit-details-marker {
+  display: none;
+}
+.neycher-pdp__accordion-header svg {
+  flex-shrink: 0;
+  color: var(--n-color-heading);
+}
+.neycher-pdp__accordion[open] .neycher-pdp__accordion-icon path:last-child {
+  display: none;
+}
+.neycher-pdp__accordion-body {
+  padding: 0 0 18px;
+  font-family: var(--n-font);
+  font-size: 14px;
+  color: #666;
+  line-height: 1.65;
+}
+.neycher-pdp__accordion-body p {
+  margin: 0;
+}
+
+/* FAQ link */
+.neycher-pdp__faq-link {
+  font-family: var(--n-font);
+  font-size: 14px;
+  color: #777;
+  text-align: right;
+  margin: 0;
+}
+.neycher-pdp__faq-link a {
+  color: var(--n-color-heading);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media screen and (max-width: 999px) {
+  .neycher-pdp {
+    padding: 24px 20px 60px;
+  }
+  .neycher-pdp__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .neycher-pdp__gallery {
+    grid-template-columns: 1fr;
+    position: static;
+  }
+  .neycher-pdp__thumbs {
+    flex-direction: row;
+    overflow-x: auto;
+    order: 2;
+    gap: 8px;
+  }
+  .neycher-pdp__thumb {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+  .neycher-pdp__main-image {
+    order: 1;
+  }
+  .neycher-pdp__info {
+    max-width: 100%;
+    padding-top: 0;
+  }
+  .neycher-pdp__title {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 599px) {
+  .neycher-pdp {
+    padding: 16px 16px 48px;
+  }
+  .neycher-pdp__bundle-card {
+    grid-template-columns: 80px 1fr;
+  }
+  .neycher-pdp__bundle-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neycher Product",
+  "class": "section-wrapper",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Bundle product",
+      "info": "Select a bundle product to show in the 'Bundle and Save' section"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neycher Product"
+    }
+  ]
+}
+{% endschema %}
