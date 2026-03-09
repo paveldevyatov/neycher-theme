@@ -17,10 +17,6 @@
     },
     "ingredients": {
       "type": "neycher-pdp-ingredients",
-      "settings": {
-        "heading": "Science-backed ingredients",
-        "description": "Our vaginal moisturizer is formulated with clinically recognized ingredients that fully support vaginal health."
-      },
       "blocks": {
         "ing_1": {
           "type": "ingredient",
@@ -71,14 +67,21 @@
           }
         }
       },
-      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6"]
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4",
+        "ing_5",
+        "ing_6"
+      ],
+      "settings": {
+        "heading": "Science-backed ingredients",
+        "description": "Our vaginal moisturizer is formulated with clinically recognized ingredients that fully support vaginal health."
+      }
     },
     "stats": {
       "type": "neycher-pdp-stats",
-      "settings": {
-        "heading": "Clinically tested. Real people-approved.",
-        "description": "Based on a 4-week study of women aged 21-45 experiencing common vulvovaginal symptoms and general discomfort."
-      },
       "blocks": {
         "stat_1": {
           "type": "stat",
@@ -109,24 +112,27 @@
           }
         }
       },
-      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"]
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "heading": "Clinically tested. Real people-approved.",
+        "description": "Based on a 4-week study of women aged 21-45 experiencing common vulvovaginal symptoms and general discomfort."
+      }
     },
     "banner": {
       "type": "neycher-pdp-banner",
       "settings": {
         "heading": "Get fearlessly intimate.",
+        "image": "shopify://shop_images/Neycher8117_1.jpg",
         "bundle_handle": "moisture-magic-trio-bundle"
       }
     },
     "comparison": {
       "type": "neycher-pdp-comparison",
-      "settings": {
-        "heading": "We're not like other vaginal moisturizers",
-        "our_image_asset": "cmp-hydrobloom-ours.jpeg",
-        "our_label": "Our Vaginal Moisturizer",
-        "other_image_asset": "cmp-hydrobloom-theirs.jpeg",
-        "other_label": "Other Brands"
-      },
       "blocks": {
         "cmp_1": {
           "type": "row",
@@ -177,7 +183,21 @@
           }
         }
       },
-      "block_order": ["cmp_1", "cmp_2", "cmp_3", "cmp_4", "cmp_5", "cmp_6"]
+      "block_order": [
+        "cmp_1",
+        "cmp_2",
+        "cmp_3",
+        "cmp_4",
+        "cmp_5",
+        "cmp_6"
+      ],
+      "settings": {
+        "heading": "We're not like other vaginal moisturizers",
+        "our_image_asset": "cmp-hydrobloom-ours.jpeg",
+        "our_label": "Our Vaginal Moisturizer",
+        "other_image_asset": "cmp-hydrobloom-theirs.jpeg",
+        "other_label": "Other Brands"
+      }
     },
     "research": {
       "type": "neycher-pdp-research",
@@ -185,15 +205,12 @@
         "heading": "Vaginal health is a deeply personal",
         "description": "An inevitable aspect of well-being and for too long, big pharma has monopolized our intimate health. We felt we could do more than just provide a product—we wanted to change how women see and approach vaginal health. Our formulas are thoughtfully developed by female experts so that women can take control of their health in a way that feels right for them.",
         "button_text": "Read our story",
-        "button_url": "/pages/about"
+        "button_url": "/pages/about",
+        "image": "shopify://shop_images/Illustration_14.jpg"
       }
     },
     "faq": {
       "type": "neycher-pdp-faq",
-      "settings": {
-        "heading": "Frequently asked questions",
-        "subtitle": "about the product"
-      },
       "blocks": {
         "faq_1": {
           "type": "question",
@@ -245,15 +262,22 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7"]
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ],
+      "settings": {
+        "heading": "Frequently asked questions",
+        "subtitle": "about the product"
+      }
     },
     "also_buy": {
       "type": "neycher-pdp-also-buy",
-      "settings": {
-        "heading": "People also buy",
-        "link_text": "Shop All",
-        "link_url": "/collections/all"
-      },
       "blocks": {
         "ab_1": {
           "type": "product",
@@ -312,14 +336,24 @@
           }
         }
       },
-      "block_order": ["ab_1", "ab_2", "ab_3", "ab_4", "ab_5", "ab_6", "ab_7", "ab_8"]
+      "block_order": [
+        "ab_1",
+        "ab_2",
+        "ab_3",
+        "ab_4",
+        "ab_5",
+        "ab_6",
+        "ab_7",
+        "ab_8"
+      ],
+      "settings": {
+        "heading": "People also buy",
+        "link_text": "Shop All",
+        "link_url": "/collections/all"
+      }
     },
     "reviews": {
       "type": "neycher-pdp-reviews",
-      "settings": {
-        "heading": "In your words",
-        "rating_text": "4.98 based on 61 reviews"
-      },
       "blocks": {
         "rev_1": {
           "type": "review",
@@ -349,7 +383,15 @@
           }
         }
       },
-      "block_order": ["rev_1", "rev_2", "rev_3"]
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ],
+      "settings": {
+        "heading": "In your words",
+        "rating_text": "4.98 based on 61 reviews"
+      }
     }
   },
   "order": [
