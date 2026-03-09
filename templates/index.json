@@ -22,8 +22,80 @@
       "settings": {}
     },
     "neycher-bestsellers": {
-      "type": "neycher-bestsellers",
-      "settings": {}
+      "type": "neycher-pdp-also-buy",
+      "blocks": {
+        "bs_1": {
+          "type": "product",
+          "settings": {
+            "product": "goodbye-dryness-bundle",
+            "description": "Three-step system targeting BV symptoms and prevention"
+          }
+        },
+        "bs_2": {
+          "type": "product",
+          "settings": {
+            "product": "yeast-away",
+            "description": "Anti-fungal herbal formulation soothes yeast-related irritation"
+          }
+        },
+        "bs_3": {
+          "type": "product",
+          "settings": {
+            "product": "bv-away",
+            "description": "Instantly banish odor and bacterial vaginosis-related symptoms"
+          }
+        },
+        "bs_4": {
+          "type": "product",
+          "settings": {
+            "product": "vaginal-moisturizer",
+            "description": "Ultra-hydrating formula restores comfort and natural vaginal moisture"
+          }
+        },
+        "bs_5": {
+          "type": "product",
+          "settings": {
+            "product": "vaginal-synbiotic",
+            "description": "Probiotic suppositories that restore natural vaginal flora balance"
+          }
+        },
+        "bs_6": {
+          "type": "product",
+          "settings": {
+            "product": "botanical-vulva-balm",
+            "description": "Soothing botanical balm for daily external intimate care"
+          }
+        },
+        "bs_7": {
+          "type": "product",
+          "settings": {
+            "product": "hydrobloom-moisturizing-gel",
+            "description": "Lightweight gel that hydrates and soothes sensitive intimate skin"
+          }
+        },
+        "bs_8": {
+          "type": "product",
+          "settings": {
+            "product": "moisture-magic-trio-bundle",
+            "description": "Complete hydration bundle for long-lasting vaginal comfort"
+          }
+        }
+      },
+      "block_order": [
+        "bs_1",
+        "bs_2",
+        "bs_3",
+        "bs_4",
+        "bs_5",
+        "bs_6",
+        "bs_7",
+        "bs_8"
+      ],
+      "settings": {
+        "heading": "Bestsellers",
+        "link_text": "Shop All",
+        "link_url": "/collections/all"
+      }
     },
     "neycher-benefits": {
       "type": "neycher-benefits",

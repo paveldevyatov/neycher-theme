@@ -9,14 +9,358 @@
  */
 {
   "sections": {
-    "main": {
+    "product_hero": {
       "type": "neycher-product",
       "settings": {
         "bundle_product": "moisture-magic-trio-bundle"
       }
+    },
+    "ingredients": {
+      "type": "neycher-pdp-ingredients",
+      "settings": {
+        "heading": "Science-backed ingredients",
+        "description": "Our vaginal moisturizer is formulated with clinically recognized ingredients that fully support vaginal health."
+      },
+      "blocks": {
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-1.jpeg",
+            "title": "Hyaluronic Acid",
+            "description": "Ultra-hydrating compound that protects and encourages healing of vaginal tissues."
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-2.jpeg",
+            "title": "Vitamin A",
+            "description": "Natural compound that reduces inflammation and replenishes moisture."
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-3.jpeg",
+            "title": "Glycyrrhetinic Acid",
+            "description": "Ultra-hydrating compound that protects and encourages healing of vaginal tissues."
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-4.jpeg",
+            "title": "Vitamin E",
+            "description": "Acts as a lubricating antioxidant that protects vaginal cell walls from damage."
+          }
+        },
+        "ing_5": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-5.jpeg",
+            "title": "Polycarbophil",
+            "description": "Natural compound that reduces inflammation and replenishes moisture."
+          }
+        },
+        "ing_6": {
+          "type": "ingredient",
+          "settings": {
+            "image_asset": "ing-hydrobloom-6.jpeg",
+            "title": "Lactic Acid",
+            "description": "Acts as a lubricating antioxidant that protects vaginal cell walls from damage."
+          }
+        }
+      },
+      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6"]
+    },
+    "stats": {
+      "type": "neycher-pdp-stats",
+      "settings": {
+        "heading": "Clinically tested. Real people-approved.",
+        "description": "Based on a 4-week study of women aged 21-45 experiencing common vulvovaginal symptoms and general discomfort."
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "94%",
+            "description": "Experienced reduced vaginal dryness."
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "96%",
+            "description": "Experienced no side effects, such as itch, pain, or irritation."
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "84%",
+            "description": "Reported feeling pain-free during sex."
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "88%",
+            "description": "Noticed improvement in their sexual satisfaction."
+          }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"]
+    },
+    "banner": {
+      "type": "neycher-pdp-banner",
+      "settings": {
+        "heading": "Get fearlessly intimate.",
+        "bundle_handle": "moisture-magic-trio-bundle"
+      }
+    },
+    "comparison": {
+      "type": "neycher-pdp-comparison",
+      "settings": {
+        "heading": "We're not like other vaginal moisturizers",
+        "our_image_asset": "cmp-hydrobloom-ours.jpeg",
+        "our_label": "Our Vaginal Moisturizer",
+        "other_image_asset": "cmp-hydrobloom-theirs.jpeg",
+        "other_label": "Other Brands"
+      },
+      "blocks": {
+        "cmp_1": {
+          "type": "row",
+          "settings": {
+            "label": "Ingredients",
+            "our_value": "Bioavailable ingredients that truly calm, renew and long-term paraffin",
+            "other_value": "Often contain unsettled ingredients or fillers that cause irritation."
+          }
+        },
+        "cmp_2": {
+          "type": "row",
+          "settings": {
+            "label": "Hyaluronic Acid",
+            "our_value": "15 mg",
+            "other_value": "none"
+          }
+        },
+        "cmp_3": {
+          "type": "row",
+          "settings": {
+            "label": "Certification",
+            "our_value": "FDA-registered",
+            "other_value": "Not always quality controlled"
+          }
+        },
+        "cmp_4": {
+          "type": "row",
+          "settings": {
+            "label": "Side Effects",
+            "our_value": "No reported side effects during clinical trials",
+            "other_value": "Harsh ingredients may cause irritation or long-term imbalances."
+          }
+        },
+        "cmp_5": {
+          "type": "row",
+          "settings": {
+            "label": "OB/GYN Approved",
+            "our_value": "yes",
+            "other_value": "Not always"
+          }
+        },
+        "cmp_6": {
+          "type": "row",
+          "settings": {
+            "label": "Hormones",
+            "our_value": "none",
+            "other_value": "Synthetic"
+          }
+        }
+      },
+      "block_order": ["cmp_1", "cmp_2", "cmp_3", "cmp_4", "cmp_5", "cmp_6"]
+    },
+    "research": {
+      "type": "neycher-pdp-research",
+      "settings": {
+        "heading": "Vaginal health is a deeply personal",
+        "description": "An inevitable aspect of well-being and for too long, big pharma has monopolized our intimate health. We felt we could do more than just provide a product—we wanted to change how women see and approach vaginal health. Our formulas are thoughtfully developed by female experts so that women can take control of their health in a way that feels right for them.",
+        "button_text": "Read our story",
+        "button_url": "/pages/about"
+      }
+    },
+    "faq": {
+      "type": "neycher-pdp-faq",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "subtitle": "about the product"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "What causes vaginal dryness?",
+            "answer": "<p>Vaginal dryness is typically caused by an imbalance of hormones, which is most commonly associated with menopause. During menopause, estrogen levels decline, leading to thinner, drier vaginal tissue. Other causes include breastfeeding, certain medications, stress, and autoimmune conditions. If you're experiencing persistent dryness, it's always a good idea to consult with your healthcare provider.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "What types of issues does the Ultra Moisturizing Complex help with?",
+            "answer": "<p>The Ultra Moisturizing Complex helps with vaginal dryness, discomfort during intimacy, irritation, and general vaginal discomfort. It works by restoring moisture to vaginal tissue using hyaluronic acid and other hydrating ingredients that support long-lasting relief.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How does the Ultra Moisturizing Complex work?",
+            "answer": "<p>Our suppositories use a combination of hyaluronic acid, vitamin A, vitamin E, and natural plant extracts to deeply hydrate vaginal tissue, restore pH balance, and support the healing of irritated or thinning tissue. The suppository format ensures direct, targeted delivery of active ingredients.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Is hyaluronic acid safe for internal use?",
+            "answer": "<p>Yes. Hyaluronic acid is a naturally occurring substance in your body and is widely used in medical and cosmetic applications. Our formulation uses pharmaceutical-grade hyaluronic acid sodium salt that is specifically designed for vaginal use and has been clinically tested for safety.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "Why suppositories?",
+            "answer": "<p>Suppositories provide direct, targeted delivery of active ingredients to vaginal tissue. Unlike oral supplements that must pass through the digestive system, suppositories deliver hydration and healing compounds exactly where they're needed, resulting in faster and more effective relief.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "How long before I see results?",
+            "answer": "<p>Many women notice improvement within the first few uses. For optimal results, we recommend using the suppositories consistently for 7-14 days. Long-term use can provide sustained moisture and comfort.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "question",
+          "settings": {
+            "question": "Does the Ultra Moisturizing Complex have any side effects?",
+            "answer": "<p>In our clinical trials, 96% of participants reported no side effects. Our formula is free from hormones, parabens, and harsh chemicals. If you experience any unusual irritation, discontinue use and consult your healthcare provider.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7"]
+    },
+    "also_buy": {
+      "type": "neycher-pdp-also-buy",
+      "settings": {
+        "heading": "People also buy",
+        "link_text": "Shop All",
+        "link_url": "/collections/all"
+      },
+      "blocks": {
+        "ab_1": {
+          "type": "product",
+          "settings": {
+            "product": "goodbye-dryness-bundle",
+            "description": "Three-step system targeting BV symptoms and prevention"
+          }
+        },
+        "ab_2": {
+          "type": "product",
+          "settings": {
+            "product": "yeast-away",
+            "description": "Anti-fungal herbal formulation soothes yeast-related irritation"
+          }
+        },
+        "ab_3": {
+          "type": "product",
+          "settings": {
+            "product": "bv-away",
+            "description": "Instantly banish odor and bacterial vaginosis-related symptoms"
+          }
+        },
+        "ab_4": {
+          "type": "product",
+          "settings": {
+            "product": "vaginal-moisturizer",
+            "description": "Ultra-hydrating formula restores comfort and natural vaginal moisture"
+          }
+        },
+        "ab_5": {
+          "type": "product",
+          "settings": {
+            "product": "vaginal-synbiotic",
+            "description": "Probiotic suppositories that restore natural vaginal flora balance"
+          }
+        },
+        "ab_6": {
+          "type": "product",
+          "settings": {
+            "product": "botanical-vulva-balm",
+            "description": "Soothing botanical balm for daily external intimate care"
+          }
+        },
+        "ab_7": {
+          "type": "product",
+          "settings": {
+            "product": "hydrobloom-moisturizing-gel",
+            "description": "Lightweight gel that hydrates and soothes sensitive intimate skin"
+          }
+        },
+        "ab_8": {
+          "type": "product",
+          "settings": {
+            "product": "moisture-magic-trio-bundle",
+            "description": "Complete hydration bundle for long-lasting vaginal comfort"
+          }
+        }
+      },
+      "block_order": ["ab_1", "ab_2", "ab_3", "ab_4", "ab_5", "ab_6", "ab_7", "ab_8"]
+    },
+    "reviews": {
+      "type": "neycher-pdp-reviews",
+      "settings": {
+        "heading": "In your words",
+        "rating_text": "4.98 based on 61 reviews"
+      },
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!",
+            "name": "Halara",
+            "location": "Los Angeles"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I feel comfort and fresh thanks to these suppositories.",
+            "name": "Emily",
+            "location": "Chicago"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort.",
+            "name": "Melissa",
+            "location": "San Francisco"
+          }
+        }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
     }
   },
   "order": [
-    "main"
+    "product_hero",
+    "ingredients",
+    "stats",
+    "banner",
+    "comparison",
+    "research",
+    "faq",
+    "also_buy",
+    "reviews"
   ]
 }

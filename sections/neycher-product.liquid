@@ -107,48 +107,41 @@
                 {%- assign save_pct = allocation.compare_at_price | minus: allocation.per_delivery_price | times: 100 | divided_by: allocation.compare_at_price -%}
               {%- endif -%}
 
-              {%- comment -%} Parse delivery interval {%- endcomment -%}
+              {%- comment -%} Parse delivery interval from option value like "Every 2 months" or "Every month" {%- endcomment -%}
               {%- assign interval_months = 1 -%}
-              {%- assign interval_label = "month" -%}
               {%- if plan.options.size > 0 -%}
-                {%- assign opt_words = plan.options.first.value | split: " " -%}
-                {%- assign parsed_num = opt_words[0] | plus: 0 -%}
-                {%- if parsed_num > 0 -%}
-                  {%- assign interval_months = parsed_num -%}
-                {%- endif -%}
+                {%- assign opt_val = plan.options.first.value -%}
+                {%- assign opt_words = opt_val | split: " " -%}
+                {%- for word in opt_words -%}
+                  {%- assign word_as_num = word | plus: 0 -%}
+                  {%- if word_as_num > 0 -%}
+                    {%- assign interval_months = word_as_num -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
               {%- endif -%}
 
-              {%- comment -%} Display name: "Monthly plan" or "X-month plan" {%- endcomment -%}
-              {%- if interval_months == 1 -%}
-                {%- assign plan_display_name = "Monthly plan" -%}
-              {%- else -%}
-                {%- assign plan_display_name = interval_months | append: "-month plan" -%}
-              {%- endif -%}
-
-              {%- comment -%} Per-delivery price = allocation.price (total for the period) {%- endcomment -%}
+              {%- comment -%} Per-month price {%- endcomment -%}
               {%- assign per_month_price = allocation.per_delivery_price | divided_by: interval_months -%}
 
-              <div class="neycher-pdp__plan-wrap{% if is_recommended %} neycher-pdp__plan-wrap--recommended{% endif %}" data-plan-wrap>
-                {%- if is_recommended -%}
-                  <span class="neycher-pdp__plan-badge">Clinically recommended</span>
-                {%- endif -%}
+              <div class="neycher-pdp__plan-wrap" data-plan-wrap>
                 <label class="neycher-pdp__option">
                   <input type="radio" name="purchase_type" value="subscription" data-purchase-radio data-selling-plan-id="{{ plan.id }}">
                   <div class="neycher-pdp__option-card">
                     <div class="neycher-pdp__option-radio"></div>
                     <div class="neycher-pdp__option-info">
-                      <span class="neycher-pdp__option-name">{{ plan_display_name }}</span>
+                      <span class="neycher-pdp__option-name">{{ plan.name }}</span>
                       {%- if save_pct > 0 -%}
                         <span class="neycher-pdp__option-save">Save {{ save_pct }}%</span>
                       {%- endif -%}
                     </div>
                     <div class="neycher-pdp__option-pricing">
+                      {%- if is_recommended -%}
+                        <span class="neycher-pdp__plan-badge">Clinically recommended</span>
+                      {%- endif -%}
                       <span class="neycher-pdp__option-price">{{ per_month_price | money }}/mo</span>
                       {%- if allocation.compare_at_price > allocation.per_delivery_price -%}
-                        <div class="neycher-pdp__option-compare-row">
-                          <span class="neycher-pdp__option-compare">{{ allocation.compare_at_price | money }}</span>
-                          <span class="neycher-pdp__option-actual">{{ allocation.per_delivery_price | money }}</span>
-                        </div>
+                        <span class="neycher-pdp__option-compare">{{ allocation.compare_at_price | money }}</span>
                       {%- endif -%}
                     </div>
                   </div>
@@ -484,7 +477,7 @@
 .neycher-pdp__options {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 .neycher-pdp__option {
@@ -499,8 +492,8 @@
 .neycher-pdp__option-card {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 12px 16px;
   border: 1.5px solid #e5e5e5;
   border-radius: 10px;
   background: #fff;
@@ -564,8 +557,8 @@
   margin-left: auto;
 }
 .neycher-pdp__option-price {
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--n-color-heading);
   white-space: nowrap;
 }
@@ -592,7 +585,6 @@
   position: relative;
   border: 1.5px solid #e5e5e5;
   border-radius: 10px;
-  overflow: hidden;
 }
 .neycher-pdp__plan-wrap--active {
   border-color: #8EB3E7;
@@ -603,30 +595,28 @@
 }
 .neycher-pdp__plan-wrap .neycher-pdp__option-card {
   border: none;
-  border-radius: 0;
+  border-radius: 9px 9px 0 0;
   width: 100%;
 }
-.neycher-pdp__plan-wrap--recommended {
-  margin-top: 4px;
+.neycher-pdp__plan-wrap .neycher-pdp__option:last-of-type .neycher-pdp__option-card,
+.neycher-pdp__plan-wrap:not(:has(.neycher-pdp__plan-details--open)) .neycher-pdp__option-card {
+  border-radius: 9px;
 }
 .neycher-pdp__plan-badge {
-  position: absolute;
-  top: -1px;
-  right: 20px;
+  display: inline-block;
   background: #5B93D3;
   color: #fff;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  padding: 5px 14px;
-  border-radius: 0 0 8px 8px;
-  z-index: 1;
-  letter-spacing: 0.3px;
-  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 5px;
+  letter-spacing: 0.2px;
 }
 .neycher-pdp__plan-details {
   display: none;
   padding: 0 20px 20px;
   border-top: 1px solid #eee;
+  border-radius: 0 0 9px 9px;
 }
 .neycher-pdp__plan-details--open {
   display: block;

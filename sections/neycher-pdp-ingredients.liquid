@@ -1,21 +1,28 @@
 {%- comment -%} Science-backed ingredients grid {%- endcomment -%}
 <section class="npdp-ing">
   <div class="npdp-ing__inner">
-    <h2 class="npdp-ing__heading">{{ section.settings.heading }}</h2>
+    <div class="npdp-ing__header">
+      <h2 class="npdp-ing__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.description != blank -%}
+        <p class="npdp-ing__subtitle">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
     <div class="npdp-ing__grid">
       {%- for block in section.blocks -%}
         <div class="npdp-ing__item" {{ block.shopify_attributes }}>
           {%- if block.settings.image_asset != blank -%}
             <div class="npdp-ing__icon">
-              <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="100" height="100" loading="lazy">
+              <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="120" height="120" loading="lazy">
             </div>
           {%- elsif block.settings.image != blank -%}
             <div class="npdp-ing__icon">
-              <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.title | escape }}" width="100" height="100" loading="lazy">
+              <img src="{{ block.settings.image | image_url: width: 240 }}" alt="{{ block.settings.title | escape }}" width="120" height="120" loading="lazy">
             </div>
           {%- endif -%}
-          <h3 class="npdp-ing__name">{{ block.settings.title }}</h3>
-          <p class="npdp-ing__desc">{{ block.settings.description }}</p>
+          <div class="npdp-ing__text">
+            <h3 class="npdp-ing__name">{{ block.settings.title }}</h3>
+            <p class="npdp-ing__desc">{{ block.settings.description }}</p>
+          </div>
         </div>
       {%- endfor -%}
     </div>
@@ -28,70 +35,110 @@
   margin: 0 auto;
   padding: 80px 60px;
 }
+.npdp-ing__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 56px;
+}
 .npdp-ing__heading {
   font-size: 42px;
   font-weight: 400;
   color: var(--n-color-heading);
-  margin: 0 0 48px;
+  margin: 0;
   line-height: 1.1;
-  max-width: 420px;
+}
+.npdp-ing__subtitle {
+  font-size: 15px;
+  color: var(--n-color-muted);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 380px;
 }
 .npdp-ing__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 80px;
+}
+.npdp-ing__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 .npdp-ing__icon {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 .npdp-ing__icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+.npdp-ing__text {
+  flex: 1;
+  padding-top: 8px;
 }
 .npdp-ing__name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--n-color-heading);
   margin: 0 0 8px;
+  line-height: 1.2;
 }
 .npdp-ing__desc {
   font-size: 14px;
   font-weight: 400;
   color: var(--n-color-muted);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
+
 @media screen and (max-width: 999px) {
   .npdp-ing {
     padding: 60px 24px;
   }
+  .npdp-ing__header {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
   .npdp-ing__heading {
     font-size: 32px;
-    margin-bottom: 36px;
   }
   .npdp-ing__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 24px;
+    gap: 32px 40px;
+  }
+  .npdp-ing__icon {
+    width: 90px;
+    height: 90px;
   }
 }
+
 @media screen and (max-width: 749px) {
   .npdp-ing {
     padding: 48px 16px;
   }
   .npdp-ing__heading {
-    font-size: 28px;
+    font-size: 26px;
   }
   .npdp-ing__grid {
-    gap: 28px 16px;
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
   .npdp-ing__icon {
     width: 80px;
     height: 80px;
+  }
+  .npdp-ing__text {
+    padding-top: 4px;
+  }
+  .npdp-ing__name {
+    font-size: 16px;
   }
 }
 {% endstylesheet %}
@@ -107,6 +154,11 @@
       "id": "heading",
       "label": "Heading",
       "default": "Science-backed ingredients"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
     }
   ],
   "blocks": [

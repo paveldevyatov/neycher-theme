@@ -3,7 +3,7 @@
   {%- assign product = all_products['vaginal-moisturizer'] -%}
 {%- endif -%}
 {%- if product != blank -%}
-<section class="neycher-fp">
+<section class="neycher-fp{% if section.settings.layout == 'image_left' %} neycher-fp--reversed{% endif %}">
   <div class="neycher-fp__inner">
     <div class="neycher-fp__card">
       {%- if section.settings.badge != blank -%}
@@ -176,6 +176,9 @@
   height: 100%;
   object-fit: cover;
 }
+.neycher-fp--reversed .neycher-fp__hero {
+  order: -1;
+}
 @media screen and (max-width: 999px) {
   .neycher-fp__inner {
     grid-template-columns: 1fr;
@@ -235,6 +238,16 @@
       "id": "description",
       "label": "Short description",
       "default": "Deep hydration for lasting vaginal moisture."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image_right", "label": "Image right" },
+        { "value": "image_left", "label": "Image left" }
+      ],
+      "default": "image_right"
     }
   ],
   "presets": [
