@@ -9,14 +9,246 @@
  */
 {
   "sections": {
-    "main": {
+    "product_hero": {
       "type": "neycher-product",
       "settings": {
         "bundle_product": "bv-be-gone-bundle"
       }
+    },
+    "ingredients": {
+      "type": "neycher-pdp-ingredients",
+      "settings": {
+        "heading": "Science-backed ingredients"
+      },
+      "blocks": {
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Lactobacillus Crispatus",
+            "description": "The dominant beneficial bacteria in a healthy vaginal microbiome, producing lactic acid to maintain optimal pH."
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Lactobacillus Rhamnosus",
+            "description": "Clinically proven probiotic strain that supports immune defense and prevents harmful bacterial overgrowth."
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Prebiotic Fiber (FOS)",
+            "description": "Fructooligosaccharides that feed beneficial bacteria, helping them thrive and crowd out pathogens."
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Cranberry Extract",
+            "description": "Rich in proanthocyanidins that prevent harmful bacteria from adhering to vaginal and urinary tract walls."
+          }
+        }
+      },
+      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4"]
+    },
+    "stats": {
+      "type": "neycher-pdp-stats",
+      "settings": {
+        "heading": "Real customers, real results",
+        "description": "Based on a 4-week consumer study of women aged 21-45 experiencing common vulvovaginal symptoms and general discomfort."
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "94%",
+            "description": "Experienced improved vaginal flora balance and reduced discomfort."
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "91%",
+            "description": "Reported fewer recurring infections after regular use."
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "87%",
+            "description": "Noticed improved digestion and overall gut-vaginal health."
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "96%",
+            "description": "Reported experiencing no side effects during clinical trials."
+          }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"]
+    },
+    "banner": {
+      "type": "neycher-pdp-banner",
+      "settings": {
+        "heading": "Holistic vaginal health starts here.",
+        "bundle_handle": "bv-be-gone-bundle"
+      }
+    },
+    "comparison": {
+      "type": "neycher-pdp-comparison",
+      "settings": {
+        "heading": "We're not like other probiotic brands",
+        "our_label": "Our Vaginal Synbiotic",
+        "other_label": "Other Brands"
+      },
+      "blocks": {
+        "cmp_1": {
+          "type": "row",
+          "settings": {
+            "label": "Formula",
+            "our_value": "Targeted synbiotic with both probiotics and prebiotics for vaginal health",
+            "other_value": "Generic probiotics not specifically formulated for vaginal flora."
+          }
+        },
+        "cmp_2": {
+          "type": "row",
+          "settings": {
+            "label": "Strains",
+            "our_value": "Clinically studied vaginal-specific Lactobacillus strains",
+            "other_value": "Often use gut-only strains with no vaginal benefit"
+          }
+        },
+        "cmp_3": {
+          "type": "row",
+          "settings": {
+            "label": "Certification",
+            "our_value": "FDA-registered",
+            "other_value": "Not always quality controlled"
+          }
+        },
+        "cmp_4": {
+          "type": "row",
+          "settings": {
+            "label": "Side Effects",
+            "our_value": "No reported side effects during clinical trials",
+            "other_value": "May cause bloating or digestive discomfort due to unbalanced formulations."
+          }
+        },
+        "cmp_5": {
+          "type": "row",
+          "settings": {
+            "label": "OB/GYN Approved",
+            "our_value": "yes",
+            "other_value": "Not always"
+          }
+        },
+        "cmp_6": {
+          "type": "row",
+          "settings": {
+            "label": "Prebiotics Included",
+            "our_value": "yes",
+            "other_value": "Rarely included"
+          }
+        }
+      },
+      "block_order": ["cmp_1", "cmp_2", "cmp_3", "cmp_4", "cmp_5", "cmp_6"]
+    },
+    "research": {
+      "type": "neycher-pdp-research",
+      "settings": {
+        "heading": "Years of researching natural ingredients",
+        "description": "For five seasons, we have dedicated years to thoroughly researching, sourcing, and testing the most natural ingredients to develop safe and effective solutions.",
+        "button_text": "Read our story",
+        "button_url": "/pages/about"
+      }
+    },
+    "faq": {
+      "type": "neycher-pdp-faq",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "subtitle": "about the product"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "What is a vaginal synbiotic?",
+            "answer": "<p>A synbiotic combines probiotics (beneficial bacteria) with prebiotics (food for those bacteria). Our Vaginal Synbiotic is specifically formulated with Lactobacillus strains that naturally dominate a healthy vaginal microbiome, plus prebiotic fiber to help them flourish.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "How does it support vaginal health?",
+            "answer": "<p>The probiotic strains produce lactic acid and hydrogen peroxide, which maintain an acidic vaginal pH (3.8–4.5) and create an environment hostile to harmful bacteria and yeast. The prebiotics ensure these good bacteria have the nutrients they need to thrive.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How should I take it?",
+            "answer": "<p>Take one capsule daily with or without food. For best results, use consistently for at least 4 weeks. Can be taken alongside antibiotics to help maintain vaginal flora balance.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I take it with other Neycher products?",
+            "answer": "<p>Yes! Our Vaginal Synbiotic works great alongside our suppositories. The oral synbiotic supports your microbiome from the inside, while suppositories provide targeted topical relief.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
+    },
+    "reviews": {
+      "type": "neycher-pdp-reviews",
+      "settings": {
+        "heading": "In your words",
+        "rating_text": "4.95 based on 48 reviews"
+      },
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "After struggling with recurring BV, this synbiotic has been a game changer. I finally feel balanced and confident.",
+            "name": "Sarah",
+            "location": "Austin"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I love that it combines probiotics and prebiotics in one capsule. My gut and vaginal health have both improved.",
+            "name": "Jessica",
+            "location": "Portland"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "No more worrying about infections after antibiotics. This is now a staple in my daily routine.",
+            "name": "Amanda",
+            "location": "Miami"
+          }
+        }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
     }
   },
   "order": [
-    "main"
+    "product_hero",
+    "ingredients",
+    "stats",
+    "banner",
+    "comparison",
+    "research",
+    "faq",
+    "reviews"
   ]
 }

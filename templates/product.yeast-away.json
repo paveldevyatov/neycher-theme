@@ -25,28 +25,32 @@
           "type": "ingredient",
           "settings": {
             "title": "Hyaluronic Acid",
-            "description": "Ultra-hydrating compound that combats dryness and encourages healing of vaginal tissue."
+            "description": "Ultra-hydrating compound that combats dryness and encourages healing of vaginal tissue.",
+            "image_asset": "ya-ing-hyaluronic.jpeg"
           }
         },
         "ing_2": {
           "type": "ingredient",
           "settings": {
             "title": "Tea Tree Oil",
-            "description": "Natural antifungal that reduces inflammation and rejuvenates moisture."
+            "description": "Natural antifungal that reduces inflammation and rejuvenates moisture.",
+            "image_asset": "ya-ing-teatree.jpeg"
           }
         },
         "ing_3": {
           "type": "ingredient",
           "settings": {
             "title": "Spirulina Extract",
-            "description": "Natural antifungal that attracts and flushes out harmful microbes."
+            "description": "Natural antifungal that attracts and flushes out harmful microbes.",
+            "image_asset": "ya-ing-spirulina.jpeg"
           }
         },
         "ing_4": {
           "type": "ingredient",
           "settings": {
             "title": "Sage Extract",
-            "description": "Antioxidant, anti-inflammatory and antimicrobial properties inhibit yeast growth."
+            "description": "Antioxidant, anti-inflammatory and antimicrobial properties inhibit yeast growth.",
+            "image_asset": "ya-ing-sage.jpeg"
           }
         }
       },

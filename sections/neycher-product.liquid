@@ -55,54 +55,125 @@
       <!-- Description -->
       <div class="neycher-pdp__description">{{ product.description }}</div>
 
-      <!-- Purchase Options -->
-      <div class="neycher-pdp__options">
-        <label class="neycher-pdp__option">
-          <input type="radio" name="purchase_type" value="onetime" checked>
-          <div class="neycher-pdp__option-card">
-            <div class="neycher-pdp__option-radio"></div>
-            <div class="neycher-pdp__option-info">
-              <span class="neycher-pdp__option-name">Single Box</span>
-              <span class="neycher-pdp__option-detail">One time purchase</span>
-            </div>
-            <span class="neycher-pdp__option-price">{{ current_variant.price | money }}</span>
-          </div>
-        </label>
-
-        <label class="neycher-pdp__option">
-          <input type="radio" name="purchase_type" value="subscription">
-          <div class="neycher-pdp__option-card">
-            <div class="neycher-pdp__option-radio"></div>
-            <div class="neycher-pdp__option-info">
-              <span class="neycher-pdp__option-name">Subscription</span>
-              <span class="neycher-pdp__option-detail">Auto-pay every month</span>
-            </div>
-            <div class="neycher-pdp__option-pricing">
-              <span class="neycher-pdp__save-badge">Save 24%</span>
-              <div class="neycher-pdp__option-price-row">
-                <span class="neycher-pdp__option-price">$36</span>
-                <span class="neycher-pdp__option-compare">$48</span>
-              </div>
-            </div>
-          </div>
-        </label>
-        <div class="neycher-pdp__sub-details" data-sub-details>
-          <select class="neycher-pdp__frequency">
-            <option>Delivery every 2 months</option>
-            <option>Delivery every month</option>
-            <option>Delivery every 3 months</option>
-          </select>
-          <ul class="neycher-pdp__sub-perks">
-            <li>10% savings on subscribed products.</li>
-            <li>The option to switch between products.</li>
-            <li>Free standard delivery on all auto-replenish orders.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Add to Cart -->
+      <!-- Purchase Options + Add to Cart -->
       {%- form 'product', product -%}
         <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <input type="hidden" name="selling_plan" value="" data-selling-plan-input>
+
+        {%- assign has_selling_plans = false -%}
+        {%- if product.selling_plan_groups.size > 0 -%}
+          {%- assign has_selling_plans = true -%}
+          {%- assign total_plans_count = 0 -%}
+          {%- for group in product.selling_plan_groups -%}
+            {%- assign total_plans_count = total_plans_count | plus: group.selling_plans.size -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="neycher-pdp__options">
+          {%- comment -%} One-time purchase {%- endcomment -%}
+          <label class="neycher-pdp__option">
+            <input type="radio" name="purchase_type" value="onetime" checked data-purchase-radio>
+            <div class="neycher-pdp__option-card">
+              <div class="neycher-pdp__option-radio"></div>
+              <div class="neycher-pdp__option-info">
+                <span class="neycher-pdp__option-name">Single Box</span>
+                <span class="neycher-pdp__option-detail">Buy one time</span>
+              </div>
+              <div class="neycher-pdp__option-pricing">
+                <span class="neycher-pdp__option-price">{{ current_variant.price | money }}</span>
+              </div>
+            </div>
+          </label>
+
+          {%- if has_selling_plans -%}
+            {%- assign plan_idx = 0 -%}
+            {%- for allocation in current_variant.selling_plan_allocations -%}
+              {%- assign plan = allocation.selling_plan -%}
+              {%- assign plan_idx = plan_idx | plus: 1 -%}
+              {%- assign is_recommended = false -%}
+              {%- if plan_idx == total_plans_count and total_plans_count > 1 -%}
+                {%- assign is_recommended = true -%}
+              {%- endif -%}
+
+              {%- comment -%} Save percentage from price adjustment {%- endcomment -%}
+              {%- assign save_pct = 0 -%}
+              {%- if plan.price_adjustments.size > 0 -%}
+                {%- assign adj = plan.price_adjustments.first -%}
+                {%- if adj.value_type == 'percentage' -%}
+                  {%- assign save_pct = adj.value -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if save_pct == 0 and allocation.compare_at_price > allocation.per_delivery_price -%}
+                {%- assign save_pct = allocation.compare_at_price | minus: allocation.per_delivery_price | times: 100 | divided_by: allocation.compare_at_price -%}
+              {%- endif -%}
+
+              {%- comment -%} Parse delivery interval {%- endcomment -%}
+              {%- assign interval_months = 1 -%}
+              {%- assign interval_label = "month" -%}
+              {%- if plan.options.size > 0 -%}
+                {%- assign opt_words = plan.options.first.value | split: " " -%}
+                {%- assign parsed_num = opt_words[0] | plus: 0 -%}
+                {%- if parsed_num > 0 -%}
+                  {%- assign interval_months = parsed_num -%}
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- comment -%} Display name: "Monthly plan" or "X-month plan" {%- endcomment -%}
+              {%- if interval_months == 1 -%}
+                {%- assign plan_display_name = "Monthly plan" -%}
+              {%- else -%}
+                {%- assign plan_display_name = interval_months | append: "-month plan" -%}
+              {%- endif -%}
+
+              {%- comment -%} Per-delivery price = allocation.price (total for the period) {%- endcomment -%}
+              {%- assign per_month_price = allocation.per_delivery_price | divided_by: interval_months -%}
+
+              <div class="neycher-pdp__plan-wrap{% if is_recommended %} neycher-pdp__plan-wrap--recommended{% endif %}" data-plan-wrap>
+                {%- if is_recommended -%}
+                  <span class="neycher-pdp__plan-badge">Clinically recommended</span>
+                {%- endif -%}
+                <label class="neycher-pdp__option">
+                  <input type="radio" name="purchase_type" value="subscription" data-purchase-radio data-selling-plan-id="{{ plan.id }}">
+                  <div class="neycher-pdp__option-card">
+                    <div class="neycher-pdp__option-radio"></div>
+                    <div class="neycher-pdp__option-info">
+                      <span class="neycher-pdp__option-name">{{ plan_display_name }}</span>
+                      {%- if save_pct > 0 -%}
+                        <span class="neycher-pdp__option-save">Save {{ save_pct }}%</span>
+                      {%- endif -%}
+                    </div>
+                    <div class="neycher-pdp__option-pricing">
+                      <span class="neycher-pdp__option-price">{{ per_month_price | money }}/mo</span>
+                      {%- if allocation.compare_at_price > allocation.per_delivery_price -%}
+                        <div class="neycher-pdp__option-compare-row">
+                          <span class="neycher-pdp__option-compare">{{ allocation.compare_at_price | money }}</span>
+                          <span class="neycher-pdp__option-actual">{{ allocation.per_delivery_price | money }}</span>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </label>
+                <div class="neycher-pdp__plan-details" data-plan-details>
+                  <ul class="neycher-pdp__plan-perks">
+                    <li>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.25"/><path d="M8 4.5V8.5l2.5 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Pay {{ allocation.per_delivery_price | money }} every {{ interval_months }} month{%- if interval_months > 1 -%}s{%- endif -%} + free shipping
+                    </li>
+                    <li>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1" stroke="currentColor" stroke-width="1.25"/><path d="M2 7.5h12M5.5 4V2.5M10.5 4V2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+                      Deliver every {{ interval_months }} month{%- if interval_months > 1 -%}s{%- endif -%}
+                    </li>
+                    <li>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.25"/><path d="M5.75 5.75l4.5 4.5m0-4.5l-4.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+                      Cancel any time
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
         <button type="submit" class="neycher-pdp__atc"{% unless current_variant.available %} disabled{% endunless %}>
           {%- if current_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
         </button>
@@ -223,21 +294,36 @@
     if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
     if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    // Subscription toggle
-    const subDetails = section.querySelector('[data-sub-details]');
-    const options = section.querySelectorAll('.neycher-pdp__option');
-    options.forEach(opt => {
-      const radio = opt.querySelector('input[type="radio"]');
+    // Subscription toggle + selling plan
+    const sellingPlanInput = section.querySelector('[data-selling-plan-input]');
+    const planWraps = section.querySelectorAll('[data-plan-wrap]');
+    const purchaseRadios = section.querySelectorAll('[data-purchase-radio]');
+
+    function updateSellingPlan(value) {
+      if (sellingPlanInput) sellingPlanInput.value = value || '';
+    }
+
+    function collapseAllPlans() {
+      planWraps.forEach(wrap => {
+        wrap.classList.remove('neycher-pdp__plan-wrap--active');
+        const details = wrap.querySelector('[data-plan-details]');
+        if (details) details.classList.remove('neycher-pdp__plan-details--open');
+      });
+    }
+
+    purchaseRadios.forEach(radio => {
       radio.addEventListener('change', () => {
-        options.forEach(o => {
-          o.querySelector('.neycher-pdp__option-card').classList.remove('neycher-pdp__option-card--selected', 'neycher-pdp__option-card--sub-active');
-        });
-        opt.querySelector('.neycher-pdp__option-card').classList.add('neycher-pdp__option-card--selected');
+        collapseAllPlans();
         if (radio.value === 'subscription') {
-          opt.querySelector('.neycher-pdp__option-card').classList.add('neycher-pdp__option-card--sub-active');
-          subDetails.classList.add('neycher-pdp__sub-details--open');
+          const wrap = radio.closest('[data-plan-wrap]');
+          if (wrap) {
+            wrap.classList.add('neycher-pdp__plan-wrap--active');
+            const details = wrap.querySelector('[data-plan-details]');
+            if (details) details.classList.add('neycher-pdp__plan-details--open');
+          }
+          updateSellingPlan(radio.dataset.sellingPlanId);
         } else {
-          subDetails.classList.remove('neycher-pdp__sub-details--open');
+          updateSellingPlan('');
         }
       });
     });
@@ -264,7 +350,7 @@
   grid-template-columns: 80px 1fr;
   gap: 12px;
   position: sticky;
-  top: 20px;
+  top: 100px;
 }
 .neycher-pdp__thumbs {
   display: flex;
@@ -404,7 +490,6 @@
 .neycher-pdp__option {
   cursor: pointer;
   display: block;
-  width: 100%;
 }
 .neycher-pdp__option input[type="radio"] {
   position: absolute;
@@ -415,14 +500,15 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 20px;
+  padding: 16px 20px;
   border: 1.5px solid #e5e5e5;
   border-radius: 10px;
   background: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 .neycher-pdp__option input[type="radio"]:checked ~ .neycher-pdp__option-card {
   border-color: #8EB3E7;
-  box-shadow: 0 0 0 1px #8EB3E7;
 }
 .neycher-pdp__option-radio {
   width: 24px;
@@ -449,7 +535,8 @@
   transform: translate(-50%, -60%) rotate(-45deg);
 }
 .neycher-pdp__option-info {
-  flex: 1;
+  flex: 1 1 0%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -463,25 +550,108 @@
   font-size: 13px;
   color: #999;
 }
+.neycher-pdp__option-save {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8EB3E7;
+}
+.neycher-pdp__option-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
 .neycher-pdp__option-price {
   font-size: 17px;
   font-weight: 500;
   color: var(--n-color-heading);
+  white-space: nowrap;
 }
-.neycher-pdp__option-pricing {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.neycher-pdp__option-price-row {
+.neycher-pdp__option-compare-row {
   display: flex;
   align-items: baseline;
   gap: 6px;
 }
 .neycher-pdp__option-compare {
-  font-size: 15px;
+  font-size: 13px;
   color: #bbb;
   text-decoration: line-through;
+  white-space: nowrap;
+}
+.neycher-pdp__option-actual {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  white-space: nowrap;
+}
+
+/* Plan wrapper — card + details as one unit */
+.neycher-pdp__plan-wrap {
+  position: relative;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.neycher-pdp__plan-wrap--active {
+  border-color: #8EB3E7;
+}
+.neycher-pdp__plan-wrap .neycher-pdp__option {
+  display: block;
+  width: 100%;
+}
+.neycher-pdp__plan-wrap .neycher-pdp__option-card {
+  border: none;
+  border-radius: 0;
+  width: 100%;
+}
+.neycher-pdp__plan-wrap--recommended {
+  margin-top: 4px;
+}
+.neycher-pdp__plan-badge {
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  background: #5B93D3;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 0 0 8px 8px;
+  z-index: 1;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+}
+.neycher-pdp__plan-details {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid #eee;
+}
+.neycher-pdp__plan-details--open {
+  display: block;
+}
+.neycher-pdp__plan-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+}
+.neycher-pdp__plan-perks li {
+  font-family: var(--n-font);
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+.neycher-pdp__plan-perks li svg {
+  flex-shrink: 0;
+  color: #999;
 }
 .neycher-pdp__save-badge {
   display: inline-block;
@@ -492,62 +662,6 @@
   padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
-}
-
-/* Subscription details */
-.neycher-pdp__sub-details {
-  display: none;
-  padding: 20px 20px 24px;
-  border: 1.5px solid #8EB3E7;
-  border-top: 0;
-  border-radius: 0 0 10px 10px;
-  margin-top: -2px;
-  box-shadow: 0 0 0 1px #8EB3E7;
-  clip-path: inset(-3px -3px -3px -3px);
-}
-.neycher-pdp__sub-details--open {
-  display: block;
-}
-.neycher-pdp__option .neycher-pdp__option-card.neycher-pdp__option-card--sub-active {
-  border-radius: 10px 10px 0 0;
-  border-bottom: 0;
-  box-shadow: 0 0 0 1px #8EB3E7;
-  clip-path: inset(-3px -3px 0 -3px);
-}
-.neycher-pdp__frequency {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
-  font-family: var(--n-font);
-  font-size: 14px;
-  color: #333;
-  background: #fff;
-  margin-bottom: 16px;
-  appearance: auto;
-  cursor: pointer;
-}
-.neycher-pdp__sub-perks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.neycher-pdp__sub-perks li {
-  font-family: var(--n-font);
-  font-size: 13px;
-  color: #555;
-  padding-left: 20px;
-  position: relative;
-  line-height: 1.5;
-}
-.neycher-pdp__sub-perks li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  color: #999;
 }
 
 /* Add to Cart */
