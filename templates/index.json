@@ -97,6 +97,10 @@
         "link_url": "/collections/all"
       }
     },
+    "neycher-why-works": {
+      "type": "neycher-why-works",
+      "settings": {}
+    },
     "neycher-benefits": {
       "type": "neycher-benefits",
       "settings": {}
@@ -104,13 +108,12 @@
     "neycher-featured-product": {
       "type": "neycher-featured-product",
       "settings": {
+        "product": "",
+        "hero_image": "shopify://shop_images/Main_page_7.jpg",
         "badge": "Clinically studied",
-        "description": "Deep hydration for lasting vaginal moisture."
+        "description": "Deep hydration for lasting vaginal moisture.",
+        "layout": "image_right"
       }
-    },
-    "neycher-why-works": {
-      "type": "neycher-why-works",
-      "settings": {}
     },
     "neycher-stats": {
       "type": "neycher-stats",
