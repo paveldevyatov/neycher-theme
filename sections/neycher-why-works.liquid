@@ -53,11 +53,7 @@
 </section>
 
 {% stylesheet %}
-.neycher-why {
-  padding: 80px 60px;
-  max-width: 1440px;
-  margin: 0 auto;
-}
+.neycher-why {}
 .neycher-why__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -203,19 +199,12 @@
 }
 
 @media screen and (max-width: 999px) {
-  .neycher-why {
-    padding: 60px 32px;
-  }
   .neycher-why__inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
   .neycher-why__left {
     max-width: 100%;
-    text-align: center;
-  }
-  .neycher-why__features {
-    align-items: center;
   }
   .neycher-why__circle {
     width: 400px;
@@ -228,102 +217,91 @@
   }
 }
 @media screen and (max-width: 749px) {
-  .neycher-why {
-    padding: 48px 16px;
-  }
   .neycher-why__title {
     font-size: 32px;
   }
   .neycher-why__subtitle {
-    font-size: 14px;
-  }
-  .neycher-why__right {
-    padding: 0 8px;
+    font-size: 15px;
   }
   .neycher-why__circle {
-    width: 280px;
-    height: 280px;
+    width: 340px;
+    height: 340px;
   }
   .neycher-why__flower-img {
-    width: 200px;
-    height: 200px;
+    width: 260px;
+    height: 260px;
+  }
+  .neycher-why__badge {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .neycher-why__badge img {
+    width: 32px;
+    height: 32px;
+  }
+  .neycher-why__badge-line {
+    width: 40px;
+  }
+  .neycher-why__badge--tl {
+    top: 20px;
+    left: 0;
+  }
+  .neycher-why__badge--tl .neycher-why__badge-line {
+    right: -50px;
+  }
+  .neycher-why__badge--tr {
+    top: 100px;
+    right: -20px;
+  }
+  .neycher-why__badge--tr .neycher-why__badge-line {
+    left: -50px;
+  }
+  .neycher-why__badge--bl {
+    bottom: 100px;
+    left: -10px;
+  }
+  .neycher-why__badge--bl .neycher-why__badge-line {
+    right: -50px;
+  }
+  .neycher-why__badge--br {
+    bottom: 30px;
+    right: -20px;
+  }
+  .neycher-why__badge--br .neycher-why__badge-line {
+    left: -50px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .neycher-why__circle {
+    width: 300px;
+    height: 300px;
+  }
+  .neycher-why__flower-img {
+    width: 220px;
+    height: 220px;
   }
   .neycher-why__badge {
     font-size: 11px;
-    gap: 5px;
   }
   .neycher-why__badge img {
     width: 28px;
     height: 28px;
   }
-  .neycher-why__badge-line {
-    width: 30px;
-  }
-  /* Reposition badges closer on mobile */
   .neycher-why__badge--tl {
-    top: 20px;
-    left: 10px;
-  }
-  .neycher-why__badge--tl .neycher-why__badge-line {
-    right: -36px;
-  }
-  .neycher-why__badge--tr {
-    top: 80px;
-    right: -10px;
-  }
-  .neycher-why__badge--tr .neycher-why__badge-line {
-    left: -36px;
-  }
-  .neycher-why__badge--bl {
-    bottom: 90px;
+    top: 15px;
     left: 0;
   }
-  .neycher-why__badge--bl .neycher-why__badge-line {
-    right: -36px;
-  }
-  .neycher-why__badge--br {
-    bottom: 20px;
-    right: -10px;
-  }
-  .neycher-why__badge--br .neycher-why__badge-line {
-    left: -36px;
-  }
-}
-@media screen and (max-width: 479px) {
-  .neycher-why__circle {
-    width: 240px;
-    height: 240px;
-  }
-  .neycher-why__flower-img {
-    width: 170px;
-    height: 170px;
-  }
-  .neycher-why__badge {
-    font-size: 10px;
-    gap: 4px;
-  }
-  .neycher-why__badge img {
-    width: 24px;
-    height: 24px;
-  }
-  .neycher-why__badge-line {
-    display: none;
-  }
-  .neycher-why__badge--tl {
-    top: 10px;
-    left: 5px;
-  }
   .neycher-why__badge--tr {
-    top: 65px;
-    right: -5px;
+    top: 85px;
+    right: -15px;
   }
   .neycher-why__badge--bl {
-    bottom: 70px;
+    bottom: 85px;
     left: -5px;
   }
   .neycher-why__badge--br {
-    bottom: 10px;
-    right: -5px;
+    bottom: 20px;
+    right: -15px;
   }
 }
 {% endstylesheet %}

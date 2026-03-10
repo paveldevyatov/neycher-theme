@@ -205,13 +205,14 @@
   padding: 0 60px 60px;
 }
 .nc-collection__promo {
-  grid-row: 1 / 3;
+  grid-row: 1 / -1;
   grid-column: 4;
   border-radius: 12px;
   overflow: hidden;
   position: sticky;
-  top: 20px;
+  top: calc(var(--header-height, 80px) + 20px);
   align-self: start;
+  max-height: calc(100vh - var(--header-height, 80px) - 40px);
 }
 .nc-collection__promo img {
   width: 100%;
@@ -522,9 +523,11 @@
     grid-row: auto;
     grid-column: auto;
     border-radius: 12px;
+    position: static;
+    max-height: none;
   }
   .nc-collection__promo img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 4;
   }
   .nc-bundles {
     padding: 20px 24px 40px;

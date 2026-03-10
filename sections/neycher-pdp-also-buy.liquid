@@ -14,7 +14,7 @@
       </button>
     </div>
   </div>
-  <div class="npdp-also__scroll" data-also-scroll>
+  <div class="npdp-also__scroll n-scroll-container" data-also-scroll>
     <div class="npdp-also__grid">
       {%- for block in section.blocks -%}
         {%- assign p = block.settings.product -%}
@@ -50,6 +50,7 @@
       {%- endfor -%}
     </div>
   </div>
+  <div class="n-scroll-progress"><div class="n-scroll-progress__bar"></div></div>
 </section>
 
 <script>

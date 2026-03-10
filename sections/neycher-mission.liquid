@@ -26,7 +26,7 @@
 
 {% stylesheet %}
 .neycher-mission {
-  padding: 100px 60px;
+  padding: 6.9vw 4.2vw;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -36,11 +36,11 @@
 }
 .neycher-mission__textblock {
   font-family: var(--n-font);
-  font-size: 80px;
-  font-weight: 400;
+  font-size: 5.55vw;
+  font-weight: 300;
   line-height: 1.05;
   color: var(--n-color-heading);
-  letter-spacing: -1.5px;
+  letter-spacing: -0.1vw;
   text-align: center;
 }
 .neycher-mission__textblock em {
@@ -50,13 +50,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 1.25vw;
   flex-wrap: nowrap;
   position: relative;
 }
 .neycher-mission__ellipse {
-  width: 70px;
-  height: 70px;
+  width: 4.86vw;
+  height: 4.86vw;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -65,7 +65,7 @@
 /* Small annotation text */
 .neycher-mission__note {
   font-family: var(--n-font);
-  font-size: 14px;
+  font-size: clamp(9px, 1.25vw, 18px);
   font-weight: 400;
   color: var(--n-color-body);
   line-height: 1.5;
@@ -75,57 +75,40 @@
 }
 .neycher-mission__note--right {
   text-align: left;
-  margin-left: 16px;
+  margin-left: 1.1vw;
 }
 .neycher-mission__note--left {
   text-align: left;
-  margin-right: 16px;
+  margin-right: 1.1vw;
 }
 
-@media screen and (max-width: 1100px) {
-  .neycher-mission__textblock {
-    font-size: 60px;
-  }
-  .neycher-mission__ellipse {
-    width: 54px;
-    height: 54px;
-  }
-}
-@media screen and (max-width: 899px) {
+/* Cap max sizes on large screens */
+@media screen and (min-width: 1441px) {
   .neycher-mission {
-    padding: 60px 24px;
+    padding: 100px 60px;
   }
   .neycher-mission__textblock {
-    font-size: 44px;
-  }
-  .neycher-mission__ellipse {
-    width: 40px;
-    height: 40px;
+    font-size: 80px;
+    letter-spacing: -1.5px;
   }
   .neycher-mission__line {
-    flex-wrap: wrap;
-  }
-  .neycher-mission__note {
-    font-size: 12px;
-    white-space: normal;
-  }
-}
-@media screen and (max-width: 599px) {
-  .neycher-mission__textblock {
-    font-size: 30px;
-    line-height: 1.15;
+    gap: 18px;
   }
   .neycher-mission__ellipse {
-    width: 28px;
-    height: 28px;
-  }
-  .neycher-mission__line {
-    gap: 10px;
+    width: 70px;
+    height: 70px;
   }
   .neycher-mission__note {
-    font-size: 11px;
+    font-size: 14px;
+  }
+  .neycher-mission__note--right {
+    margin-left: 16px;
+  }
+  .neycher-mission__note--left {
+    margin-right: 16px;
   }
 }
+
 {% endstylesheet %}
 
 {% schema %}

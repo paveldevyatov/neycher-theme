@@ -25,10 +25,10 @@
       {%- endif -%}
     </div>
     <div class="neycher-fp__card">
-      {%- if section.settings.badge != blank -%}
-        <span class="neycher-fp__badge n-badge">{{ section.settings.badge }}</span>
-      {%- endif -%}
       <div class="neycher-fp__glass-card">
+        {%- if section.settings.badge != blank -%}
+          <span class="neycher-fp__badge n-badge">{{ section.settings.badge }}</span>
+        {%- endif -%}
         <div class="neycher-fp__img-wrap">
           {%- if product.featured_image -%}
             <img
@@ -123,7 +123,7 @@
   background: var(--n-color-accent);
   border-radius: 100px;
   padding: 6px 16px;
-  margin-bottom: 12px;
+  margin: 24px 0 0 28px;
   letter-spacing: 0.02em;
 }
 .neycher-fp__glass-card {

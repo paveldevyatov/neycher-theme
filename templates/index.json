@@ -111,7 +111,8 @@
         "product": "",
         "bg_image": "shopify://shop_images/w1.jpg",
         "badge": "Clinically studied",
-        "description": "Deep hydration for lasting vaginal moisture."
+        "description": "Deep hydration for lasting vaginal moisture.",
+        "bg_color": "#d8dee5"
       }
     },
     "neycher-stats": {
@@ -196,6 +197,16 @@
       "type": "neycher-journal",
       "settings": {}
     },
+    "neycher-home-banner": {
+      "type": "neycher-pdp-banner",
+      "settings": {
+        "heading": "More loving maintenance.Less crisis control.",
+        "image": "shopify://shop_images/flow.jpg",
+        "image_asset": "",
+        "bundle_handle": "goodbye-dryness-bundle",
+        "description": "Intense hydration for lasting vaginal comfort."
+      }
+    },
     "neycher-instagram": {
       "type": "neycher-instagram",
       "settings": {}
@@ -213,6 +224,7 @@
     "neycher-feeling-good",
     "neycher-reviews",
     "neycher-journal",
+    "neycher-home-banner",
     "neycher-instagram"
   ]
 }

@@ -1,7 +1,7 @@
 {%- comment -%} Customer reviews carousel {%- endcomment -%}
 <section class="neycher-reviews n-section">
   <div class="n-section-header">
-    <h2 class="n-title-section"><span class="neycher-reviews__star">&#10038;</span> {{ section.settings.heading }}</h2>
+    <h2 class="n-title-section">{{ section.settings.heading }}</h2>
     <div class="neycher-reviews__controls">
       <button class="neycher-reviews__arrow" data-reviews-prev aria-label="Previous">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -11,7 +11,7 @@
       </button>
     </div>
   </div>
-  <div class="neycher-reviews__scroll" data-reviews-scroll>
+  <div class="neycher-reviews__scroll n-scroll-container" data-reviews-scroll>
     <div class="neycher-reviews__grid">
       {%- for block in section.blocks -%}
         <div class="neycher-reviews__card" {{ block.shopify_attributes }}>
@@ -29,6 +29,7 @@
       {%- endfor -%}
     </div>
   </div>
+  <div class="n-scroll-progress"><div class="n-scroll-progress__bar"></div></div>
 </section>
 
 <script>
@@ -60,10 +61,6 @@
 /* Header */
 .neycher-reviews .n-section-header {
   margin-bottom: 24px;
-}
-.neycher-reviews__star {
-  font-size: 14px;
-  color: var(--n-color-heading);
 }
 .neycher-reviews__controls {
   display: flex;
