@@ -1,9 +1,17 @@
-<section class="neycher-journal">
-  <div class="neycher-journal__header">
+<section class="neycher-journal n-section">
+  <div class="n-section-header">
     <h2 class="n-title-section">Journal</h2>
-    <a href="/blogs/journal" class="n-btn-outline">Read Journal <span>&rarr;</span></a>
+    <div class="neycher-journal__controls">
+      <button class="neycher-journal__arrow" data-journal-prev aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="neycher-journal__arrow" data-journal-next aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <a href="/blogs/journal" class="n-btn-outline">Read Journal <span>&rarr;</span></a>
+    </div>
   </div>
-  <div class="neycher-journal__scroll">
+  <div class="neycher-journal__scroll" data-journal-scroll>
     <div class="neycher-journal__grid">
       <a href="/blogs/journal/how-to-fix-dryness-from-birth-control" class="neycher-journal__card">
         <div class="neycher-journal__img">
@@ -44,18 +52,55 @@
   </div>
 </section>
 
+<script>
+  (function() {
+    var scrollEl = document.querySelector('[data-journal-scroll]');
+    if (!scrollEl) return;
+    var section = scrollEl.closest('.neycher-journal');
+    var prevBtn = section.querySelector('[data-journal-prev]');
+    var nextBtn = section.querySelector('[data-journal-next]');
+    var grid = scrollEl.querySelector('.neycher-journal__grid');
+
+    function getStep() {
+      var card = grid.querySelector('.neycher-journal__card');
+      if (!card) return 280;
+      var gap = parseInt(getComputedStyle(grid).columnGap) || 16;
+      return card.offsetWidth + gap;
+    }
+
+    nextBtn.addEventListener('click', function() {
+      scrollEl.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+    prevBtn.addEventListener('click', function() {
+      scrollEl.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+  })();
+</script>
+
 {% stylesheet %}
-.neycher-journal {
-  padding: 60px 60px 40px;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.neycher-journal__header {
+/* Controls */
+.neycher-journal__controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  gap: 12px;
 }
+.neycher-journal__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--n-color-border);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--n-color-heading);
+}
+.neycher-journal__arrow:hover {
+  border-color: var(--n-color-heading);
+}
+
+/* Scroll */
 .neycher-journal__scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -64,22 +109,27 @@
 .neycher-journal__scroll::-webkit-scrollbar {
   display: none;
 }
+
+/* Grid */
 .neycher-journal__grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  min-width: 900px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
+
+/* Card */
 .neycher-journal__card {
   text-decoration: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
 }
 .neycher-journal__img {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--n-radius-md);
+  background: var(--n-color-bg-alt);
 }
 .neycher-journal__img img {
   width: 100%;
@@ -105,13 +155,16 @@
 .neycher-journal__card:hover .neycher-journal__card-title {
   text-decoration: underline;
 }
-@media screen and (max-width: 749px) {
-  .neycher-journal {
-    padding: 40px 16px 24px;
+
+@media screen and (max-width: 999px) {
+  .neycher-journal__grid {
+    grid-template-columns: repeat(5, 280px);
   }
+}
+@media screen and (max-width: 749px) {
   .neycher-journal__grid {
     grid-template-columns: repeat(5, 240px);
-    min-width: auto;
+    gap: 16px;
   }
 }
 {% endstylesheet %}

@@ -1,126 +1,134 @@
-<section class="neycher-reviews">
-  <h2 class="n-title-section neycher-reviews__title"><span class="neycher-reviews__star">&#10038;</span> In your words</h2>
-  <div class="neycher-reviews__scroll">
+{%- comment -%} Customer reviews carousel {%- endcomment -%}
+<section class="neycher-reviews n-section">
+  <div class="n-section-header">
+    <h2 class="n-title-section"><span class="neycher-reviews__star">&#10038;</span> {{ section.settings.heading }}</h2>
+    <div class="neycher-reviews__controls">
+      <button class="neycher-reviews__arrow" data-reviews-prev aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="neycher-reviews__arrow" data-reviews-next aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="neycher-reviews__scroll" data-reviews-scroll>
     <div class="neycher-reviews__grid">
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!"</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-victoria.png' | asset_url }}" alt="Victoria" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Victoria</div>
-            <div class="neycher-reviews__location">Los Angeles</div>
+      {%- for block in section.blocks -%}
+        <div class="neycher-reviews__card" {{ block.shopify_attributes }}>
+          <div class="neycher-reviews__rating">5 ★★★★★</div>
+          <blockquote class="neycher-reviews__quote">"{{ block.settings.quote }}"</blockquote>
+          <div class="neycher-reviews__author">
+            {%- if block.settings.avatar_asset != blank -%}
+              <img src="{{ block.settings.avatar_asset | asset_url }}" alt="{{ block.settings.name }}" class="neycher-reviews__avatar" width="48" height="48">
+            {%- elsif block.settings.avatar != blank -%}
+              <img src="{{ block.settings.avatar | image_url: width: 96 }}" alt="{{ block.settings.name }}" class="neycher-reviews__avatar" width="48" height="48">
+            {%- endif -%}
+            <span class="neycher-reviews__name">{{ block.settings.name }}, {{ block.settings.location }}</span>
           </div>
         </div>
-      </div>
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"I feel confident and fresh thanks to these suppositories."</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-emily.png' | asset_url }}" alt="Emily" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Emily</div>
-            <div class="neycher-reviews__location">Chicago</div>
-          </div>
-        </div>
-      </div>
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have."</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-johanna.png' | asset_url }}" alt="Johanna" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Johanna</div>
-            <div class="neycher-reviews__location">Denver</div>
-          </div>
-        </div>
-      </div>
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort!"</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-melissa.png' | asset_url }}" alt="Melissa" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Melissa</div>
-            <div class="neycher-reviews__location">San Francisco</div>
-          </div>
-        </div>
-      </div>
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have."</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-chloe.png' | asset_url }}" alt="Chloe" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Chloe</div>
-            <div class="neycher-reviews__location">Seattle</div>
-          </div>
-        </div>
-      </div>
-      <div class="neycher-reviews__card">
-        <img src="{{ 'rating-stars.svg' | asset_url }}" alt="5 stars" class="neycher-reviews__stars" width="88" height="16">
-        <blockquote class="neycher-reviews__quote">"For those who have issues with very sensitive and off kilter microbiome, I can almost promise you that this probiotic will help you."</blockquote>
-        <div class="neycher-reviews__author">
-          <img src="{{ 'review-diana.png' | asset_url }}" alt="Diana" class="neycher-reviews__avatar" width="48" height="48">
-          <div>
-            <div class="neycher-reviews__name">Diana</div>
-            <div class="neycher-reviews__location">Baltimore</div>
-          </div>
-        </div>
-      </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
+<script>
+  (function() {
+    var scrollEl = document.querySelector('[data-reviews-scroll]');
+    if (!scrollEl) return;
+    var section = scrollEl.closest('.neycher-reviews');
+    var prevBtn = section.querySelector('[data-reviews-prev]');
+    var nextBtn = section.querySelector('[data-reviews-next]');
+    var grid = scrollEl.querySelector('.neycher-reviews__grid');
+
+    function getStep() {
+      var card = grid.querySelector('.neycher-reviews__card');
+      if (!card) return 320;
+      var gap = parseInt(getComputedStyle(grid).columnGap) || 16;
+      return card.offsetWidth + gap;
+    }
+
+    nextBtn.addEventListener('click', function() {
+      scrollEl.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+    prevBtn.addEventListener('click', function() {
+      scrollEl.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+  })();
+</script>
+
 {% stylesheet %}
-.neycher-reviews {
-  padding: 60px 60px 48px;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.neycher-reviews__title {
+/* Header */
+.neycher-reviews .n-section-header {
   margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 .neycher-reviews__star {
   font-size: 14px;
   color: var(--n-color-heading);
 }
+.neycher-reviews__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.neycher-reviews__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--n-color-border);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--n-color-heading);
+}
+.neycher-reviews__arrow:hover {
+  border-color: var(--n-color-heading);
+}
+
+/* Scroll */
 .neycher-reviews__scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 }
 .neycher-reviews__scroll::-webkit-scrollbar {
   display: none;
 }
+
+/* Grid */
 .neycher-reviews__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(33.333% - 11px);
   gap: 16px;
 }
+
+/* Card */
 .neycher-reviews__card {
-  background: var(--n-color-bg-warm);
-  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--n-color-border);
+  border-radius: 16px;
   padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   min-height: 220px;
+  scroll-snap-align: start;
 }
-.neycher-reviews__stars {
-  width: 88px;
-  height: auto;
+.neycher-reviews__rating {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-color-heading);
+  letter-spacing: 0.02em;
 }
 .neycher-reviews__quote {
-  font-family: var(--n-font);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--n-color-heading);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.55;
   font-style: normal;
   flex-grow: 1;
 }
@@ -132,33 +140,25 @@
   padding-top: 8px;
 }
 .neycher-reviews__avatar {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
 }
 .neycher-reviews__name {
-  font-family: var(--n-font);
   font-size: 14px;
-  font-weight: 500;
-  color: var(--n-color-heading);
+  font-weight: 400;
+  color: var(--n-color-body);
 }
-.neycher-reviews__location {
-  font-family: var(--n-font);
-  font-size: 12px;
-  color: var(--n-color-muted);
-}
+
 @media screen and (max-width: 999px) {
   .neycher-reviews__grid {
-    grid-template-columns: repeat(3, 320px);
+    grid-auto-columns: calc(50% - 8px);
   }
 }
 @media screen and (max-width: 749px) {
-  .neycher-reviews {
-    padding: 40px 16px 32px;
-  }
   .neycher-reviews__grid {
-    grid-template-columns: repeat(3, 280px);
+    grid-auto-columns: 280px;
     gap: 12px;
   }
 }
@@ -171,10 +171,81 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "In your words" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "image_picker", "id": "avatar", "label": "Avatar" },
+        { "type": "text", "id": "avatar_asset", "label": "Avatar asset filename", "info": "Overrides image picker" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Neycher Reviews"
+      "name": "Neycher Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "quote": "I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!",
+            "name": "Victoria",
+            "location": "Los Angeles",
+            "avatar_asset": "review-victoria.png"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "I feel confident and fresh thanks to these suppositories.",
+            "name": "Emily",
+            "location": "Chicago",
+            "avatar_asset": "review-emily.png"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have.",
+            "name": "Johanna",
+            "location": "Denver",
+            "avatar_asset": "review-johanna.png"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort!",
+            "name": "Melissa",
+            "location": "San Francisco",
+            "avatar_asset": "review-melissa.png"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have.",
+            "name": "Chloe",
+            "location": "Seattle",
+            "avatar_asset": "review-chloe.png"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "For those who have issues with very sensitive and off kilter microbiome, I can almost promise you that this probiotic will help you.",
+            "name": "Diana",
+            "location": "Baltimore",
+            "avatar_asset": "review-diana.png"
+          }
+        }
+      ]
     }
   ]
 }

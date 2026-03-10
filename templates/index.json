@@ -97,10 +97,6 @@
         "link_url": "/collections/all"
       }
     },
-    "neycher-why-works": {
-      "type": "neycher-why-works",
-      "settings": {}
-    },
     "neycher-benefits": {
       "type": "neycher-benefits",
       "settings": {}
@@ -108,12 +104,13 @@
     "neycher-featured-product": {
       "type": "neycher-featured-product",
       "settings": {
-        "product": "",
-        "hero_image": "shopify://shop_images/Main_page_7.jpg",
         "badge": "Clinically studied",
-        "description": "Deep hydration for lasting vaginal moisture.",
-        "layout": "image_right"
+        "description": "Deep hydration for lasting vaginal moisture."
       }
+    },
+    "neycher-why-works": {
+      "type": "neycher-why-works",
+      "settings": {}
     },
     "neycher-stats": {
       "type": "neycher-stats",
@@ -125,7 +122,73 @@
     },
     "neycher-reviews": {
       "type": "neycher-reviews",
-      "settings": {}
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "quote": "I feel so fresh! I feel that I found the perfect answer for my vaginal health after menopause!",
+            "name": "Victoria",
+            "location": "Los Angeles",
+            "avatar_asset": "review-victoria.png"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "quote": "I feel confident and fresh thanks to these suppositories.",
+            "name": "Emily",
+            "location": "Chicago",
+            "avatar_asset": "review-emily.png"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "quote": "This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have.",
+            "name": "Johanna",
+            "location": "Denver",
+            "avatar_asset": "review-johanna.png"
+          }
+        },
+        "rev_4": {
+          "type": "review",
+          "settings": {
+            "quote": "I no longer worry about dryness and discomfort. I highly recommend it to all women who care about their health and comfort!",
+            "name": "Melissa",
+            "location": "San Francisco",
+            "avatar_asset": "review-melissa.png"
+          }
+        },
+        "rev_5": {
+          "type": "review",
+          "settings": {
+            "quote": "This product has really helped my overall vaginal health. As someone prone to infections, this product is a must have.",
+            "name": "Chloe",
+            "location": "Seattle",
+            "avatar_asset": "review-chloe.png"
+          }
+        },
+        "rev_6": {
+          "type": "review",
+          "settings": {
+            "quote": "For those who have issues with very sensitive and off kilter microbiome, I can almost promise you that this probiotic will help you.",
+            "name": "Diana",
+            "location": "Baltimore",
+            "avatar_asset": "review-diana.png"
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4",
+        "rev_5",
+        "rev_6"
+      ],
+      "settings": {
+        "heading": "In your words"
+      }
     },
     "neycher-journal": {
       "type": "neycher-journal",
