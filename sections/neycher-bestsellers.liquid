@@ -15,8 +15,16 @@
         {%- assign bs_product = all_products[bestseller_handles[i]] -%}
         <div class="neycher-bestsellers__card">
           <div class="neycher-bestsellers__img-wrap">
+            {%- assign video_setting = 'video_url_' | append: forloop.index -%}
             <a href="/products/{{ bestseller_handles[i] }}" class="neycher-bestsellers__img-link">
-              <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400">
+              {%- if section.settings[video_setting] != blank -%}
+                <video autoplay muted loop playsinline>
+                  <source src="{{ section.settings[video_setting] }}" type="video/mp4">
+                </video>
+                <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400" class="neycher-bestsellers__fallback">
+              {%- else -%}
+                <img src="{{ bestseller_images[i] | asset_url }}" alt="{{ bestseller_names[i] }}" loading="lazy" width="400" height="400">
+              {%- endif -%}
             </a>
             <a href="/products/{{ bestseller_handles[i] }}" class="n-cart-btn neycher-bestsellers__cart-btn" aria-label="Add to cart">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -70,10 +78,14 @@
   border-radius: var(--n-radius-md);
   background: var(--n-color-bg-alt);
 }
-.neycher-bestsellers__img-link img {
+.neycher-bestsellers__img-link img,
+.neycher-bestsellers__img-link video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.neycher-bestsellers__fallback {
+  display: none;
 }
 .neycher-bestsellers__cart-btn {
   position: absolute;
@@ -108,7 +120,32 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url_1",
+      "label": "Video URL — Card 1",
+      "info": "MP4 video link. Leave empty for image."
+    },
+    {
+      "type": "url",
+      "id": "video_url_2",
+      "label": "Video URL — Card 2",
+      "info": "MP4 video link. Leave empty for image."
+    },
+    {
+      "type": "url",
+      "id": "video_url_3",
+      "label": "Video URL — Card 3",
+      "info": "MP4 video link. Leave empty for image."
+    },
+    {
+      "type": "url",
+      "id": "video_url_4",
+      "label": "Video URL — Card 4",
+      "info": "MP4 video link. Leave empty for image."
+    }
+  ],
   "presets": [
     {
       "name": "Neycher Bestsellers"
