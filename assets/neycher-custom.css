@@ -92,6 +92,34 @@ h1, h2, h3, h4, h5, h6,
   margin: 0 auto;
 }
 
+/* Mobile section header adjustments */
+@media screen and (max-width: 749px) {
+  .n-section-header {
+    gap: 12px;
+  }
+  .n-btn-outline {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .npdp-also__arrow,
+  .neycher-reviews__arrow,
+  .neycher-journal__arrow {
+    width: 32px;
+    height: 32px;
+  }
+  .npdp-also__arrow svg,
+  .neycher-reviews__arrow svg,
+  .neycher-journal__arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+  .npdp-also__controls,
+  .neycher-reviews__controls,
+  .neycher-journal__controls {
+    gap: 8px;
+  }
+}
+
 /* ============================================
    Component: Section Titles
    ============================================ */

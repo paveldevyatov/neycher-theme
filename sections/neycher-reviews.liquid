@@ -1,17 +1,40 @@
 {%- comment -%} Customer reviews carousel {%- endcomment -%}
-<section class="neycher-reviews n-section">
+
+{%- liquid
+  assign cards_per_row = section.settings.cards_per_row | default: 3
+  assign gap_px = 16
+  assign gap_total = gap_px | times: cards_per_row | minus: gap_px
+-%}
+
+<section
+  class="neycher-reviews n-section"
+  style="
+    --nr-bg: {{ section.settings.bg_color }};
+    --nr-card-bg: {{ section.settings.card_bg }};
+    --nr-card-border: {{ section.settings.card_border }};
+    --nr-heading-color: {{ section.settings.heading_color }};
+    --nr-text-color: {{ section.settings.text_color }};
+    --nr-author-color: {{ section.settings.author_color }};
+    --nr-card-radius: {{ section.settings.card_radius }}px;
+    --nr-cards-per-row: {{ cards_per_row }};
+    --nr-gap: {{ gap_px }}px;
+    --nr-gap-total: {{ gap_total }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: var(--nr-bg);
+  "
+>
   <div class="n-section-header">
-    <h2 class="n-title-section">{{ section.settings.heading }}</h2>
-    <div class="neycher-reviews__controls">
-      <button class="neycher-reviews__arrow" data-reviews-prev aria-label="Previous">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="neycher-reviews__arrow" data-reviews-next aria-label="Next">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
+    <h2 class="n-title-section" style="color: var(--nr-heading-color);">{{ section.settings.heading }}</h2>
   </div>
-  <div class="neycher-reviews__scroll n-scroll-container" data-reviews-scroll>
+  <div class="neycher-reviews__slider">
+    <button class="neycher-reviews__arrow neycher-reviews__arrow--prev" data-reviews-prev aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="neycher-reviews__arrow neycher-reviews__arrow--next" data-reviews-next aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="neycher-reviews__scroll n-scroll-container" data-reviews-scroll>
     <div class="neycher-reviews__grid">
       {%- for block in section.blocks -%}
         <div class="neycher-reviews__card" {{ block.shopify_attributes }}>
@@ -27,6 +50,7 @@
           </div>
         </div>
       {%- endfor -%}
+    </div>
     </div>
   </div>
   <div class="n-scroll-progress"><div class="n-scroll-progress__bar"></div></div>
@@ -54,6 +78,24 @@
     prevBtn.addEventListener('click', function() {
       scrollEl.scrollBy({ left: -getStep(), behavior: 'smooth' });
     });
+
+    var progressBar = section.querySelector('.n-scroll-progress__bar');
+    function updateProgress() {
+      if (!progressBar) return;
+      var maxScroll = scrollEl.scrollWidth - scrollEl.clientWidth;
+      if (maxScroll <= 0) {
+        progressBar.style.width = '100%';
+        return;
+      }
+      var ratio = scrollEl.clientWidth / scrollEl.scrollWidth;
+      var pos = scrollEl.scrollLeft / maxScroll;
+      var barW = Math.max(ratio * 100, 10);
+      var maxLeft = 100 - barW;
+      progressBar.style.width = barW + '%';
+      progressBar.style.transform = 'translateX(' + (pos * maxLeft / barW * 100) + '%)';
+    }
+    scrollEl.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   })();
 </script>
 
@@ -62,25 +104,34 @@
 .neycher-reviews .n-section-header {
   margin-bottom: 24px;
 }
-.neycher-reviews__controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Slider wrapper */
+.neycher-reviews__slider {
+  position: relative;
 }
 .neycher-reviews__arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 2;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--n-color-border);
-  background: #fff;
+  border: 1px solid var(--nr-card-border, var(--n-color-border));
+  background: var(--nr-card-bg, #fff);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--n-color-heading);
+  color: var(--nr-heading-color, var(--n-color-heading));
+}
+.neycher-reviews__arrow--prev {
+  left: -20px;
+}
+.neycher-reviews__arrow--next {
+  right: -20px;
 }
 .neycher-reviews__arrow:hover {
-  border-color: var(--n-color-heading);
+  border-color: var(--nr-heading-color, var(--n-color-heading));
 }
 
 /* Scroll */
@@ -94,19 +145,19 @@
   display: none;
 }
 
-/* Grid */
+/* Grid — desktop uses cards_per_row via CSS custom property */
 .neycher-reviews__grid {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc(33.333% - 11px);
-  gap: 16px;
+  grid-auto-columns: calc((100% - var(--nr-gap-total, 32px)) / var(--nr-cards-per-row, 3));
+  gap: var(--nr-gap, 16px);
 }
 
 /* Card */
 .neycher-reviews__card {
-  background: #fff;
-  border: 1px solid var(--n-color-border);
-  border-radius: 16px;
+  background: var(--nr-card-bg, #fff);
+  border: 1px solid var(--nr-card-border, var(--n-color-border));
+  border-radius: var(--nr-card-radius, 16px);
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -117,13 +168,13 @@
 .neycher-reviews__rating {
   font-size: 14px;
   font-weight: 500;
-  color: var(--n-color-heading);
+  color: var(--nr-heading-color, var(--n-color-heading));
   letter-spacing: 0.02em;
 }
 .neycher-reviews__quote {
   font-size: 15px;
   font-weight: 400;
-  color: var(--n-color-heading);
+  color: var(--nr-text-color, var(--n-color-heading));
   margin: 0;
   line-height: 1.55;
   font-style: normal;
@@ -145,7 +196,7 @@
 .neycher-reviews__name {
   font-size: 14px;
   font-weight: 400;
-  color: var(--n-color-body);
+  color: var(--nr-author-color, var(--n-color-body));
 }
 
 @media screen and (max-width: 999px) {
@@ -158,6 +209,20 @@
     grid-auto-columns: 280px;
     gap: 12px;
   }
+  .neycher-reviews__arrow {
+    width: 32px;
+    height: 32px;
+  }
+  .neycher-reviews__arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+  .neycher-reviews__arrow--prev {
+    left: -4px;
+  }
+  .neycher-reviews__arrow--next {
+    right: -4px;
+  }
 }
 {% endstylesheet %}
 
@@ -169,7 +234,96 @@
     "groups": ["header", "footer"]
   },
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "In your words" }
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "In your words"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card border",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Quote text color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Author name color",
+      "default": "#555555"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "label": "Cards per row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "info": "Visible cards on desktop"
+    }
   ],
   "blocks": [
     {

@@ -1,24 +1,45 @@
-<section class="neycher-mission">
+<section
+  class="neycher-mission"
+  style="
+    --mission-text-color: {{ section.settings.text_color }};
+    --mission-note-color: {{ section.settings.note_color }};
+    --mission-bg-color: {{ section.settings.bg_color }};
+    --mission-padding-top: {{ section.settings.padding_top }}px;
+    --mission-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
   <div class="neycher-mission__inner">
     <div class="neycher-mission__textblock">
       <span class="neycher-mission__line">
-        <span>Deeply Attuned</span>
-        <span class="neycher-mission__note neycher-mission__note--right">We stand for clean, conscious,<br>high-performance care.</span>
+        <span>{{ section.settings.heading_line_1 }}</span>
+        <span class="neycher-mission__note">{{ section.settings.note_right | newline_to_br }}</span>
       </span>
       <span class="neycher-mission__line">
-        <span>To</span>
-        <img src="{{ 'ellipse-1.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
-        <span>the <em>Evolving</em> Needs</span>
+        <span>{{ section.settings.heading_line_2 }}</span>
+        {%- if section.settings.ellipse_1 != blank -%}
+          <img src="{{ section.settings.ellipse_1 | image_url: width: 140 }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- else -%}
+          <img src="{{ 'ellipse-1.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- endif -%}
+        <span>{{ section.settings.heading_line_2b }}</span>
       </span>
       <span class="neycher-mission__line">
-        <span>Of <em>Vagina</em> And <em>Vulva</em> At</span>
-        <img src="{{ 'ellipse-2.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
-        <span>Every</span>
+        <span>{{ section.settings.heading_line_3 }}</span>
+        {%- if section.settings.ellipse_2 != blank -%}
+          <img src="{{ section.settings.ellipse_2 | image_url: width: 140 }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- else -%}
+          <img src="{{ 'ellipse-2.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- endif -%}
+        <span>{{ section.settings.heading_line_3b }}</span>
       </span>
       <span class="neycher-mission__line">
-        <span class="neycher-mission__note neycher-mission__note--left">We believe that intimate care should be as<br>powerful as any other form of self-care</span>
-        <img src="{{ 'ellipse-3.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
-        <span>Stage Of Life</span>
+        <span class="neycher-mission__note">{{ section.settings.note_left | newline_to_br }}</span>
+        {%- if section.settings.ellipse_3 != blank -%}
+          <img src="{{ section.settings.ellipse_3 | image_url: width: 140 }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- else -%}
+          <img src="{{ 'ellipse-3.webp' | asset_url }}" alt="" class="neycher-mission__ellipse" width="70" height="70">
+        {%- endif -%}
+        <span>{{ section.settings.heading_line_4 }}</span>
       </span>
     </div>
   </div>
@@ -26,21 +47,22 @@
 
 {% stylesheet %}
 .neycher-mission {
-  padding: 6.9vw 4.2vw;
+  padding: var(--mission-padding-top, 100px) 4.2vw var(--mission-padding-bottom, 100px);
   max-width: 1440px;
   margin: 0 auto;
+  background-color: var(--mission-bg-color, #ffffff);
 }
 .neycher-mission__inner {
   max-width: 1200px;
   margin: 0 auto;
 }
 .neycher-mission__textblock {
-  font-family: var(--n-font);
-  font-size: 5.55vw;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 80px;
   font-weight: 300;
-  line-height: 1.05;
-  color: var(--n-color-heading);
-  letter-spacing: -0.1vw;
+  line-height: 1.15;
+  color: var(--mission-text-color, var(--n-color-heading));
+  letter-spacing: -0.03em;
   text-align: center;
 }
 .neycher-mission__textblock em {
@@ -50,62 +72,62 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25vw;
-  flex-wrap: nowrap;
-  position: relative;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 .neycher-mission__ellipse {
-  width: 4.86vw;
-  height: 4.86vw;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
 }
 
-/* Small annotation text */
+/* Small annotation text — inline in flex flow */
 .neycher-mission__note {
-  font-family: var(--n-font);
-  font-size: clamp(9px, 1.25vw, 18px);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
   font-weight: 400;
-  color: var(--n-color-body);
-  line-height: 1.5;
-  letter-spacing: 0;
-  white-space: nowrap;
+  color: var(--mission-note-color, var(--n-color-body));
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  text-align: left;
   flex-shrink: 0;
 }
-.neycher-mission__note--right {
-  text-align: left;
-  margin-left: 1.1vw;
-}
-.neycher-mission__note--left {
-  text-align: left;
-  margin-right: 1.1vw;
-}
 
-/* Cap max sizes on large screens */
-@media screen and (min-width: 1441px) {
-  .neycher-mission {
-    padding: 100px 60px;
-  }
+@media screen and (max-width: 999px) {
   .neycher-mission__textblock {
-    font-size: 80px;
-    letter-spacing: -1.5px;
-  }
-  .neycher-mission__line {
-    gap: 18px;
+    font-size: 56px;
   }
   .neycher-mission__ellipse {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
   }
   .neycher-mission__note {
     font-size: 14px;
   }
-  .neycher-mission__note--right {
-    margin-left: 16px;
+}
+
+@media screen and (max-width: 749px) {
+  .neycher-mission {
+    padding-left: 16px;
+    padding-right: 16px;
   }
-  .neycher-mission__note--left {
-    margin-right: 16px;
+  .neycher-mission__textblock {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+  .neycher-mission__line {
+    gap: 8px;
+  }
+  .neycher-mission__ellipse {
+    width: 36px;
+    height: 36px;
+  }
+  .neycher-mission__note {
+    font-size: 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.4;
   }
 }
 
@@ -118,7 +140,121 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Deeply Attuned"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2 (left of ellipse 1)",
+      "default": "To"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2b",
+      "label": "Heading line 2b (right of ellipse 1)",
+      "default": "the <em>Evolving</em> Needs"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Heading line 3 (left of ellipse 2)",
+      "default": "Of Vagina And Vulva At"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3b",
+      "label": "Heading line 3b (right of ellipse 2)",
+      "default": "Every"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_4",
+      "label": "Heading line 4",
+      "default": "Stage Of Life"
+    },
+    {
+      "type": "textarea",
+      "id": "note_right",
+      "label": "Annotation note (right, line 1)",
+      "default": "We stand for clean, conscious,\nhigh-performance care."
+    },
+    {
+      "type": "textarea",
+      "id": "note_left",
+      "label": "Annotation note (left, line 4)",
+      "default": "We believe that intimate care should be as\npowerful as any other form of self-care"
+    },
+    {
+      "type": "image_picker",
+      "id": "ellipse_1",
+      "label": "Ellipse image 1 (line 2)"
+    },
+    {
+      "type": "image_picker",
+      "id": "ellipse_2",
+      "label": "Ellipse image 2 (line 3)"
+    },
+    {
+      "type": "image_picker",
+      "id": "ellipse_3",
+      "label": "Ellipse image 3 (line 4)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading text color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "color",
+      "id": "note_color",
+      "label": "Annotation note color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
   "presets": [
     {
       "name": "Neycher Mission"

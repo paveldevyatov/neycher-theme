@@ -1,22 +1,27 @@
-<section class="neycher-benefits">
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign text_color = section.settings.text_color
+  assign pt = section.settings.padding_top
+  assign pb = section.settings.padding_bottom
+  assign speed = section.settings.speed
+-%}
+
+<section
+  class="neycher-benefits"
+  style="--nb-bg: {{ bg_color }}; --nb-color: {{ text_color }}; --nb-pt: {{ pt }}px; --nb-pb: {{ pb }}px;"
+>
   <div class="neycher-benefits__marquee">
-    <div class="neycher-benefits__marquee-track">
-      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
-      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
-      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
-      <span>Hormone free</span><span class="neycher-benefits__dot"></span>
-      <span>Microbiom friendly</span><span class="neycher-benefits__dot"></span>
-      <span>Clinically studied</span><span class="neycher-benefits__dot"></span>
-      <span>Third party tested</span><span class="neycher-benefits__dot"></span>
+    <div
+      class="neycher-benefits__marquee-track"
+      style="animation-duration: {{ speed }}s;"
+    >
+      {%- comment -%}Render all blocks 4 times to create a seamless loop{%- endcomment -%}
+      {%- for i in (1..4) -%}
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+          <span class="neycher-benefits__dot" aria-hidden="true"></span>
+        {%- endfor -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -27,13 +32,13 @@
   margin: 0;
 }
 
-/* Marquee */
 .neycher-benefits__marquee {
   overflow: hidden;
-  padding: 16px 0;
-  background: #8EB3E7;
-  color: #fff;
+  padding: var(--nb-pt) 0 var(--nb-pb);
+  background: var(--nb-bg, #8EB3E7);
+  color: var(--nb-color, #fff);
 }
+
 .neycher-benefits__marquee-track {
   display: flex;
   align-items: center;
@@ -42,22 +47,23 @@
   font-family: var(--n-font);
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: var(--nb-color, #fff);
   animation: neycher-marquee 20s linear infinite;
   width: max-content;
 }
+
 @keyframes neycher-marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-25%); }
 }
+
 .neycher-benefits__dot {
   width: 4px;
   height: 4px;
-  background: #fff;
+  background: var(--nb-color, #fff);
   border-radius: 50%;
   flex-shrink: 0;
 }
-
 {% endstylesheet %}
 
 {% schema %}
@@ -67,10 +73,81 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#8EB3E7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 20,
+      "info": "Animation duration in seconds"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Benefit"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Neycher Benefits"
+      "name": "Neycher Benefits",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Hormone free" } },
+        { "type": "item", "settings": { "text": "Microbiom friendly" } },
+        { "type": "item", "settings": { "text": "Clinically studied" } },
+        { "type": "item", "settings": { "text": "Third party tested" } }
+      ]
     }
   ]
 }

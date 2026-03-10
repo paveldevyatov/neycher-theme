@@ -3,7 +3,22 @@
   {%- assign product = all_products['vaginal-moisturizer'] -%}
 {%- endif -%}
 {%- if product != blank -%}
-<section class="neycher-fp" style="--neycher-fp-bg: {{ section.settings.bg_color }};">
+<section
+  class="neycher-fp"
+  style="
+    --neycher-fp-bg: {{ section.settings.bg_color }};
+    --neycher-fp-card-bg: {{ section.settings.card_bg }};
+    --neycher-fp-heading-color: {{ section.settings.heading_color }};
+    --neycher-fp-text-color: {{ section.settings.text_color }};
+    --neycher-fp-badge-bg: {{ section.settings.badge_bg }};
+    --neycher-fp-badge-color: {{ section.settings.badge_color }};
+    --neycher-fp-min-height: {{ section.settings.min_height }}px;
+    --neycher-fp-card-max-width: {{ section.settings.card_max_width }}px;
+    --neycher-fp-card-radius: {{ section.settings.card_radius }}px;
+    --neycher-fp-padding-top: {{ section.settings.padding_top }}px;
+    --neycher-fp-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
   <div class="neycher-fp__inner">
     <div class="neycher-fp__bg">
       {%- if section.settings.bg_image != blank -%}
@@ -88,11 +103,13 @@
   padding: 0;
   margin: 0;
   background: var(--neycher-fp-bg, #D8DEE5);
+  padding-top: var(--neycher-fp-padding-top, 0px);
+  padding-bottom: var(--neycher-fp-padding-bottom, 0px);
 }
 .neycher-fp__inner {
   position: relative;
-  min-height: 560px;
   overflow: hidden;
+  display: flex;
 }
 .neycher-fp__bg {
   position: absolute;
@@ -111,27 +128,27 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 48px 40px 48px 60px;
-  min-height: 560px;
+  padding: 40px 40px 40px 60px;
+  flex-shrink: 0;
 }
 .neycher-fp__badge {
   display: inline-block;
   font-family: var(--n-font);
   font-size: 12px;
   font-weight: 500;
-  color: #fff;
-  background: var(--n-color-accent);
+  color: var(--neycher-fp-badge-color, #ffffff);
+  background: var(--neycher-fp-badge-bg, #8b8fc7);
   border-radius: 100px;
   padding: 6px 16px;
   margin: 24px 0 0 28px;
   letter-spacing: 0.02em;
 }
 .neycher-fp__glass-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--neycher-fp-card-bg, rgba(255, 255, 255, 0.75));
   backdrop-filter: blur(20px);
-  border-radius: 16px;
+  border-radius: var(--neycher-fp-card-radius, 16px);
   width: 100%;
-  max-width: 420px;
+  max-width: var(--neycher-fp-card-max-width, 420px);
   overflow: hidden;
 }
 .neycher-fp__img-wrap {
@@ -159,7 +176,7 @@
   font-family: var(--n-font);
   font-size: 22px;
   font-weight: 500;
-  color: var(--n-color-heading);
+  color: var(--neycher-fp-heading-color, #1D2836);
   text-decoration: none;
   line-height: 1.3;
 }
@@ -174,7 +191,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--n-color-body);
+  color: var(--neycher-fp-text-color, #555555);
   text-decoration: none;
   flex-shrink: 0;
 }
@@ -188,7 +205,7 @@
   margin-bottom: 8px;
   font-family: var(--n-font);
   font-size: 13px;
-  color: var(--n-color-body);
+  color: var(--neycher-fp-text-color, #555555);
 }
 .neycher-fp__rating img {
   height: 14px;
@@ -198,7 +215,7 @@
   font-family: var(--n-font);
   font-size: 14px;
   font-weight: 400;
-  color: var(--n-color-body);
+  color: var(--neycher-fp-text-color, #555555);
   margin: 0 0 8px;
   line-height: 1.5;
 }
@@ -206,23 +223,22 @@
   font-family: var(--n-font);
   font-size: 16px;
   font-weight: 500;
-  color: var(--n-color-heading);
+  color: var(--neycher-fp-heading-color, #1D2836);
 }
 /* Mobile background image — hidden on desktop, shown below card on mobile */
 .neycher-fp__mobile-bg {
   display: none;
 }
 @media screen and (max-width: 999px) {
+  .neycher-fp__inner {
+    flex-direction: column;
+  }
   .neycher-fp__card {
     padding: 40px 32px;
     align-items: center;
-    min-height: 480px;
   }
 }
 @media screen and (max-width: 749px) {
-  .neycher-fp__inner {
-    min-height: auto;
-  }
   .neycher-fp__bg {
     display: none;
   }
@@ -232,7 +248,7 @@
     align-items: center;
   }
   .neycher-fp__glass-card {
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--neycher-fp-card-bg, rgba(255, 255, 255, 0.85));
     backdrop-filter: none;
     max-width: 100%;
   }
@@ -292,6 +308,95 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#D8DEE5"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "text",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "rgba(255,255,255,0.75)",
+      "info": "Supports rgba, e.g. rgba(255,255,255,0.75)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge background",
+      "default": "#8b8fc7"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Section min height",
+      "min": 400,
+      "max": 700,
+      "step": 20,
+      "default": 460,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_max_width",
+      "label": "Card max width",
+      "min": 300,
+      "max": 500,
+      "step": 20,
+      "default": 420,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
     }
   ],
   "presets": [

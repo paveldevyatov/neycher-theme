@@ -1,11 +1,17 @@
-<section class="neycher-hero">
+<section class="neycher-hero" style="--hero-bg: {{ section.settings.bg_color }}; --hero-height: {{ section.settings.height }}vh; --hero-heading-size: {{ section.settings.heading_size }}px; --hero-heading-color: {{ section.settings.heading_color }}; --hero-btn-bg: {{ section.settings.button_bg }}; --hero-btn-color: {{ section.settings.button_color }}; --hero-pt: {{ section.settings.padding_top }}px; --hero-pb: {{ section.settings.padding_bottom }}px;">
   <div class="neycher-hero__media">
-    <img src="{{ 'hero-bg-3.jpeg' | asset_url }}" alt="Neycher products" loading="eager" width="1440" height="900">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 1920 }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="1920" height="1080">
+    {%- else -%}
+      <img src="{{ 'hero-bg-3.jpeg' | asset_url }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="1440" height="900">
+    {%- endif -%}
   </div>
   <div class="neycher-hero__overlay"></div>
   <div class="neycher-hero__content">
-    <h1 class="neycher-hero__heading">Save up to 20%<br>with subscription</h1>
-    <a href="/collections/all" class="neycher-hero__btn">Shop Now</a>
+    <h1 class="neycher-hero__heading">{{ section.settings.heading }}</h1>
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.button_link }}" class="neycher-hero__btn">{{ section.settings.button_text }}</a>
+    {%- endif -%}
   </div>
 </section>
 
@@ -14,14 +20,14 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #9AA7B6;
+  background: var(--hero-bg, #9AA7B6);
 }
 .neycher-hero__media {
   width: 100%;
 }
 .neycher-hero__media img {
   width: 120%;
-  height: 85vh;
+  height: var(--hero-height, 85vh);
   display: block;
   object-fit: cover;
   object-position: center center;
@@ -33,9 +39,9 @@
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(154, 167, 182, 1) 0%,
-    rgba(154, 167, 182, 0.85) 15%,
-    rgba(154, 167, 182, 0.3) 35%,
+    var(--hero-bg, rgba(154, 167, 182, 1)) 0%,
+    color-mix(in srgb, var(--hero-bg, #9AA7B6) 85%, transparent) 15%,
+    color-mix(in srgb, var(--hero-bg, #9AA7B6) 30%, transparent) 35%,
     transparent 50%
   );
   z-index: 1;
@@ -47,7 +53,7 @@
   top: 0;
   bottom: 0;
   z-index: 2;
-  padding: 0 60px;
+  padding: var(--hero-pt, 0px) 60px var(--hero-pb, 0px);
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -56,17 +62,17 @@
 }
 .neycher-hero__heading {
   font-family: var(--n-font);
-  font-size: 48px;
+  font-size: var(--hero-heading-size, 48px);
   font-weight: 400;
   line-height: 1.15;
-  color: #fff;
+  color: var(--hero-heading-color, #fff);
   margin: 0 0 32px;
   letter-spacing: -0.5px;
 }
 .neycher-hero__btn {
   display: inline-block;
-  background: #fff;
-  color: var(--n-color-heading);
+  background: var(--hero-btn-bg, #fff);
+  color: var(--hero-btn-color, var(--n-color-heading));
   font-family: var(--n-font);
   font-size: 15px;
   font-weight: 500;
@@ -89,7 +95,7 @@
     font-size: 36px;
   }
   .neycher-hero__content {
-    padding: 0 40px;
+    padding-inline: 40px;
     max-width: 400px;
   }
 }
@@ -121,8 +127,8 @@
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(154, 167, 182, 0.6) 50%,
-      #9AA7B6 100%
+      color-mix(in srgb, var(--hero-bg, #9AA7B6) 60%, transparent) 50%,
+      var(--hero-bg, #9AA7B6) 100%
     );
     pointer-events: none;
   }
@@ -157,7 +163,107 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Save up to 20%<br>with subscription"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background / overlay color",
+      "default": "#9AA7B6"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Section height (vh)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 85,
+      "unit": "vh"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size",
+      "min": 32,
+      "max": 72,
+      "step": 2,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
   "presets": [
     {
       "name": "Neycher Hero"

@@ -1,80 +1,62 @@
-<section class="neycher-stats">
+<section class="neycher-stats" style="--stats-bg: {{ section.settings.bg_color }}; --stats-heading-color: {{ section.settings.heading_color }}; --stats-text-color: {{ section.settings.text_color }}; --stats-accent-color: {{ section.settings.accent_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="neycher-stats__inner">
     <div class="neycher-stats__left">
-      <h2 class="n-title-display neycher-stats__heading">Your tender parts deserve <em>lab-verified results.</em></h2>
-      <p class="neycher-stats__text">Our formulations have been clinically proven to soothe discomfort associated with common vulvovaginal conditions and balance vaginal flora over time*.</p>
+      <h2 class="n-title-display neycher-stats__heading">{{ section.settings.heading }}</h2>
+      <p class="neycher-stats__text">{{ section.settings.description }}</p>
     </div>
     <div class="neycher-stats__right">
       <div class="neycher-stats__grid">
-        <div class="neycher-stats__item">
-          <div class="neycher-stats__number-row">
-            <span class="neycher-stats__number">94%</span>
-            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="88.5 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-            </svg>
+        {%- for block in section.blocks -%}
+          {%- assign dasharray = block.settings.ring_percent | times: 0.942 -%}
+          <div class="neycher-stats__item" {{ block.shopify_attributes }}>
+            <div class="neycher-stats__number-row">
+              <span class="neycher-stats__number">{{ block.settings.number }}</span>
+              <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
+                <circle cx="18" cy="18" r="15" fill="none" stroke="{{ section.settings.accent_color }}" stroke-width="3" stroke-dasharray="{{ dasharray }} 94.2" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+              </svg>
+            </div>
+            <p class="neycher-stats__desc">{{ block.settings.description }}</p>
           </div>
-          <p class="neycher-stats__desc">Experienced a noticeable improvement in vaginal dryness</p>
-        </div>
-        <div class="neycher-stats__item">
-          <div class="neycher-stats__number-row">
-            <span class="neycher-stats__number">96%</span>
-            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="90.5 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-            </svg>
-          </div>
-          <p class="neycher-stats__desc">Reported positive impacts on other aspects of their life, such as emotional well-being</p>
-        </div>
-        <div class="neycher-stats__item">
-          <div class="neycher-stats__number-row">
-            <span class="neycher-stats__number">84%</span>
-            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="79.2 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-            </svg>
-          </div>
-          <p class="neycher-stats__desc">Stopped feeling pain during sex</p>
-        </div>
-        <div class="neycher-stats__item">
-          <div class="neycher-stats__number-row">
-            <span class="neycher-stats__number">88%</span>
-            <svg class="neycher-stats__ring" width="36" height="36" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#e0e0e8" stroke-width="3"/>
-              <circle cx="18" cy="18" r="15" fill="none" stroke="#8b8fc7" stroke-width="3" stroke-dasharray="82.9 94.2" stroke-dashoffset="23.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-            </svg>
-          </div>
-          <p class="neycher-stats__desc">Noticed improvements in their sexual relationships</p>
-        </div>
+        {%- endfor -%}
       </div>
-      <p class="neycher-stats__footnote">*Based on a 4-week study of woman ages 29-74 experiencing common vulvovaginal symptoms and general discomfort.</p>
+      <p class="neycher-stats__footnote">{{ section.settings.footnote }}</p>
     </div>
   </div>
 </section>
 
 {% stylesheet %}
 .neycher-stats {
-  padding: 80px 60px;
+  background-color: var(--stats-bg, #ffffff);
+  padding-left: 60px;
+  padding-right: 60px;
   max-width: 1440px;
   margin: 0 auto;
 }
 .neycher-stats__inner {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.4fr;
   gap: 80px;
   align-items: start;
 }
 .neycher-stats__heading {
-  margin-bottom: 28px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px;
+  color: var(--stats-heading-color, #1D2836);
 }
 .neycher-stats__heading em {
+  font-weight: 300;
   font-style: italic;
 }
 .neycher-stats__text {
-  font-family: var(--n-font);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 400;
-  color: var(--n-color-body);
+  color: var(--stats-text-color, #1D2836);
   line-height: 1.6;
   margin: 0;
   max-width: 480px;
@@ -82,38 +64,39 @@
 .neycher-stats__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px 60px;
+  gap: 48px 80px;
 }
 .neycher-stats__number-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .neycher-stats__number {
-  font-family: var(--n-font);
-  font-size: 56px;
-  font-weight: 400;
-  color: var(--n-color-heading);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 64px;
+  font-weight: 500;
+  color: var(--stats-heading-color, #1D2836);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 .neycher-stats__ring {
   flex-shrink: 0;
 }
 .neycher-stats__desc {
-  font-family: var(--n-font);
-  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
   font-weight: 400;
-  color: var(--n-color-body);
+  color: var(--stats-text-color, #1D2836);
   margin: 0;
   line-height: 1.5;
 }
 .neycher-stats__footnote {
-  font-family: var(--n-font);
-  font-size: 12px;
-  color: var(--n-color-muted);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #888;
   margin: 48px 0 0;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 @media screen and (max-width: 999px) {
   .neycher-stats__inner {
@@ -123,13 +106,17 @@
 }
 @media screen and (max-width: 749px) {
   .neycher-stats {
-    padding: 48px 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .neycher-stats__heading {
+    font-size: 32px;
   }
   .neycher-stats__grid {
     gap: 32px 24px;
   }
   .neycher-stats__number {
-    font-size: 40px;
+    font-size: 44px;
   }
 }
 {% endstylesheet %}
@@ -141,10 +128,148 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your tender parts deserve <em>lab-verified results.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our formulations have been clinically proven to soothe discomfort associated with common vulvovaginal conditions and balance vaginal flora over time*."
+    },
+    {
+      "type": "textarea",
+      "id": "footnote",
+      "label": "Footnote",
+      "default": "*Based on a 4-week study of woman ages 29-74 experiencing common vulvovaginal symptoms and general discomfort."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1D2836"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (ring)",
+      "default": "#8EB3E7"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "94%"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Experienced a noticeable improvement in vaginal dryness"
+        },
+        {
+          "type": "range",
+          "id": "ring_percent",
+          "label": "Ring fill (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 94
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Neycher Stats"
+      "name": "Neycher Stats",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "94%",
+            "description": "Experienced a noticeable improvement in vaginal dryness",
+            "ring_percent": 94
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "96%",
+            "description": "Reported positive impacts on other aspects of their life, such as emotional well-being",
+            "ring_percent": 96
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "84%",
+            "description": "Stopped feeling pain during sex",
+            "ring_percent": 84
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "88%",
+            "description": "Noticed improvements in their sexual relationships",
+            "ring_percent": 88
+          }
+        }
+      ]
     }
   ]
 }
